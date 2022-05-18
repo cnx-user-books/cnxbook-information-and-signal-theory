@@ -1,0 +1,29 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:md="http://cnx.rice.edu/mdml">
+  <title>Sampling and reconstruction with Matlab</title>
+  <metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>fc0d73aa-8ebe-4e9f-83b4-c3dc36102849</md:uuid>
+</metadata>
+
+  <content>
+     <section id="s1">
+        <title>Matlab files</title>
+         <para id="s1p1">
+           <link document="m11549" resource="Samprecon.m">Samprecon.m</link>
+	   
+      </para>
+     </section>
+     <section id="s2">
+         <para id="s2p1">
+             <list id="l1" list-type="labeled-item" display="inline">
+                  <item><link document="m11419">Introduction</link></item>
+		  <item><link document="m11423">Proof</link></item>
+                  <item><link document="m11443">Illustrations</link></item>
+                  <item><link document="m11448">Aliasing applet</link></item>
+                  <item><link document="m11549">Hold operation</link></item>
+  		  <item><link document="m11465">System view</link></item>
+            	  <item><link document="m11442">Exercises</link></item>
+             </list>
+         </para>
+     </section>
+  </content>
+  
+</document>

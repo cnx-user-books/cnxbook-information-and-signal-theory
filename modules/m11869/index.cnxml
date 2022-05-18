@@ -1,0 +1,388 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml">
+  <title>Representing symbols by bits</title>
+  <metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>40c00f79-9f60-488b-8309-cf7b6ecbc214</md:uuid>
+</metadata>
+
+  <content>
+    <section id="s00">
+      <title>Introduction</title>
+      <para id="s00p00">
+	Often we want to represent data, e.g. characters, images, in a binary form. By binary form we mean representing by the symbols "0", and "1".
+	Using binary representation allows us to conveniently store, retrieve, and manipulate them with a computer. To work with data in binary form 
+	we must have a fixed way of encoding (representing) a fixed data stream. The set of all binary sequences in a representation of some data is
+	called a <term>code</term>. (Note that this has nothing to do with cryptology). Usually we refer to the data that we want to represent by bits as
+	a <term>source</term>.
+      </para>
+	
+	<example id="ex1">
+	<title>Representing English Characters</title>
+	  <para id="ex1p1">
+	    Let us consider a very practical example of the above ideas. Let our source be a stream of English characters. Now we want to represent this
+	    stream of characters as bits, say to store it on a computer or send it over the Internet. First we need to know the number of such characters,
+	    which is (traditonally) conveniently set to 128. The number 128 is obtained by summing upper case charachters (26), lower case (26), 
+	    digits (10), brackets and punctuation (20), odd characters (14) (the "&amp;" is an odd character), and control characters (32).
+	  </para>
+	  <para id="ex1p2">
+	    Obviously we need to have a unique representation of each of the 128 characters, this can e.g. be obtained by exhausting the 128 bit 
+	    combinations which concatenating 7 bits give. Thus we have devised an 7-bit code. A well known 7-bit code is <term>ASCII</term>, short for
+	    "American Standard Code for Information Interchange". Adding a parity bit for error control to the ASCII code forms an 8-bit code. As an
+	    example, the representation of an "A" in ASCII is 1000001.
+	  </para>
+	  <para id="ex1p3">
+	    Now, one can ask whether the 7-bit ASCII code is an optimal representation in terms of using, on average, the minimum number of bits
+	    representing the English characters? We will return to this question later (in <link target-id="ex3">example 3</link>).
+	  </para>
+
+	</example>
+    </section>
+    <section id="s01">
+      <title>Minimal representation</title>
+      <para id="s01p01">
+      When representing a source we want to use as few bits as possible, as this will imply that less disk space is required for storage or that 
+      transmission over the Internet is quicker. However, we do not want to use so few bits that the receiver cannot determine what was sent or stored.
+      </para>
+      <para id="s01p02">
+	So, for a given source what is the minimal representation? Here we consider the minimal representation as the representation that uses the
+	minimum number of bits (on average) to encode the source without errors. 
+	According to <link url="http://en.wikipedia.org/wiki/Claude_Shannon">Shannon's</link> 
+	<term>source coding theorem</term>, a source that produces statistically independent outcomes, the minimum average number of bits per symbol 
+	is the <link document="m11839">entropy</link> of the source! (A classical example of a source that produces statistically independent outcomes is 
+	throwing a die.)
+      </para>
+      <para id="s01p03">
+	Average indicates that the number of bits used for a specific symbol may be different
+	from the number of bits representing another. E.g., as opposed to ASCII coding, we might represent an "A" with 7 bits, but an "E" with 3 bits.   
+	But it also implies that when you receive a series of symbols, the number you receive per time unit,
+	say per second, will not be exactly the same, but averaged over a long term period, the rate is proportional to time with the rate per symbol
+	as the proportionality constant.
+      </para>
+      <para id="s01p04">
+	Let us assume that we represent a symbol <m:math><m:ci><m:msub><m:mi>x</m:mi><m:mi>n</m:mi></m:msub></m:ci></m:math>, with probability
+	<m:math><m:ci><m:msub><m:mi>p</m:mi><m:mi>n</m:mi></m:msub></m:ci></m:math>, by
+	<m:math><m:ci><m:msub><m:mi>l</m:mi><m:mi>n</m:mi></m:msub></m:ci></m:math> bits. Then, the average number of bits spent per symbol will be
+	<equation id="eq1">
+	  <m:math>
+	    <m:apply>
+	      <m:eq/>
+	      <m:apply><m:mean/><m:ci>L</m:ci></m:apply>
+	      <m:apply>
+		<m:sum/>
+		<m:bvar>
+		  <m:ci>n</m:ci>
+		</m:bvar>
+		<m:lowlimit><m:ci>1</m:ci></m:lowlimit>
+		<m:uplimit><m:cn>N</m:cn></m:uplimit>
+		<m:apply>
+		  <m:times/>
+		  <m:ci><m:msub><m:mi>p</m:mi><m:mi>n</m:mi></m:msub></m:ci>
+		  <m:ci><m:msub><m:mi>l</m:mi><m:mi>n</m:mi></m:msub></m:ci>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>
+	</equation>
+	
+	We see that this equation is equal to the entropy if the code words are selected to have the lengths
+	<m:math>
+	  <m:apply>
+	    <m:eq/>
+	    <m:ci><m:msub><m:mi>l</m:mi><m:mi>n</m:mi></m:msub></m:ci>
+	    <m:apply>
+	      <m:minus/>
+	      <m:apply>
+		<m:log/>
+		<m:ci><m:msub><m:mi>p</m:mi><m:mi>n</m:mi></m:msub></m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:math>.
+	Thus, if the source produces stochastically independent outcomes with probabilities
+	<m:math><m:ci><m:msub><m:mi>p</m:mi><m:mi>n</m:mi></m:msub></m:ci></m:math>, such that
+	<m:math>
+	  <m:apply>
+	    <m:log/>
+	    <m:ci><m:msub><m:mi>p</m:mi><m:mi>n</m:mi></m:msub></m:ci>
+	  </m:apply>
+	</m:math> is an integer, then we can easily find an optimal code as we show in the next example.
+      </para>	
+
+
+   <example id="ex2">
+	<title>Finding a minimal representation</title>
+      <para id="para3"> 
+	A four-symbol alphabet produces stochastically independent outcomes with the following probabilities.  
+	  <m:math display="block">
+	    <m:apply>
+	      <m:eq/><m:apply>
+	      <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#probability"/>
+		<m:ci><m:msub><m:mi>x</m:mi><m:mn>1</m:mn></m:msub></m:ci>
+	      </m:apply>
+	      <m:apply><m:divide/>
+		  <m:cn>1</m:cn>
+		  <m:cn>2</m:cn>
+	      </m:apply>
+             </m:apply>
+           </m:math>
+
+	  <m:math display="block">
+	    <m:apply>
+	      <m:eq/><m:apply>
+	      <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#probability"/>
+		<m:ci><m:msub><m:mi>x</m:mi><m:mn>2</m:mn></m:msub></m:ci>
+	      </m:apply>
+	      <m:apply><m:divide/>
+		  <m:cn>1</m:cn>
+		  <m:cn>4</m:cn>
+	      </m:apply>
+             </m:apply>
+           </m:math>
+
+	  <m:math display="block">
+	    <m:apply>
+	      <m:eq/><m:apply>
+	      <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#probability"/>
+		<m:ci><m:msub><m:mi>x</m:mi><m:mn>3</m:mn></m:msub></m:ci>
+	      </m:apply>
+	      <m:apply><m:divide/>
+		  <m:cn>1</m:cn>
+		  <m:cn>8</m:cn>
+	      </m:apply>
+             </m:apply>
+           </m:math>
+
+	  <m:math display="block">
+	    <m:apply>
+	      <m:eq/><m:apply>
+	      <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#probability"/>
+		<m:ci><m:msub><m:mi>x</m:mi><m:mn>4</m:mn></m:msub></m:ci>
+	      </m:apply>
+	      <m:apply><m:divide/>
+		  <m:cn>1</m:cn>
+		  <m:cn>8</m:cn>
+	      </m:apply>
+             </m:apply>
+           </m:math>
+
+	and an entropy of 1.75 bits/symbol. Let's see if we can find a codebook for
+	this four-letter alphabet that satisfies the Source Coding
+	Theorem. The simplest code to try is known as the <term>simple
+	binary code</term>: convert the symbol's index into a binary
+	number and use the same number of bits for each symbol by
+	including leading zeros where necessary.
+	<equation id="eq8">
+	  <m:math>
+	    <m:apply>
+	      <m:ci><m:mo>↔</m:mo></m:ci>
+	      <m:ci><m:msub>
+		  <m:mi>x</m:mi>
+		  <m:mn>1</m:mn>
+		</m:msub></m:ci>
+	      <m:ci>00</m:ci>
+	    </m:apply>
+	    <m:mtext>  </m:mtext>
+	    <m:apply>
+	      <m:ci><m:mo>↔</m:mo></m:ci>
+	      <m:ci><m:msub>
+		  <m:mi>x</m:mi>
+		  <m:mn>2</m:mn>
+		</m:msub></m:ci>
+	      <m:ci>01</m:ci>
+	    </m:apply>
+	    <m:mtext>  </m:mtext>
+	    <m:apply>
+	      <m:ci><m:mo>↔</m:mo></m:ci>
+	      <m:ci><m:msub>
+		  <m:mi>x</m:mi>
+		  <m:mn>3</m:mn>
+		</m:msub></m:ci>
+	      <m:ci>10</m:ci>
+	    </m:apply>
+	    <m:mtext>  </m:mtext>
+	    <m:apply>
+	      <m:ci><m:mo>↔</m:mo></m:ci>
+	      <m:ci><m:msub>
+		  <m:mi>x</m:mi>
+		  <m:mn>4</m:mn>
+		</m:msub></m:ci>
+	      <m:ci>11</m:ci>
+	    </m:apply>
+	  </m:math>
+	</equation>
+
+<!--Whenever the number of symbols in the alphabet is a power of
+	two (as in this case), the average number of bits
+	<m:math xmlns:m="http://www.w3.org/1998/Math/MathML" display="inline">
+	  <m:apply>
+	    <m:mean/>
+	    <m:apply>
+	      <m:ci type="fn">B</m:ci>
+	      <m:ci>
+		<m:msub>
+		  <m:mi>x</m:mi>
+		  <m:mi>k</m:mi>
+		</m:msub>
+	      </m:ci>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+
+	equals
+
+	<m:math xmlns:m="http://www.w3.org/1998/Math/MathML" display="inline">
+	  <m:apply>
+	    <m:log/>
+	    <m:logbase>
+	      <m:cn>2</m:cn>
+	    </m:logbase>
+	    <m:ci>K</m:ci>
+	  </m:apply>
+	</m:math>, which equals <m:math
+	xmlns:m="http://www.w3.org/1998/Math/MathML"><m:cn>2</m:cn></m:math>
+	in this case.-->  
+	  As all symbols are represented by 2 bits, obviously the average number of bits per symbol is 2.
+	  Because the entropy equals <m:math display="inline"><m:cn>1.75</m:cn></m:math> bits, the simple
+	binary code is not a minimal representation according to the source coding theorem.
+	If we chose a codebook with differing number of bits for the symbols, a smaller average number of
+	bits can indeed be obtained.  The idea is to <emphasis>use shorter bit
+	sequences for the symbols that occur more often</emphasis>, i.e., symbols that have a higher probability.  
+	One codebook like this is
+	<equation id="eq9">
+	  <m:math> 
+	    <m:apply>
+	      <m:ci><m:mo>↔</m:mo></m:ci>
+	      <m:ci><m:msub>
+		  <m:mi>x</m:mi>
+		  <m:mn>1</m:mn>
+		</m:msub></m:ci>
+	      <m:ci>0</m:ci>
+	    </m:apply>
+	    <m:mtext>  </m:mtext>
+	    <m:apply>
+	      <m:ci><m:mo>↔</m:mo></m:ci>
+	      <m:ci><m:msub>
+		  <m:mi>x</m:mi>
+		  <m:mn>2</m:mn>
+		</m:msub></m:ci>
+	      <m:ci>10</m:ci>
+	    </m:apply>
+	    <m:mtext>  </m:mtext>
+	    <m:apply>
+	      <m:ci><m:mo>↔</m:mo></m:ci>
+	      <m:ci><m:msub>
+		  <m:mi>x</m:mi>
+		  <m:mn>3</m:mn>
+		</m:msub></m:ci>
+	      <m:ci>110</m:ci>
+	    </m:apply>
+	    <m:mtext>  </m:mtext>
+	    <m:apply>
+	      <m:ci><m:mo>↔</m:mo></m:ci>
+	      <m:ci><m:msub>
+		  <m:mi>x</m:mi>
+		  <m:mn>4</m:mn>
+		</m:msub></m:ci>
+	      <m:ci>111</m:ci>
+	    </m:apply>
+	  </m:math>
+	</equation>
+	Now  
+
+	<m:math display="inline">
+	  <m:apply>
+	    <m:eq/>
+	    <m:apply>
+	      <m:mean/>
+	      <m:apply>
+		<m:ci type="fn">L</m:ci>
+	      </m:apply>
+	    </m:apply>
+	    <m:apply>
+	      <m:plus/>
+	      <m:apply>
+		<m:times/>
+		<m:cn>1</m:cn>
+		<m:apply>
+		  <m:divide/>
+		  <m:cn>1</m:cn>
+		  <m:cn>2</m:cn>
+		</m:apply>
+	      </m:apply>
+	      <m:apply>
+		<m:times/>
+		<m:cn>2</m:cn>
+		<m:apply>
+		  <m:divide/>
+		  <m:cn>1</m:cn>
+		  <m:cn>4</m:cn>
+		</m:apply>
+	      </m:apply> 
+	      <m:apply>
+		<m:times/>
+		<m:cn>3</m:cn>
+		<m:apply>
+		  <m:divide/>
+		  <m:cn>1</m:cn>
+		  <m:cn>8</m:cn>
+		</m:apply>
+	      </m:apply> 
+	      <m:apply>
+		<m:times/>
+		<m:cn>3</m:cn>
+		<m:apply>
+		  <m:divide/>
+		  <m:cn>1</m:cn>
+		  <m:cn>8</m:cn>
+		</m:apply>
+	      </m:apply> 
+	    </m:apply>
+	    <m:cn>1.75</m:cn>
+	  </m:apply>
+	</m:math>.  We can reach the entropy limit! This should come as no surprise, as promised above, when
+	<m:math><m:apply><m:log/><m:ci><m:msub><m:mi>p</m:mi><m:mi>n</m:mi></m:msub></m:ci></m:apply></m:math> is an integer
+	  for all <m:math><m:ci>n</m:ci></m:math>, the optimal code is easily found.
+	</para>
+	<para id="ex02p02">
+	  The simple
+	binary code is, in this case, less efficient than the
+	unequal-length code. Using the efficient code, we can transmit
+	the symbolic-valued signal having this alphabet 12.5%
+	faster. Furthermore, we know that no more efficient codebook
+	can be found because of Shannon's source coding theorem.
+      </para>
+    </example>
+      <example id="ex3">
+	<title>Optimality of the ASCII code</title>
+	<para id="ex3p00">
+	  Let us return to the ASCII codes presented in <link target-id="ex1"/>. Is the 7-bit ASCII code optimal, i.e., is it a minimal representation?
+	  The 7-bit ASCII code assign an equal length (7-bit) to all characters it represents. Thus, it would be optimal if all of the 128 characters were
+	  equiprobable, that is each character should have a probability of
+	  <m:math>
+	    <m:apply>
+	      <m:divide/>
+	      <m:cn>1</m:cn>
+	      <m:cn>128</m:cn>
+	    </m:apply>
+	  </m:math>. To find out whether the characters really are equiprobable an analysis of all English texts would be needed. Such an analysis is
+	  difficult to do. However, the letter "E" is more probable than the letter "Z", so the equiprobable assumption does not hold, and the ASCII code 
+	  is not optimal. 
+	</para>
+	<para id="ex3p01">
+(A technical note: We should take into account that in English text subsequent outcomes are not stochastically independent.
+	  To see this, assume the first letter to be "b", then it is more probable that the next letter is "e", than "z". In the case where the outcomes 
+	  are not stochastically independent, the formulation we have given of Shannon's source coding theorem is no longer valid, to fix this, we should
+	  replace the entropy with the entropy rate, but we will not pursue this here).
+	</para>
+      </example>
+      </section>
+    <section id="s02">
+      <title>Generating efficient codes</title>
+      <para id="s02p00">
+      From Shannon's source coding theorem we know what the minimum average rate needed to represent a source is. But other than in the case when the
+      logarithm of the probabilities gives an integer, we do not get any indications on how to obtain that rate. It is a large area of research to get
+      close to the Shannon entropy bound. One clever way to do encoding is the <link document="m10176">Huffman coding</link> scheme.
+      </para>
+    </section>
+
+  </content>
+  
+</document>

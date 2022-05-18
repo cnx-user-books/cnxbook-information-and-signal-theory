@@ -1,0 +1,324 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml">
+  <title>Introduction</title>
+  <metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>525b526c-7eba-4fc0-a550-66091e5752ad</md:uuid>
+</metadata>
+
+  <content>
+    <para id="p0">
+      In this and the following modules the basic concepts of information
+      theory will be introduced. For simplicity we assume that the signals
+      are time discrete. Time discrete signals often arise from sampling a time
+      continous signal. The assumption of time discrete signal is valid because
+      we will only be looking at <link document="m11443" target-id="f2">bandlimited signals</link>.
+      (Which can, <link document="m11419" target-id="s4">as we know</link>, 
+      be perfectly reconstructed).
+    </para>
+
+    <para id="p1">
+      In treating time discrete signal and their information content we have
+      to distinguish between two types of signals: 
+      <list id="l1">
+	<item>signals have amplitude levels belonging to
+	a <emphasis>finite</emphasis> set</item> 
+
+	<item>signals that have amplitudes
+	taken from the real line</item>
+      </list>
+      In the first case we can measure the information content in terms 
+      of <link document="m11839">entropy</link>, while in the second case the entropy
+      is infinte and we must resort to characterise the source by means of 
+      <link document="m11840">differential entropy</link>. 
+    </para>
+    <section id="s1">
+      <title>Examples of information sources</title>
+      <para id="s1p1">
+      The signals treated are mainly of a stochastic nature, i.e. the signal
+      is unknown to us. 
+
+      Since the signal is not known to the destination
+      (because of it's stochastic nature), it is then best
+      modeled as a random process, discrete-time or continuous time.
+      Examples of information sources that we model as random processes are:
+    </para>
+
+    <para id="s0p2">
+      <list id="list1" list-type="bulleted">
+	<item>Digital data source (e.g. a text) can be modeled as a 
+	  random process.
+	</item>
+	<item>
+	  Video signals can be modeled as a random
+	  process.  Such signals are mainly bandlimited to
+	  around 5 MHz (the value depends on the standards used to
+	  raster the frames of image).
+	</item>
+	<item>
+	  Audio signals can be modeled as a random
+	  process.  Speech is typically between 300 Hz and
+	  3400 Hz, see <link target-id="f1"/>.
+	</item>
+      </list>
+      <figure id="f1">
+	<media id="idp2146688" alt=""><image src="../../media/voiceband.png" mime-type="image/png"/></media>
+	<caption>Power spectral density plot of speech</caption>
+      </figure>
+    </para>
+    <para id="para3">
+      Video and speech are analog information signals are bandlimited.  Therefore, if
+      sampled faster than two times the highest fequency component, they can be reconstructed
+      from their sample values.
+    </para>
+
+    <example id="example1">
+      <para id="para4">
+	A speech signal with bandwidth of 3100 Hz can be sampled at
+	the rate of 6.2 KHz.  If the samples are quantized with a 8
+	level quantizer then the speech signal can be represented with
+	a binary sequence with bit rate
+	<equation id="eq01">
+	  <m:math display="block">
+	    <m:apply>
+	      <m:eq/>
+              <m:apply>
+                <m:times/>
+		<m:cn>6200</m:cn>
+		<m:apply>
+		  <m:log/>
+		  <m:logbase>
+		    <m:cn>2</m:cn>
+		  </m:logbase>
+		  <m:cn>8</m:cn>
+		</m:apply>
+              </m:apply>
+              <m:apply>
+                <m:times/>
+		<m:cn>18600</m:cn>
+		<m:ci> bits/sec</m:ci>
+              </m:apply>
+	    </m:apply>
+	  </m:math>
+	</equation>
+      </para>
+      
+      <figure id="f2">
+	<media id="idp1812464" alt=""><image src="../../media/voicesamp.png" mime-type="image/png"/></media>
+	<caption>Analog speech signal sampled and quantised</caption>
+      </figure>
+      
+      <para id="exa1p1">
+	The sampled real values can be quantized to create a discrete-time
+	discrete-valued random process.
+      </para>
+    </example>
+    </section>
+    <section id="s2">
+      <title>The Core of Information theory</title>
+      <para id="s2p1">
+      The key observation from the discussion above is
+      that for a reveiver the signals are <emphasis>unknown</emphasis>.
+      It is exact this uncertainty that enables the signal
+      to transmit information. This is the core of information theory:
+      
+      <note type="Information transfer" id="idp2246272"><label>Information transfer</label>
+	Information transfer happens when the receiver is
+	unable to know or predict at message before it is
+	received.	
+      </note>
+      </para>
+    </section>
+
+    <section id="s3">
+      <title>Some statistics</title>
+      <para id="s3p1">
+	Here we present some statistics with the intent of
+	reviewing a few basic concepts and to introduce the notation.
+      </para>
+      <para id="s3p2">
+	Let X be a <emphasis>stochastic</emphasis> variable. Let
+	<m:math>
+	  <m:apply>
+	    <m:eq/>
+	    <m:ci>X</m:ci>
+	    <m:ci><m:msub><m:mi>x</m:mi><m:mi>i</m:mi></m:msub></m:ci>
+	  </m:apply>
+	</m:math> and
+	<m:math>
+	  <m:apply>
+	    <m:eq/>
+	    <m:ci>X</m:ci>
+	    <m:ci><m:msub><m:mi>x</m:mi><m:mi>j</m:mi></m:msub></m:ci>
+	  </m:apply>
+	</m:math> denote two outcomes of X.
+      </para>
+      <para id="s3p3">
+	<list id="l2">
+	  <item>
+	<emphasis>Dependent</emphasis> outcomes implies:
+	<m:math>
+	  <m:apply>
+	    <m:eq/>
+	    <m:apply>
+	      <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#probability"/>
+	      <m:apply>
+		<m:eq/>
+		<m:ci>X</m:ci>
+		<m:ci><m:msub><m:mi>x</m:mi><m:mi>i</m:mi></m:msub></m:ci>
+	      </m:apply>
+	      <m:apply>
+		<m:eq/>
+		<m:ci>X</m:ci>
+		<m:ci><m:msub><m:mi>x</m:mi><m:mi>j</m:mi></m:msub></m:ci>
+	      </m:apply>
+	    </m:apply>
+	    <m:apply>
+	      <m:times/>
+	      <m:apply>
+		<m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#probability"/>
+		<m:apply>
+		  <m:eq/>
+		  <m:ci>X</m:ci>
+		  <m:ci><m:msub><m:mi>x</m:mi><m:mi>i</m:mi></m:msub></m:ci>
+		</m:apply>
+	      </m:apply>
+	      <m:apply>
+		<m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#probability"/>
+		<m:condition>
+		  <m:ci><m:msub><m:mi>x</m:mi><m:mi>i</m:mi></m:msub></m:ci>
+		</m:condition>
+		<m:apply>
+		  <m:eq/>
+		  <m:ci>X</m:ci>
+		  <m:ci><m:msub><m:mi>x</m:mi><m:mi>j</m:mi></m:msub></m:ci>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	    <m:apply>
+	      <m:times/>
+	      <m:apply>
+		<m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#probability"/>
+		<m:apply>
+		  <m:eq/>
+		  <m:ci>X</m:ci>
+		  <m:ci><m:msub><m:mi>x</m:mi><m:mi>j</m:mi></m:msub></m:ci>
+		</m:apply>
+	      </m:apply>
+	      <m:apply>
+		<m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#probability"/>
+		<m:condition>
+		  <m:ci><m:msub><m:mi>x</m:mi><m:mi>j</m:mi></m:msub></m:ci>
+		</m:condition>
+		<m:apply>
+		  <m:eq/>
+		  <m:ci>X</m:ci>
+		  <m:ci><m:msub><m:mi>x</m:mi><m:mi>i</m:mi></m:msub></m:ci>
+		</m:apply>
+	    </m:apply>
+	  </m:apply><!--slutt likhetstegn-->
+	  </m:apply>
+	</m:math>
+	  </item>
+	  <item>
+	    <emphasis>Independent</emphasis> outcomes implies
+	    <m:math>
+	      <m:apply>
+		<m:eq/>
+		<m:apply>
+		  <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#probability"/>
+		  <m:apply>
+		    <m:eq/>
+		    <m:ci>X</m:ci>
+		    <m:ci><m:msub><m:mi>x</m:mi><m:mi>i</m:mi></m:msub></m:ci>
+		  </m:apply>
+		  <m:apply>
+		    <m:eq/>
+		    <m:ci>X</m:ci>
+		    <m:ci><m:msub><m:mi>x</m:mi><m:mi>j</m:mi></m:msub></m:ci>
+		  </m:apply>
+		</m:apply>
+		<m:apply>
+		  <m:times/>
+		  <m:apply>
+		    <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#probability"/>
+		    <m:apply>
+		      <m:eq/>
+		      <m:ci>X</m:ci>
+		      <m:ci><m:msub><m:mi>x</m:mi><m:mi>i</m:mi></m:msub></m:ci>
+		    </m:apply>		    
+		  </m:apply>
+		  <m:apply>
+		    <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#probability"/>
+		    <m:apply>
+		      <m:eq/>
+		      <m:ci>X</m:ci>
+		      <m:ci><m:msub><m:mi>x</m:mi><m:mi>j</m:mi></m:msub></m:ci>
+		    </m:apply>		    
+		  </m:apply>
+		</m:apply>
+		</m:apply>
+	    </m:math>		
+	  </item>
+	  <item>
+	    Bayes' rule:
+	  <m:math>
+	    <m:apply>
+	      <m:eq/>
+
+	      <m:apply>
+		<m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#probability"/>
+		<m:condition>
+		  <m:ci><m:msub><m:mi>x</m:mi><m:mi>i</m:mi></m:msub></m:ci>
+		</m:condition>
+		<m:apply>
+		  <m:eq/>
+		  <m:ci>X</m:ci>
+		  <m:ci><m:msub><m:mi>x</m:mi><m:mi>j</m:mi></m:msub></m:ci>
+		</m:apply>
+	      </m:apply>
+
+	      <m:apply>
+		<m:divide/>
+		<m:apply>
+		  <m:times/>
+
+		  <m:apply>
+		    <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#probability"/>
+		    <m:condition>
+		      <m:ci><m:msub><m:mi>x</m:mi><m:mi>j</m:mi></m:msub></m:ci>
+		    </m:condition>
+		    <m:apply>
+		      <m:eq/>
+		      <m:ci>X</m:ci>
+		      <m:ci><m:msub><m:mi>x</m:mi><m:mi>i</m:mi></m:msub></m:ci>
+		    </m:apply>
+		  </m:apply>
+
+		  <m:apply>
+		    <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#probability"/>
+		    <m:apply>
+		      <m:eq/>
+		      <m:ci>X</m:ci>
+		      <m:ci><m:msub><m:mi>x</m:mi><m:mi>j</m:mi></m:msub></m:ci>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+		<m:apply>
+		  <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#probability"/>
+		  <m:apply>
+		      <m:eq/>
+		      <m:ci>X</m:ci>
+		      <m:ci><m:msub><m:mi>x</m:mi><m:mi>i</m:mi></m:msub></m:ci>
+		    </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>
+	</item>
+	  </list>
+	More about basic probability theory and a derivation of Bayes' 
+	rule can be found <link document="m11245">here</link>.
+      </para>
+    </section>
+
+  </content>
+
+</document>

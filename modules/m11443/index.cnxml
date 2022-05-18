@@ -1,0 +1,451 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml">
+  <title>Illustrations</title>
+  <metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>8dd61810-66cc-4ffb-8fd4-75da0263c777</md:uuid>
+</metadata>
+    <content>
+    
+    <para id="start">
+        In this module we illustrate the processes involved in sampling and reconstruction.
+	To see how all these processes work together as a whole, take a look at the <link document="m11465">system view</link>. In <link document="m11549">
+Sampling and reconstruction with Matlab</link> we provide a Matlab script
+for download. The matlab script shows the process of sampling and reconstruction <term>live</term>.
+    
+    </para>
+
+    <section id="s0">
+    <title>Basic examples</title>
+    <example id="ex1">
+	<para id="ex1p1">
+	    To sample an analog signal with 3000 Hz as the
+	    highest frequency component requires sampling
+	    at 6000 Hz or above.
+	 </para>
+    </example>
+
+    <example id="ex2">
+	<para id="ex2p1">
+	    The sampling theorem can also be applied in two dimensions, i.e. for image analysis. 
+	    A 2D sampling theorem has a simple physical interpretation in image analysis: 
+	    Choose the sampling interval such that it is less than or equal to half of the 
+	    smallest interesting detail in the image.
+        </para>
+    </example>
+    </section>
+
+    <section id="s1">
+	<title>The process of sampling</title>
+        <para id="s1p1">
+	    We start off with an analog signal. This can for example be the sound
+	    coming from your stereo at home or your friend talking.
+	</para>
+
+	<para id="s1p2">
+
+	    The signal is then sampled uniformly. Uniform sampling implies that we sample every
+	    <m:math><m:ci><m:msub><m:mi>T</m:mi><m:mi>s</m:mi></m:msub></m:ci></m:math>
+	    seconds. In <link target-id="f1"/> we see an analog signal. The analog
+	    signal has been sampled at times
+	    <m:math>
+		<m:apply>
+		    <m:eq/>
+		    <m:ci>t</m:ci>
+		    <m:apply>
+			<m:times/>
+			<m:ci>n</m:ci>
+		        <m:ci><m:msub><m:mi>T</m:mi><m:mi>s</m:mi></m:msub></m:ci>
+		    </m:apply>
+		</m:apply>
+	    </m:math>.
+	    
+	    <figure id="f1">
+	        <media id="idp1055840" alt=""><image src="../../media/analog_sampling.jpg" mime-type="image/jpeg"/></media>
+		<caption>Analog signal, samples are marked with dots.</caption>
+
+	    </figure>
+	    
+	    In signal processing it is often more convenient and easier to work
+	    in the frequency domain. So let's look at at the signal in
+	    frequency domain, <link target-id="f2"/>. For illustration purposes
+	    we take the frequency content of the signal as a triangle.
+	    (If you Fourier transform the signal in <link target-id="f1"/> you will not
+	    get such a nice triangle.)
+	    
+	
+	    <figure id="f2">
+	    	<media id="idm7345264" alt=""><image src="../../media/spektrum_1.jpg" mime-type="image/jpeg"/></media>
+		<caption>
+		    The spectrum
+		    <m:math>
+			<m:apply>
+			    <m:ci>X</m:ci>
+			    <m:apply>
+				<m:times/>
+				<m:imaginaryi/>
+				<m:ci>Ω</m:ci>
+			    </m:apply>
+			</m:apply>
+		    </m:math>.
+		</caption>
+	    </figure>
+	    
+	    Notice that the signal in <link target-id="f2"/> is bandlimited.
+	    We can see that the signal is bandlimited because
+	    <m:math>
+		<m:apply>
+		    <m:ci>X</m:ci>
+		    <m:apply>
+			<m:times/>
+			<m:imaginaryi/>
+			<m:ci>Ω</m:ci>
+		    </m:apply>
+		</m:apply>
+	   </m:math>
+	   is zero outside the interval
+	  <m:math>
+   	      <m:interval>
+		  <m:apply>
+		      <m:minus/>
+		      <m:ci><m:msub><m:mi>Ω</m:mi><m:mi>g</m:mi></m:msub></m:ci>
+		  </m:apply>
+		<m:ci><m:msub><m:mi>Ω</m:mi><m:mi>g</m:mi></m:msub></m:ci>
+	      </m:interval>
+          </m:math>. Equivalentely we can state that the signal has no angular frequencies above
+	  <m:math><m:ci><m:msub><m:mi>Ω</m:mi><m:mi>g</m:mi></m:msub></m:ci></m:math>, corresponding
+	  to no frequencies above
+	  <m:math>
+	      <m:apply>
+		  <m:eq/>
+	          <m:ci><m:msub><m:mi>F</m:mi><m:mi>g</m:mi></m:msub></m:ci>
+		  <m:apply>
+		      <m:divide/>
+		      <m:ci><m:msub><m:mi>Ω</m:mi><m:mi>g</m:mi></m:msub></m:ci>
+		      <m:apply>
+		          <m:times/>
+			  <m:cn>2</m:cn>
+			  <m:pi/>
+		      </m:apply>
+		  </m:apply>
+	      </m:apply>
+	   </m:math>.
+
+	</para><!-- End para s1p2-->
+
+	<para id="s1p3">
+	    Now let's take a look at the sampled signal in the frequency domain.
+	    While <link document="m11423">proving</link> the sampling theorem we found the the spectrum of the sampled
+	    signal consists of a sum of shifted versions of the analog spectrum. Mathematically this is 
+	    described by the following equation:
+
+	    <equation id="eqn1"><m:math>
+		<m:apply>
+		    <m:eq/>
+		     <m:apply><!--Start left side of eqn-->
+		         <m:ci><m:msub><m:mi>X</m:mi><m:mi>s</m:mi></m:msub></m:ci>
+			 <m:apply>
+			     <m:exp/>
+			     <m:apply>
+			         <m:times/>
+				 <m:imaginaryi/>
+				 <m:ci>Ω</m:ci>
+				 <m:ci><m:msub><m:mi>T</m:mi><m:mi>s</m:mi></m:msub></m:ci>
+			      </m:apply>
+			 </m:apply>
+		     </m:apply><!--End left side of eqn-->
+		
+		     <m:apply><!--Start right side of eqn-->
+		         <m:times/>
+			 <m:apply>
+			     <m:divide/>
+			     <m:cn>1</m:cn>
+			     <m:ci><m:msub><m:mi>T</m:mi><m:mi>s</m:mi></m:msub></m:ci>
+			 </m:apply>
+	          	 <m:apply><!--Start sum-->			
+			     <m:sum/>
+			     <m:bvar><m:ci>k</m:ci></m:bvar><!--Summation variable-->
+			     <m:lowlimit><m:cn>-∞</m:cn></m:lowlimit>
+			     <m:uplimit><m:ci>∞</m:ci></m:uplimit>
+			     <m:apply>
+			         <m:times/>
+			         <m:ci>X</m:ci>
+				 <m:apply>
+				     <m:times/>
+				     <m:imaginaryi/>
+				     <m:apply>
+				         <m:apply>
+					     <m:plus/>
+					     <m:ci>Ω</m:ci>
+					     <m:apply>
+					         <m:divide/>
+						 <m:apply>
+						     <m:times/>
+						     <m:cn>2</m:cn>
+						     <m:pi/>
+						     <m:ci>k</m:ci>
+						 </m:apply>
+						 <m:ci><m:msub><m:mi>T</m:mi><m:mi>s</m:mi></m:msub></m:ci>
+					     </m:apply>
+					 </m:apply>
+				     </m:apply>
+	                	 </m:apply>
+			     </m:apply>
+			 </m:apply><!--End sum-->
+		     </m:apply><!--End right side of equation-->
+		 </m:apply>	
+	     </m:math></equation>
+	     </para><!--End para s1p3-->
+	     
+	     
+	    <section id="s1ss1">
+	        <title>Sampling fast enough</title>
+		<para id="s1s1p1">
+		    In <link target-id="f3"/> we show the result of sampling
+		    <m:math><m:apply><m:ci>x</m:ci><m:ci>t</m:ci></m:apply></m:math> according to 
+		    <link document="m11419" target-id="s4">the sampling theorem</link>.
+		    This means that when sampling the signal in <link target-id="f1"/>/<link target-id="f2"/> we use
+		    <m:math>
+			<m:apply>
+			    <m:geq/>
+			    <m:ci><m:msub><m:mi>F</m:mi><m:mi>s</m:mi></m:msub></m:ci>
+			    <m:apply>
+				<m:times/>
+				<m:cn>2</m:cn>
+				<m:ci><m:msub><m:mi>F</m:mi><m:mi>g</m:mi></m:msub></m:ci>
+			    </m:apply>
+			</m:apply>
+		    </m:math>.
+		    Observe in <link target-id="f3"/> that we have the same spectrum as in <link target-id="f2"/>
+		    for 
+		    <m:math>
+			<m:apply>
+			    <m:in/>
+			    <m:ci>Ω</m:ci>
+			    <m:interval>
+				<m:ci><m:msub><m:mi>-Ω</m:mi><m:mi>g</m:mi></m:msub></m:ci>
+				<m:ci><m:msub><m:mi>Ω</m:mi><m:mi>g</m:mi></m:msub></m:ci>
+			    </m:interval>
+			</m:apply>
+		    </m:math>, except for the scaling factor
+		    <m:math>
+			<m:apply>
+			   <m:divide/>
+			   <m:cn>1</m:cn>
+			   <m:ci><m:msub><m:mi>T</m:mi><m:mi>s</m:mi></m:msub></m:ci>
+			</m:apply>		    
+		    </m:math>.		    
+
+		    This is a consequence of the sampling frequency. As mentioned in the
+		    <link document="m11423" target-id="l1">proof</link> the spectrum of the sampled signal
+		    is periodic with period
+		    <m:math>
+			<m:apply>
+			    <m:eq/>
+			    <m:apply>
+				<m:times/>
+				<m:cn>2</m:cn>
+				<m:pi/>
+				<m:ci><m:msub><m:mi>F</m:mi><m:mi>s</m:mi></m:msub></m:ci>
+			    </m:apply>
+			    <m:apply>
+				<m:divide/>
+				<m:apply>
+				    <m:times/>
+				    <m:cn>2</m:cn>
+				    <m:pi/>
+				</m:apply>
+				<m:ci><m:msub><m:mi>T</m:mi><m:mi>s</m:mi></m:msub></m:ci>
+			    </m:apply>
+			</m:apply>	
+		    </m:math>.
+		    
+		     <figure id="f3">
+	    	    	<media id="idm5786832" alt=""><image src="../../media/spektrum_3.jpg" mime-type="image/jpeg"/></media>
+		    	<caption>
+		    	    The spectrum
+		    	    <m:math><m:ci><m:msub><m:mi>X</m:mi><m:mi>s</m:mi></m:msub></m:ci></m:math>. Sampling
+		    	    frequency is OK.
+		    	</caption>
+	    	    </figure>
+
+		</para><!--End para s1s1p1-->
+		<para id="s1ss1p2">
+		    
+		    So now we are, according to <link document="m11419" target-id="s4"> the sample theorem</link>,
+		    able to reconstruct the original signal <emphasis>exactly</emphasis>. How we can do this
+		    will be explored further down under <link target-id="s2">reconstruction</link>. But first we
+		    will take a look at what happens when we sample too slowly.
+		</para>
+
+	    </section><!--End section 1, subsection 1-->
+
+	    <section id="s1ss2">
+	        <title>Sampling too slowly</title>
+		<para id="s1ss2p1">
+		    If we sample <m:math><m:apply><m:ci>x</m:ci><m:ci>t</m:ci></m:apply></m:math> too slowly,
+		    that is
+		     <m:math>
+			<m:apply>
+			    <m:lt/>
+			    <m:ci><m:msub><m:mi>F</m:mi><m:mi>s</m:mi></m:msub></m:ci>
+			    <m:apply>
+				<m:times/>
+				<m:cn>2</m:cn>
+				<m:ci><m:msub><m:mi>F</m:mi><m:mi>g</m:mi></m:msub></m:ci>
+			    </m:apply>
+			</m:apply>
+		    </m:math>, we will get overlap between the repeated spectra, 
+		    see <link target-id="f4"/>.
+		    According to
+		    <link target-id="eqn1"/> the resulting spectra is the sum of these. This overlap
+		    gives rise to the concept of aliasing.
+		</para>
+		    
+		<para id="s1ss2p2">
+		    <note type="aliasing" id="idp1006320"><label>Aliasing</label>
+		     	If the sampling frequency is less than twice the highest frequency component, 
+		     	then frequencies in the original signal that are above half the sampling rate will be "aliased" 
+		     	and will appear in the resulting signal as lower frequencies. 
+		    </note>
+		</para>
+		<para id="s1ss2p3">
+		 
+		    The consequence of aliasing is that we cannot recover the original signal,
+		    so aliasing has to be avoided.
+		    Sampling too slowly will produce a sequence 
+		    <m:math>
+			<m:apply>
+			    <m:ci><m:msub><m:mi>x</m:mi><m:mi>s</m:mi></m:msub></m:ci>
+			    <m:ci>n</m:ci>
+			</m:apply>
+		    </m:math>
+	    that could have orginated from a number of signals. So there is <emphasis>no</emphasis> chance
+	    of recovering the original signal.
+		    To learn more about aliasing, take a look at this <link document="m11448">module</link>.
+		    (Includes an applet for demonstration!)
+		</para>
+
+		    <figure id="f4">
+		        <media id="idm6710080" alt=""><image src="../../media/spektrum_2.jpg" mime-type="image/jpeg"/></media>
+		        <caption>The spectrum
+		            <m:math><m:ci><m:msub><m:mi>X</m:mi><m:mi>s</m:mi></m:msub></m:ci></m:math>. Sampling
+			    frequency is too low.
+		        </caption>
+		    </figure> 		    
+
+		<para id="s1ss2p4">
+		    To avoid aliasing we have to sample fast enough. But if we can't sample fast enough
+		    (possibly due to costs) we can include an Anti-Aliasing filter. This will
+		    not able us to get an exact reconstruction but can still be a good solution.
+		</para>
+		<para id="s1ss2p5">
+		    <note type="Anti-Aliasing filter" id="idm5775408"><label>Anti-Aliasing filter</label>
+		        Typically a low-pass filter that is applied before sampling to ensure that no 
+			components with frequencies greater than half 
+		        the sample frequency remain.
+		    </note>
+		</para>
+		<example id="exa3">
+		    <para id="exa3p1">
+		        <term>The stagecoach effect</term>
+		    </para>
+		    <para id="exa3p2">
+		        In older western movies you can observe aliasing on a stagecoach
+			when it starts to roll. At first the spokes appear to
+			turn forward, but as the stagecoach increase its speed the spokes
+			appear to turn backward. This comes from the fact that the sampling rate,
+			here the number of frames per second, is too low. We can view
+			each frame as a sample of an image that is changing continuously
+			in time. (<link url="http://flowers.ofthenight.org/wagonWheel/wagonWheel.html">Applet illustrating the stagecoach effect</link>)
+			
+		    </para>
+		    
+		</example>
+	    </section><!--End section 1, subsection 2-->
+	
+
+    </section><!--End section s1-->
+
+
+    <section id="s2">
+	<title>Reconstruction</title>
+        <para id="s2p1">
+	    Given the signal in <link target-id="f3"/> we want to recover the original signal, but
+	    the question is how? 
+	</para>
+	<para id="s2p2">
+	    When there is no overlapping in the spectrum, the spectral
+	    component given by <m:math><m:apply><m:eq/><m:ci>k</m:ci><m:cn>0</m:cn></m:apply></m:math>
+	    (see <link target-id="eqn1"/>),is equal to the spectrum of the analog signal. This offers an
+	    oppurtunity to use a simple reconstruction process. Remember what you have learned about filtering.
+	    What we want is to change signal in <link target-id="f3"/> into that of <link target-id="f2"/>.
+	    To achieve this we have to remove all the extra components generated in the sampling process.
+	    To remove the extra components we apply an ideal analog low-pass filter as shown in
+	    <link target-id="f5"/>
+	    As we see the ideal filter is rectangular in the frequency domain. A rectangle in the frequency
+	    domain corresponds to a 
+	    <link url="http://ccrma-www.stanford.edu/~jos/Interpolation/sinc_function.html">sinc</link>  
+	    function in time domain (and vice versa).
+	    <figure id="f5">
+	        <media id="idp1016912" alt=""><image src="../../media/recon_filter.jpg" mime-type="image/jpeg"/></media>
+		<caption>
+		    <m:math>
+		        <m:apply>
+			    <m:ci>H</m:ci>
+			    <m:apply>
+			        <m:times/>
+				<m:imaginaryi/>
+				<m:ci>Ω</m:ci>
+			    </m:apply>
+			</m:apply>
+		    </m:math>
+		    The ideal reconstruction filter.
+	        </caption>
+	    </figure>
+	</para>
+	<para id="s2p3">
+	    Then we have reconstructed the original spectrum, and as we know <emphasis>if two signals are identical
+	    in the frequency domain, they are also identical in the time domain</emphasis>. End of reconstruction.	
+
+	</para>
+
+
+    </section>
+    
+    <section id="s3">
+	<title>Conclusions</title>
+        <para id="s3p1">
+	    The Shannon sampling theorem requires that the input signal prior to sampling
+	    is band-limited to at most half the sampling frequency. Under this condition
+	    the samples give an exact signal representation. It is truly remarkable
+	    that such a broad and useful class signals can be represented that easily!
+	</para>
+	<para id="s3p2">
+	    We also looked into the problem of reconstructing the signals form its samples.
+	    Again the simplicity of the <emphasis>principle</emphasis> is striking:
+	    linear filtering by an ideal low-pass filter will do the job. However,
+	    the ideal filter is impossible to create, but that is another story...
+	    
+	</para>
+
+    </section>
+    <section id="s4">
+    <para id="s4p1">
+          Go to?
+          <list id="s0l2" list-type="labeled-item" display="inline">
+		  <item><link document="m11419">Introduction</link></item>
+		  <item><link document="m11423">Proof</link></item>
+                  <item><link document="m11443">Illustrations</link></item>
+                  <item><link document="m11549">Matlab Example</link></item>
+                  <item><link document="m11448">Aliasing applet</link></item>
+		  <item><link document="m11458">Hold operation</link></item>
+  		  <item><link document="m11465">System view</link></item>
+            	  <item><link document="m11442">Exercises</link></item>	
+	   </list>
+    </para>
+    </section>
+    
+
+
+
+    </content>
+
+</document>

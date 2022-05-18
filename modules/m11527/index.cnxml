@@ -1,0 +1,241 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml">
+  <title>Discrete vs Analog</title>
+  <metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>5d7186c1-920a-4dad-98b7-1c67fd475f34</md:uuid>
+</metadata>
+
+    <content>
+
+    <para id="s0p1">
+	When comparing analog vs discrete time, we find that there
+	are many similarities. Often we only need to substitute the varible
+	t with n and integration with summation. Still there are some
+	important differences that we need to know.
+	As the complex exponential signal is truly central to signal processing
+	we will study that in more detail.
+    </para>
+    <section id="s1">
+	<title>Analog</title>
+	<para id="s1p1">
+	    The complex exponential function is defined:
+	    <m:math>
+		<m:apply>
+		    <m:eq/>
+		    <m:apply>
+			<m:ci>x</m:ci>
+			<m:ci>t</m:ci>
+		    </m:apply>
+		    <m:apply>
+		        <m:exp/>
+			<m:apply>
+			    <m:times/>
+			    <m:imaginaryi/>
+			    <m:ci>Ω</m:ci>
+			    <m:ci>t</m:ci>
+		        </m:apply>
+		    </m:apply>
+		</m:apply>
+	    </m:math>.
+	    If Ω(rad/second) is increased the rate of oscillation will increase continuously.
+	    The complex exponential function is also periodic for <emphasis>any</emphasis>
+	    value of Ω. In figure <link target-id="f1"/> we have plotted
+	    <m:math>
+		<m:apply>
+		    <m:exp/>
+		    <m:apply>
+		        <m:times/>
+			<m:imaginaryi/>
+			<m:pi/>
+			<m:ci>t</m:ci>
+		    </m:apply>
+	        </m:apply>
+	    </m:math> and
+	    <m:math>
+		<m:apply>
+		    <m:exp/>
+		    <m:apply>
+		        <m:times/>
+			<m:imaginaryi/>
+			<m:cn>3</m:cn>
+			<m:pi/>
+			<m:ci>t</m:ci>
+		    </m:apply>
+	        </m:apply>
+	    </m:math> (the real parts only). In <link target-id="f1"/> we see that
+	    the red plot, corresponding to a higher value of Ω, has a higher rate
+	    of oscillation.
+	    <figure id="f1">
+	        <media id="idm10894896" alt=""><image src="../../media/analog_complex_exp.png" mime-type="image/png"/></media>
+		<caption>Real parts of complex exponentials.</caption>
+	    </figure>
+	
+	</para>
+		
+
+    </section>
+
+    <section id="s2">
+	<title>Discrete time</title>
+	<para id="s2p1">
+	    The discrete time complex exponential function is defined:
+	    <m:math>
+		<m:apply>
+		    <m:eq/>
+		    <m:apply>
+			<m:ci>x</m:ci>
+			<m:ci>n</m:ci>
+		    </m:apply>
+		    <m:apply>
+		        <m:exp/>
+			<m:apply>
+			    <m:times/>
+			    <m:imaginaryi/>
+			    <m:ci>ω</m:ci>
+			    <m:ci>n</m:ci>
+		        </m:apply>
+		    </m:apply>
+		</m:apply>
+	    </m:math>.
+	</para>
+	<para id="s2p2">
+	        If we increase ω (rad/sample) the rate of oscillation
+		will increase and decrease periodically.
+
+		The reason is:
+		<m:math>
+		    <m:apply>
+		        <m:eq/>
+			<m:apply>
+			    <m:exp/>
+			    <m:apply>
+				<m:times/>
+				<m:imaginaryi/>
+				<m:apply>
+				    <m:plus/>
+				    <m:ci>ω</m:ci>
+				    <m:apply>
+				        <m:times/>
+					<m:cn>2</m:cn>
+					<m:pi/>
+					<m:ci>k</m:ci>
+				    </m:apply>
+				</m:apply>
+				<m:ci>n</m:ci>
+			    </m:apply>
+			</m:apply>
+			<m:apply>
+			    <m:times/>
+			    <m:apply>
+				<m:exp/>
+				<m:apply>
+				    <m:times/>
+				    <m:imaginaryi/>
+				    <m:ci>ω</m:ci>
+				    <m:ci>n</m:ci>
+				</m:apply>
+			    </m:apply>
+			    <m:apply>
+				<m:exp/>
+				<m:apply>
+				    <m:times/>
+				    <m:imaginaryi/>
+				    <m:cn>2</m:cn>
+				    <m:pi/>
+				    <m:ci>k</m:ci>
+				    <m:ci>n</m:ci>
+				</m:apply>
+			    </m:apply>
+		        </m:apply>
+			<m:apply>
+			    <m:exp/>
+			    <m:apply>
+			        <m:times/>
+				    <m:imaginaryi/>
+				    <m:ci>ω</m:ci>
+				    <m:ci>n</m:ci>
+			    </m:apply>
+			</m:apply>
+		    </m:apply>
+	        </m:math>, where
+                <m:math>
+                   <m:apply>
+                     <m:in/>
+                     <m:cn type="integer">n,k</m:cn>
+                     <m:integers/>
+                   </m:apply>
+                 </m:math>.
+		
+	    </para><!-- End para s2s1p1-->
+	    <para id="s2s1p2">
+	        This implies that the complex exponential with digital
+		angular frequency ω is identical to
+		a complex exponential with
+		<m:math>
+		    <m:apply>
+		        <m:eq/>
+			<m:ci><m:msub><m:mi>ω</m:mi><m:mn>1</m:mn></m:msub></m:ci>
+			<m:apply>
+			    <m:plus/>
+			    <m:ci>ω</m:ci>
+			    <m:apply>
+			        <m:times/>
+				<m:cn>2</m:cn>
+				<m:pi/>
+			    </m:apply>
+			</m:apply>			
+		    </m:apply>
+		</m:math>, see <link target-id="f2"/>
+		<figure id="f2">
+		     <media id="idm398944" alt=""><image src="../../media/discrete_complex_exp2.png" mime-type="image/png"/></media>
+		    <caption>Two discrete exponentials that are identical</caption>
+		</figure>
+
+		The rate of oscillation will increase until
+		<m:math>
+		    <m:apply>
+		        <m:eq/>
+			<m:ci>ω</m:ci>
+			<m:pi/>
+		    </m:apply>
+		</m:math>, then it decreases and repeats after 2π. In <link target-id="f3"/>
+		we see that as we increase the angular frequency towards π the rate of
+		oscillation increases. If you download the Matlab files included at the
+		end of this module you can adjust the parameters and see that the rate
+		of oscillation will decrease when exceeding π (but less than 2π).
+		<figure id="f3">
+		    <media id="idp2023008" alt=""><image src="../../media/discrete_complex_exp1.png" mime-type="image/png"/></media>
+		    <caption>Two discrete exponentials with different frequency.</caption>
+		</figure>
+
+		<note type="consequence" id="idm6824064"><label>Consequence</label>
+		    We need to consider discrete time exponentials at an (digital angular) frequency interval of 2π only.
+		</note>
+		Low (digital angular) frequencies will correspond to ω near even multiplies of π.
+		High (digital angular) frequencies will correspond to ω near odd multiplies of π.
+		
+	    </para>
+        
+    </section><!-- End section s2 -->
+    <section id="s3">
+        <title>Matlab files</title>
+	<para id="s3p1">
+	    <link document="m11527" resource="complex_exponential.m">complex_exponential.m</link>
+	</para>
+    </section>
+   <section id="s5">
+	<para id="s5p1">
+	    Take a look at
+	    <list id="l1" list-type="labeled-item" display="inline">
+		   <item><link document="m11479">Introduction</link></item>
+	           <item><link document="m11476">Discrete time signals</link></item>
+	           <item><link document="m11478">Analog signals</link></item>
+		   <item><link document="m11477">Frequency definitions and periodicity</link></item>
+	           <item><link document="m11526">Energy &amp; Power</link></item>
+	           <item><link document="m11428">Exercises</link></item>
+	   </list> ?
+      </para>
+      </section>
+    
+
+</content>
+  
+</document>

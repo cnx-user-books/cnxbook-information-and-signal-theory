@@ -1,0 +1,435 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml">
+  <title>Differential Entropy</title>
+  <metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>a766829a-2d86-417c-99c2-9a043a05e884</md:uuid>
+</metadata>
+
+  <content>
+    <para id="s0p1">
+      Consider the entropy of <emphasis>continuous</emphasis> random variables. Whereas the (normal) <link document="m11839">entropy</link> is the entropy of a <emphasis>discrete</emphasis> random variable, the differential entropy is the entropy of a continuous random variable.
+    </para>
+<section id="s1">
+      <title>Differential Entropy</title>
+
+      <para id="s1p1">
+	
+
+	<definition id="def1">
+	  <term>Differential entropy</term>
+	  <meaning id="idm8624912">
+	    The differential entropy <m:math><m:apply><m:ci>h</m:ci><m:ci>X</m:ci></m:apply></m:math> of a continuous random variable
+	    <m:math><m:ci>X</m:ci></m:math> with a pdf  <m:math><m:apply><m:ci>f</m:ci><m:ci>x</m:ci></m:apply></m:math> is defined as
+	    <equation id="defDiffEnt">
+	      <m:math>
+		<m:apply>
+		  <m:eq/>
+		  <m:apply>
+		      <m:ci>h</m:ci>
+		      <m:ci>X</m:ci>
+		  </m:apply>
+		  <m:apply>
+		    <m:minus/>
+		    <m:apply>
+		      <m:int/>
+		      <m:bvar><m:ci>x</m:ci></m:bvar>
+		      <m:lowlimit><m:apply><m:minus/><m:infinity/></m:apply></m:lowlimit>
+		      <m:uplimit><m:infinity/></m:uplimit>
+		      <m:apply>
+			<m:times/>
+			<m:apply><m:ci>f</m:ci><m:ci>x</m:ci></m:apply>
+			<m:apply>
+			  <m:log/>
+			  <m:apply><m:ci>f</m:ci><m:ci>x</m:ci></m:apply>
+			</m:apply>
+		      </m:apply>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:math>
+	    </equation>
+	  </meaning>
+	</definition>
+	Usually the logarithm is taken to be base 2, so that the unit of the differential entropy is bits/symbol. Note that is the discrete case,
+	<m:math><m:apply><m:ci>h</m:ci><m:ci>X</m:ci></m:apply></m:math> depends only on the pdf of <m:math><m:ci>X</m:ci></m:math>. Finally, we note that
+	the differential entropy is the expected value of 
+	<m:math>
+	  <m:apply>
+	    <m:minus/>
+	    <m:apply>
+	      <m:log/>
+	      <m:apply>
+		<m:ci>f</m:ci>
+		<m:ci>x</m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:math>, i.e.,
+	<equation id="defDiffEnt2">
+	  <m:math>
+	    <m:apply>
+	      <m:eq/>
+	      <m:apply>
+		<m:ci>h</m:ci>
+		<m:ci>X</m:ci>
+	      </m:apply>
+	      <m:apply>
+		<m:minus/>
+		<m:apply>
+		  <m:ci>E</m:ci>
+		  <m:apply>
+		    <m:log/>
+		    <m:apply>
+		      <m:ci>f</m:ci>
+		      <m:ci>x</m:ci>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>
+	</equation>
+
+		  
+      </para>
+      <para id="s1p2">
+	Now, consider a calculating the differential entropy of some random variables.
+      </para>
+	<example id="exUniform">
+	<para id="exUniformp1">
+	  Consider a uniformly distributed random variable <m:math><m:ci>X</m:ci></m:math> from <m:math><m:ci>c</m:ci></m:math> to
+	  <m:math>
+	    <m:apply>
+	      <m:plus/>
+	      <m:ci>c</m:ci>
+	      <m:ci>Δ</m:ci>
+	    </m:apply>
+	  </m:math>.
+	  Then its density is
+	  <m:math>
+	    <m:apply>
+	      <m:divide/>
+	      <m:ci>1</m:ci>
+	      <m:ci>Δ</m:ci>
+	    </m:apply>
+	  </m:math> from  <m:math><m:ci>c</m:ci></m:math> to
+	  <m:math>
+	    <m:apply>
+	      <m:plus/>
+	      <m:ci>c</m:ci>
+	      <m:ci>Δ</m:ci>
+	    </m:apply>
+	  </m:math>, and zero otherwise.
+	</para>
+	<para id="exUniformp2">
+	  We can then find its differential entropy as follows,
+	  <equation id="diffEntUniform">
+	    <m:math>
+	      <m:apply>
+		<m:eq/>
+		<m:apply>
+		  <m:ci>h</m:ci>
+		  <m:ci>X</m:ci>
+		</m:apply>
+		<m:apply>
+		  <m:minus/>
+		  <m:apply>
+		    <m:int/>
+		    <m:bvar><m:ci>x</m:ci></m:bvar>
+		    <m:lowlimit><m:ci>c</m:ci></m:lowlimit>
+		    <m:uplimit><m:apply><m:plus/><m:ci>c</m:ci><m:ci>Δ</m:ci></m:apply></m:uplimit>
+		    <m:apply>
+		      <m:times/>
+		      <m:apply><m:divide/><m:ci>1</m:ci><m:ci>Δ</m:ci></m:apply>
+		      <m:apply>
+			<m:log/>
+			<m:apply><m:divide/><m:ci>1</m:ci><m:ci>Δ</m:ci></m:apply>
+		      </m:apply>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+		 <m:apply><m:log/><m:ci>Δ</m:ci></m:apply>
+	      </m:apply>
+	    </m:math>
+	  </equation>
+	  Note that by making <m:math><m:ci>Δ</m:ci></m:math> arbitrarily small, the differential entropy can be made arbitrarily negative, 
+	  while taking <m:math><m:ci>Δ</m:ci></m:math> arbitrarily large, the differential entropy becomes arbitrarily positive.
+	</para>
+      </example>
+<!-- Example Differential entropy of a normal distribution.-->
+<example id="exNormal">
+	<para id="exNormalp1">Consider a normal distributed random variable <m:math><m:ci>X</m:ci></m:math>, with mean <m:math><m:ci>m</m:ci></m:math> and
+	  variance <m:math><m:apply><m:power/><m:ci>σ</m:ci><m:cn>2</m:cn></m:apply></m:math>.
+
+	  Then its density is
+	  <m:math>
+	    <m:apply>
+	      <m:times/>
+	      <m:apply>
+		<m:root/>
+		<m:apply>
+		  <m:divide/>
+		  <m:ci>1</m:ci>
+		  <m:apply>
+		    <m:times/>
+		    <m:cn>2</m:cn>
+		    <m:pi/>
+		    <m:apply>
+		      <m:power/>
+		      <m:ci>σ</m:ci>
+		      <m:cn>2</m:cn>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	      <m:apply>
+		<m:power/>
+		<m:ci>e</m:ci>
+		<m:apply>
+		  <m:minus/>
+		  <m:apply>
+		    <m:divide/>
+		    <m:apply>
+		      <m:power/>
+		      <m:apply><m:minus/><m:ci>x</m:ci><m:ci>m</m:ci></m:apply>
+		      <m:cn>2</m:cn>
+		    </m:apply>
+		    <m:apply>
+		      <m:times/>
+		      <m:cn>2</m:cn>
+		      <m:apply><m:power/><m:ci>σ</m:ci><m:cn>2</m:cn></m:apply>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>.
+	</para>	  
+	
+	<para id="exNormalp2">
+	  We can then find its differential entropy as follows, first calculate
+	  <m:math>
+	    <m:apply><m:minus/><m:apply><m:log/><m:apply><m:ci>f</m:ci><m:ci>x</m:ci></m:apply></m:apply></m:apply></m:math>:
+	  <equation id="calcMinusLog">
+	    <m:math>
+	      <m:apply>
+		<m:eq/>
+		<m:apply><m:minus/><m:apply><m:log/><m:apply><m:ci>f</m:ci><m:ci>x</m:ci></m:apply></m:apply></m:apply>
+		<m:apply>
+		  <m:plus/>
+		  <m:apply>
+		    <m:times/>
+		    <m:apply>
+		      <m:divide/>
+		      <m:cn>1</m:cn>
+		      <m:cn>2</m:cn>
+		    </m:apply>
+		    <m:apply>
+		      <m:log/>
+		      <m:apply>
+			<m:times/>
+			<m:cn>2</m:cn>
+			<m:pi/>
+			<m:apply>
+			  <m:power/>
+			  <m:ci>σ</m:ci>
+			  <m:cn>2</m:cn>
+		      </m:apply>
+		      </m:apply>
+		    </m:apply>
+		    <!--		    </m:apply>-->
+		  </m:apply>
+		  <m:apply>
+		    <m:times/>
+		    <m:apply>
+		      <m:log/>
+		      <m:apply><m:ci>e</m:ci></m:apply>
+		    </m:apply>
+		    <m:apply>
+		      <m:divide/>
+		      <m:apply>
+			<m:power/>
+			<m:apply><m:minus/><m:ci>x</m:ci><m:ci>m</m:ci></m:apply>
+			<m:cn>2</m:cn>
+		      </m:apply>
+		      <m:apply>
+			<m:times/>
+			<m:cn>2</m:cn>
+			<m:apply><m:power/><m:ci>σ</m:ci><m:cn>2</m:cn></m:apply>
+		      </m:apply>
+		    </m:apply>		  
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:math>
+	  </equation>
+	  Then since 
+	  <m:math>
+	    <m:apply>
+	      <m:eq/>
+	  
+	      <m:apply>
+		<m:ci>E</m:ci>
+		<m:apply>
+		  <m:power/>
+		  <m:apply>
+		    <m:minus/>
+		    <m:ci>X</m:ci>
+		    <m:ci>m</m:ci>
+		  </m:apply>
+		  <m:cn>2</m:cn>
+		</m:apply>
+	      </m:apply>
+	      
+	      <m:apply>
+		<m:power/>
+		<m:ci>σ</m:ci>
+		<m:cn>2</m:cn>
+	      </m:apply>
+	      
+	      
+	    </m:apply>
+	  </m:math>,
+	  we have
+	  
+	  
+	  <equation id="diffEntNormal">
+	    <m:math>
+	      <m:apply>
+		<m:eq/>
+		<m:apply>
+		  <m:ci>h</m:ci>
+		  <m:ci>X</m:ci>
+
+		</m:apply>
+
+
+		<m:apply>
+		  <m:plus/>
+
+		  <m:apply>
+		    <m:times/>
+		    <m:apply>
+		      <m:divide/>
+		      <m:cn>1</m:cn>
+		      <m:cn>2</m:cn>
+		    </m:apply>
+		    <m:apply>
+		      <m:log/>
+		      <m:apply>
+			<m:times/>
+			<m:cn>2</m:cn>
+			<m:pi/>
+			<m:apply>
+			  <m:power/>
+			  <m:ci>σ</m:ci>
+			  <m:cn>2</m:cn>
+			</m:apply>
+		      </m:apply>
+		    </m:apply>
+		  </m:apply>
+
+		  <m:apply>
+		    <m:times/>
+		    <m:apply>
+		      <m:divide/>
+		      <m:cn>1</m:cn>
+		      <m:cn>2</m:cn>
+		    </m:apply>
+		    <m:apply>
+		      <m:log/>
+		      <m:ci>e</m:ci>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+		<m:apply>
+		  <m:times/>
+		  <m:apply>
+		    <m:divide/>
+		    <m:cn>1</m:cn>
+		    <m:cn>2</m:cn>
+		  </m:apply>
+		  <m:apply>
+		    <m:log/>
+		    <m:apply>
+		      <m:times/>
+		      <m:cn>2</m:cn>
+		      <m:pi/>
+		      <m:cn>e</m:cn>
+		      <m:apply>
+			<m:power/>
+			<m:ci>σ</m:ci>
+			<m:cn>2</m:cn>
+		      </m:apply>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:math>
+	</equation>
+	</para>
+      </example>
+<!-- End example diff entropy of a normal distribution -->
+    </section>
+    <section id="propDiffEnt">
+      <title>Properties of the differential entropy</title>
+      <para id="propDiffp1">
+	In the section we list some properties of the differential entropy.
+	<list id="ListPropDiffEnt">
+	  <item>The differential entropy can be negative</item>
+	  <item>
+	    <m:math>
+	      <m:apply>
+		<m:eq/>
+		<m:apply>
+		<m:ci>h</m:ci>
+		  <m:apply>
+		    <m:plus/>
+		    <m:ci>X</m:ci>
+		    <m:ci>c</m:ci>
+		  </m:apply>
+		</m:apply>
+		<m:apply>
+		<m:ci>h</m:ci>
+		<m:ci>X</m:ci>
+		</m:apply>
+	      </m:apply>
+	    </m:math>, that is translation <emphasis>does not</emphasis> change the differential entropy.
+	  </item>
+	  <item>
+	    <m:math>
+	      <m:apply>
+		<m:eq/>
+		<m:apply>
+		<m:ci>h</m:ci>
+		  <m:apply>
+		    <m:times/>
+		    <m:ci>a</m:ci>
+		    <m:ci>X</m:ci>
+		  </m:apply>
+		</m:apply>
+		<m:apply>
+		  <m:plus/>
+		  <m:apply>
+		    <m:ci>h</m:ci>
+		    <m:ci>X</m:ci>
+		  </m:apply>
+		  <m:apply>
+		    <m:log/>
+		    <m:apply>
+		      <m:abs/>
+		      <m:ci>a</m:ci>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:math>, that is scaling <emphasis>does</emphasis> change the differential entropy.
+	  </item>
+	</list>
+	The first property is seen from both <link target-id="exUniform"/> and <link target-id="exNormal"/>. The two latter can be shown by using
+	  <link target-id="defDiffEnt"/>.
+      </para>
+    </section>
+
+      
+  </content>
+  
+</document>

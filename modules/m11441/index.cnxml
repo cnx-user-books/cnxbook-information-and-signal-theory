@@ -1,0 +1,57 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:md="http://cnx.rice.edu/mdml">
+  <title>Cover Page</title>
+  <metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>ac10faf8-16d5-4e98-b23f-22acb95e0a23</md:uuid>
+</metadata>
+
+ <content>
+          <section id="s1">
+            <title>TTT4110: Information &amp; Signal theory</title>
+      
+            <para id="s1p1">
+      	<note type="summary" id="idp1548320"><label>Summary</label>
+		Analysis and processing of signals that carry information. Representation of signals in time and frequency domain.
+      	</note>
+            </para>
+     
+            <para id="s1p2">
+	       	<emphasis>Instructor</emphasis>: <link url="http://www.tele.ntnu.no/users/bojana/">Bojana Gajic</link>
+		 
+		<emphasis>Scientific Assistants</emphasis>:  <link url="mailto:delaketh@iet.ntnu.no__NOSPAM"> Sebastien de la Ketthulle</link>,
+<link url="mailto:gjendems@iet.ntnu.no__NOSPAM">Anders Gjendemsjø</link>
+		 
+		<emphasis>Course Webpage</emphasis>:  <link url="http://www.tele.ntnu.no/signal/courses/infosig">NTNU
+		TTT4110</link>
+            </para>
+      
+            <para id="s1p3">
+	    	Welcome to 
+               <emphasis>TTT4110: Information &amp; Signal Theory </emphasis>  
+               <link url="http://cnx.rice.edu">Connexions</link> pages. 
+               At these pages we will present the following topics: 
+	       <list id="content_of_module">
+                    <item><link document="m11479">Signals</link></item>
+		    <item><link document="m11542">Convolution</link></item>      
+		    <item><link document="m11419">the Sampling Theorem</link></item>
+		    <item><link document="m11838">Basic Information Theory</link></item>
+<item><link document="m11868">Filters</link></item>
+<item><link document="m12452">Decibel with DSP applications</link></item>
+
+		</list>
+            </para>
+      
+                 
+            <para id="s1p4"> </para>
+
+            <para id="s1p5">
+                The material in these pages are partly based on the book
+                <emphasis>Representing Information by Signals,4th edition,</emphasis> by Tor Ramstad.
+            </para>
+      
+           <!-- <para id="s1p6"><emphasis>Module Authors</emphasis>:  Tor Ramstad, Anders Gjendemsj&#x00F8;</para> -->
+      
+            
+        </section>
+     
+     
+       </content>
+ </document>

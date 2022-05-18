@@ -1,0 +1,167 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml">
+  <title>Filter types</title>
+  <metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>75305311-3c46-4447-a5e3-f5974a6152f2</md:uuid>
+</metadata>
+
+  <content>
+    <para id="p00">
+	So what is a filter? In general a filter is a device that discriminates,
+	according to one or more attributes at its input, what passes through it.
+	One example is the colour filter which absorbs light at certain wavelengths.
+	Here we shall describe frequency-selective filters. It is called freqency-selective
+	because it discriminates among the various <emphasis>frequency compononents</emphasis> of
+	its input. By filter design we can create filters that pass signals with frequency
+	components in some bands, and attenuates signals with content in other frequency bands.
+    </para>
+    <para id="p01">
+	It is customary to classify filters according to their frequency domain charachteristics.
+	In the following we will take a look at: lowpass, highpass, bandpass, bandstop, allpass
+	and notch filters. (All of the filters shown are discrete-time)
+    </para>
+    <section id="s1">
+	<title>Ideal filter types</title>
+	<section id="s1s1">
+	    <title>Lowpass</title>
+	    <para id="s1s1p1">
+		Attenuates frequencies above cutoff frequency, letting frequencies
+		below cutoff(
+		<m:math>
+		  <m:ci><m:msub><m:mi>f</m:mi><m:mi>c</m:mi></m:msub></m:ci>
+		</m:math>)
+		through, see <link target-id="f1"/>.
+		<figure id="f1">
+		  <media id="idm178368" alt=""><image src="../../media/h_lowpass.png" mime-type="image/png"/></media>
+		  <caption>An ideal lowpass filter.</caption>
+		</figure>
+
+		<!-- To check if a filter is lowpass, just compute
+		<m:math>
+			<m:apply>
+			  <m:ci>H</m:ci>
+			  <m:apply>
+			    <m:times/>
+			      <m:imaginaryi/>
+			      <m:cn>2</m:cn>
+			      <m:pi/>
+			      <m:ci>f</m:ci>
+			  </m:apply>
+			</m:apply>
+		</m:math> at
+		<m:math>
+		  <m:apply>	
+		    <m:eq/>
+		      <m:ci>f</m:ci>
+		      <m:cn>0</m:cn>
+		  </m:apply>
+		</m:math>.-->
+	    </para>
+	</section>
+	<section id="s1s2">
+	    <title>Highpass</title>
+	    <para id="s1s2p1">
+		Highpass filters stops low frequencies, letting higher frequencies
+		through, see <link target-id="f2"/>.
+		<figure id="f2">
+		  <media id="idp190992" alt=""><image src="../../media/h_highpass.png" mime-type="image/png"/></media>
+		  <caption>An ideal highpass filter.</caption>
+		</figure>
+	    </para>
+	</section>
+	<section id="s1s3">
+	    <title>Bandpass</title>
+	    <para id="s1s3p1">
+		Letting through only frequencies in a certain range,
+		see <link target-id="f3"/>.
+		<figure id="f3">
+		  <media id="idm8172208" alt=""><image src="../../media/h_bandpass.png" mime-type="image/png"/></media>
+		  <caption>An ideal bandpass filter.</caption>
+		</figure>
+	    </para>
+	</section>
+	<section id="s1s4">
+	    <title>Bandstop</title>
+	    <para id="s1s4p1">
+		Stopping frequencies in a certain range,
+		see <link target-id="f4"/>.
+		<figure id="f4">
+		  <media id="idm88880" alt=""><image src="../../media/h_bandstop.png" mime-type="image/png"/></media>
+		  <caption>An ideal bandstop filter.</caption>
+		</figure>
+	    </para>
+	</section>
+	<section id="s1s5">
+	    <title>Allpass</title>
+	    <para id="s1s5p1">
+		Letting all frequencies through, see  
+		see <link target-id="f5"/>.
+		<figure id="f5">
+		  <media id="idm1887152" alt=""><image src="../../media/h_allpass.png" mime-type="image/png"/></media>
+		  <caption>An ideal allpass filter.</caption>
+		</figure>
+		Does this imply that the allpass filter is useless?
+		The answer is no, because it may have effect on the signals phase. A filter
+		is allpass if
+		<m:math>	
+		  <m:apply>
+		    <m:eq/>
+		      <m:apply>
+			<m:abs/>
+			<m:apply>
+			  <m:ci>H</m:ci>
+			  <m:apply>
+			    <m:exp/>
+			    <m:apply>
+			    <m:times/>
+			      <m:imaginaryi/>
+			      <m:cn>2</m:cn>
+			      <m:pi/>
+			      <m:ci>f</m:ci>
+			  </m:apply>
+			</m:apply>
+		      </m:apply>
+		    </m:apply>
+		    <m:cn>1</m:cn>
+		  </m:apply>
+		</m:math>,
+
+		<m:math>
+		    <m:apply>	
+		        <m:forall/>
+			<m:bvar><m:ci>f</m:ci></m:bvar>
+		    </m:apply>
+		</m:math>.
+The allpass filter finds further applications as building blocks for many higher order filters.
+
+	    </para>
+	</section>
+	
+    </section><!--End Ideal Filter Section-->
+    <section id="s2">
+	<title>Other filter types</title>
+	<section id="s2s1">
+	    <title>Notch filter</title>
+	    <para id="s2s1p1">
+		The notch filter recognized by its
+		perfect nulls in the frequency response,
+		see <link target-id="f6"/>.
+		<figure id="f6">
+		  <media id="idm526432" alt=""><image src="../../media/h_notch.png" mime-type="image/png"/></media>
+		  <caption>Notch filter.</caption>
+		</figure>
+		Notch filters have many applications. One of them is in
+		recording systems, where the notch filter serve to remove
+		the power-line frequency 50 Hz and its harmonics(100 Hz, 150 Hz,...). Some audio equalisers
+		include a notch filter.
+	    </para>
+	</section>
+    </section>
+    <section id="s3">
+	<title>Matlab files</title>
+	<para id="s3p1">
+	  <link resource="idealFilters.m">idealFilters.m</link>,
+	  <link resource="notchFilter.m">notchFilter.m</link>
+	</para>
+    </section>
+  </content>
+  
+</document>

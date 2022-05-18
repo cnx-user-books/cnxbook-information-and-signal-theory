@@ -1,0 +1,1464 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml">
+  <title>Proof</title>
+  <metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>ff2191c1-9f25-4483-aedd-7c1ab6177c92</md:uuid>
+</metadata>
+
+      <content>
+	  <para id="s0p1">
+	      <note type="Sampling theorem" id="idm47584"><label>Sampling theorem</label>
+		  In order to recover the signal 
+		  <m:math><m:apply><m:ci>x</m:ci><m:ci>t</m:ci></m:apply></m:math> 
+		  from it's samples exactly, it is necessary to sample 
+		  <m:math><m:apply><m:ci>x</m:ci><m:ci>t</m:ci></m:apply></m:math>
+		  at a rate greater than twice it's highest frequency component.
+              </note>
+	  </para>
+
+
+	  <section id="s1">
+	      <title>Introduction</title>
+	      <para id="s1p1">
+	          As mentioned <link document="m11419" target-id="s1p1">earlier</link>, 
+                  sampling is the necessary fundament when we want to apply digital signal
+		  processing on analog signals.
+       	      </para>
+	      <para id="s1p2">
+		  Here we present the proof of the sampling theorem.
+	          The proof is divided in two. First we find an expression for the spectrum of the signal resulting from 
+		  sampling the original signal
+		  <m:math><m:apply><m:ci>x</m:ci><m:ci>t</m:ci></m:apply></m:math>.
+		  Next we show that the signal
+		  <m:math><m:apply><m:ci>x</m:ci><m:ci>t</m:ci></m:apply></m:math>
+		  can be recovered from the samples.
+		  Often it is easier using the frequency domain when carrying out a proof,
+		  and this is also the case here.
+
+		  <list id="l1">
+	              <title>Key points in the proof</title>
+		      <item>We find an <link target-id="eqn8">equation</link> for the spectrum of the sampled signal</item>
+		      <item>We find a <link target-id="eqn14">simple method to reconstruct</link> the original signal</item>
+		      <item>The sampled signal has a periodic spectrum...</item> 
+	              <item>...and the period is 
+			  <m:math>
+			      <m:apply>
+				  <m:times/>
+				  <m:cn>2</m:cn>
+				  <m:cn>π</m:cn>
+				  <m:ci><m:msub><m:mi>F</m:mi><m:mi>s</m:mi></m:msub></m:ci>
+			      </m:apply>
+			  </m:math>
+		      </item>
+                  </list>
+	      </para>
+	  </section><!--End section s1-->
+  
+          <section id="s2">
+	      <title>Proof part 1 - Spectral considerations</title>
+	      <para id="s2p1">
+	          By sampling <m:math><m:apply><m:ci>x</m:ci><m:ci>t</m:ci></m:apply></m:math> every 
+		  <m:math><m:ci><m:msub><m:mi>T</m:mi><m:mi>s</m:mi></m:msub></m:ci></m:math> 
+		  second we obtain 
+		  <m:math><m:apply><m:ci><m:msub><m:mi>x</m:mi><m:mi>s</m:mi></m:msub></m:ci><m:ci>n</m:ci></m:apply></m:math>. 
+		  The inverse fourier transform of this <link document="m11476">time discrete signal</link> is
+
+<!--.....................EQUATION 1..............................-->
+		  <equation id="eqn1">
+		      <m:math>
+		      <m:apply>
+			  <m:eq/>
+			  <m:apply>
+			      <m:ci><m:msub><m:mi>x</m:mi><m:mi>s</m:mi></m:msub></m:ci>
+			      <m:ci>n</m:ci>
+			  </m:apply>
+		          <m:apply>
+			      <m:times/>
+			      <m:apply>
+			          <m:divide/>
+				  <m:cn>1</m:cn>
+				  <m:apply>
+				      <m:times/>
+				      <m:cn>2</m:cn>
+				      <m:ci>π</m:ci>
+				  </m:apply>
+			      </m:apply>
+			      <m:apply>
+			          <m:int/>
+				  <m:bvar><m:ci>ω</m:ci></m:bvar>
+				  <m:lowlimit><m:apply><m:minus/><m:pi/></m:apply></m:lowlimit>
+				  <m:uplimit><m:ci>π</m:ci></m:uplimit>
+				  <m:apply>
+				      <m:times/>
+				      <m:apply>
+				          <m:ci><m:msub><m:mi>X</m:mi><m:mi>s</m:mi></m:msub></m:ci>
+					  <m:apply>
+					      <m:exp/>
+					      <m:apply>
+					          <m:times/>
+						  <m:imaginaryi/>
+						  <m:ci>ω</m:ci>
+					      </m:apply>
+					  </m:apply>
+				      </m:apply>
+				      <m:apply>
+				          <m:exp/>
+					  <m:apply>
+					      <m:times/>
+					      <m:imaginaryi/>
+					      <m:ci>ω</m:ci>
+					      <m:ci>n</m:ci>
+					  </m:apply>
+				      </m:apply>
+				  </m:apply>
+			      </m:apply>
+			  </m:apply>
+		      </m:apply>
+		      </m:math>
+		  </equation><!--End eqn1-->
+
+		  For convenience we express the equation in terms of the real angular 
+		  frequency <m:math><m:ci>Ω</m:ci></m:math> using 
+		  <m:math>
+		      <m:apply>
+			  <m:eq/>
+			  <m:ci>ω</m:ci>
+			  <m:apply>
+			      <m:times/>
+			      <m:ci>Ω</m:ci>
+			      <m:ci><m:msub><m:mi>T</m:mi><m:mi>s</m:mi></m:msub></m:ci>
+		          </m:apply>
+		      </m:apply>
+		  </m:math>.
+		
+		  We then obtain
+		
+<equation id="eqn2">
+	  
+<m:math>
+ <m:apply>
+    <m:eq/>
+    <m:apply>
+      <m:ci><m:msub><m:mi>x</m:mi><m:mi>s</m:mi></m:msub></m:ci>
+      <m:ci>n</m:ci>
+    </m:apply>
+    <m:apply>
+      <m:times/>
+      <m:apply>
+        <m:divide/>
+           <m:ci><m:msub><m:mi>T</m:mi><m:mi>s</m:mi></m:msub></m:ci>
+        <m:apply>
+          <m:times/>
+          <m:cn>2</m:cn>
+          <m:pi/>
+        </m:apply>
+      </m:apply>
+      <m:apply>
+        <m:int/>
+        <m:bvar><m:ci>Ω</m:ci></m:bvar>
+        <m:lowlimit>
+          <m:apply>
+            <m:divide/>
+               <m:apply>
+                 <m:minus/>
+                 <m:cn>π</m:cn>
+               </m:apply>
+              <m:ci><m:msub><m:mi>T</m:mi><m:mi>s</m:mi></m:msub></m:ci>
+          </m:apply>          
+        </m:lowlimit>
+       
+        <m:uplimit>
+          <m:apply>
+            <m:divide/>
+             <m:ci>π</m:ci>
+             <m:ci><m:msub><m:mi>T</m:mi><m:mi>s</m:mi></m:msub></m:ci>
+          </m:apply>
+         </m:uplimit>
+
+        <m:apply>
+          <m:times/>
+          <m:apply>
+            <m:ci><m:msub><m:mi>X</m:mi><m:mi>s</m:mi></m:msub></m:ci>
+            <m:apply>
+              <m:exp/>
+              <m:apply>
+                <m:times/>
+                <m:imaginaryi/>
+                <m:ci>Ω</m:ci>
+                <m:ci><m:msub><m:mi>T</m:mi><m:mi>s</m:mi></m:msub></m:ci> 
+             </m:apply>
+            </m:apply>
+          </m:apply>
+          <m:apply>
+            <m:exp/>
+            <m:apply>
+              <m:times/>
+              <m:imaginaryi/>
+              <m:ci>Ω</m:ci>
+               <m:ci><m:msub><m:mi>T</m:mi><m:mi>s</m:mi></m:msub></m:ci>
+              <m:ci>n</m:ci>
+            </m:apply>
+          </m:apply>
+        </m:apply>
+      </m:apply>
+    </m:apply>
+  </m:apply>
+</m:math>
+</equation>
+
+		The inverse fourier transform of a continuous signal is
+
+		<equation id="eqn3">
+		<m:math>
+		    <m:apply>
+			<m:eq/>
+			<m:apply>
+			    <m:ci>x</m:ci>
+			    <m:ci>t</m:ci>
+			</m:apply>
+			<m:apply>
+			    <m:times/>
+			    <m:apply>
+				<m:divide/>
+				<m:cn>1</m:cn>
+				<m:apply>
+				    <m:times/>
+				    <m:cn>2</m:cn>
+				    <m:pi/>
+				</m:apply>
+			    </m:apply>
+			    <m:apply>
+			        <m:int/>
+			        <m:bvar><m:ci>Ω</m:ci></m:bvar>
+			        <m:lowlimit><m:apply><m:minus/><m:infinity/></m:apply></m:lowlimit>
+			        <m:uplimit><m:infinity/></m:uplimit>
+			        <m:apply>
+				    <m:times/>
+				    <m:apply>
+				        <m:ci>X</m:ci>
+					<m:apply>
+					    <m:times/>
+					    <m:imaginaryi/>
+					    <m:ci>Ω</m:ci>
+					</m:apply>
+				    </m:apply>
+				    <m:apply>
+				        <m:exp/>
+					<m:apply>
+					    <m:times/>
+					    <m:imaginaryi/>
+					    <m:ci>Ω</m:ci>
+					    <m:ci>t</m:ci>
+					</m:apply>
+				    </m:apply>
+				</m:apply>
+			    </m:apply>
+			    </m:apply>
+			</m:apply>
+		    </m:math>	
+
+		</equation><!--End eqn3-->
+		
+		From this equation we find an expression for
+		<m:math>
+			<m:ci>x</m:ci>
+			  <m:apply>
+    				<m:apply>
+				<m:times/>
+				<m:ci>n</m:ci>
+				<m:ci><m:msub><m:mi>T</m:mi><m:mi>s</m:mi></m:msub></m:ci>
+				</m:apply>
+		       	   </m:apply>
+		</m:math>
+		
+		<equation id="eqn4">
+			<m:math>
+			 <m:apply>
+			    <m:eq/>
+			    <m:apply>
+				<m:ci>x</m:ci>
+				  <m:apply>
+    					<m:times/>
+					<m:ci>n</m:ci>
+					<m:ci><m:msub><m:mi>T</m:mi><m:mi>s</m:mi></m:msub></m:ci>
+				   </m:apply>
+			    </m:apply>
+			    <m:apply>
+			      <m:times/>
+			      <m:apply>
+			        <m:divide/>
+			        <m:cn>1</m:cn>
+			        <m:apply>
+			          <m:times/>
+			          <m:cn>2</m:cn>
+			          <m:pi/>
+			        </m:apply>
+			      </m:apply>
+			
+			      <m:apply>
+			        <m:int/>
+			        <m:bvar>
+			          <m:ci>Ω</m:ci>
+			        </m:bvar>
+			        <m:lowlimit>
+			          <m:apply>
+			          <m:minus/>
+			          <m:infinity/>
+			          </m:apply>
+          		        </m:lowlimit>
+			        <m:uplimit><m:infinity/></m:uplimit>
+			
+			        <m:apply>
+			          <m:times/>
+			          <m:apply>
+			            <m:ci>X</m:ci>
+			            <m:apply>
+		                <m:times/>
+                		<m:imaginaryi/>
+		                <m:ci>Ω</m:ci>
+		             </m:apply>
+		          </m:apply>
+		          <m:apply>
+		            <m:exp/>
+		            <m:apply>
+		              <m:times/>
+		              <m:imaginaryi/>
+		              <m:ci>Ω</m:ci>
+		              <m:ci>n</m:ci>
+			      <m:ci><m:msub><m:mi>T</m:mi><m:mi>s</m:mi></m:msub></m:ci>
+		            </m:apply>
+		          </m:apply>
+		        </m:apply>
+		      </m:apply>
+		    </m:apply>
+		  </m:apply>
+
+
+		</m:math>
+		</equation><!--End eqn4-->
+
+		To account for the difference in region of integration we split the integration in <link target-id="eqn4"/>
+		into subintervals of length
+			<m:math>
+			    <m:apply>
+			        <m:divide/>
+         		        <m:apply>
+			            <m:times/>
+			            <m:cn>2</m:cn>
+			             <m:ci>π</m:ci>
+			        </m:apply>
+				<m:ci><m:msub><m:mi>T</m:mi><m:mi>s</m:mi></m:msub></m:ci>
+			    </m:apply>
+			</m:math>
+
+		and then take the sum over the resulting integrals to obtain the complete area.
+
+		<equation id="eqn5">
+		    <m:math>
+		        <m:apply><m:eq/>
+			    <m:apply><!--Start left side of eqn-->
+			    	<m:ci>x</m:ci>
+				<m:apply>
+				    <m:times/>
+				    <m:ci>n</m:ci>
+				    <m:ci><m:msub><m:mi>T</m:mi><m:mi>s</m:mi></m:msub></m:ci>
+				</m:apply>
+			    </m:apply><!--End left side of eqn-->
+		            <m:apply><!--Start right side of eqn-->
+			        <m:times/>
+				<m:apply>
+				    <m:divide/>
+				    <m:cn>1</m:cn>
+				    <m:apply>
+					<m:times/>
+					<m:cn>2</m:cn>
+					<m:ci>π</m:ci>
+			            </m:apply>
+				</m:apply>
+				<m:apply>		<!--Start sum-->			
+				    <m:sum/>
+				    <m:bvar><m:ci>k</m:ci></m:bvar><!--Summation variable-->
+				    <m:lowlimit><m:apply><m:minus/><m:infinity/></m:apply></m:lowlimit>
+			            <m:uplimit><m:infinity/></m:uplimit>						
+         			    <m:apply> <!--Start integral-->
+					<m:int/>
+					<m:bvar><m:ci>Ω</m:ci></m:bvar> <!--Integration variable-->
+			        	<m:lowlimit>
+					    <m:apply>
+						<m:divide/>
+						<m:apply>
+						    <m:times/>
+						    <m:apply>
+						        <m:minus/>					
+							<m:apply>
+							    <m:times/>
+							    <m:cn>2</m:cn>
+							    <m:ci>k</m:ci>
+							</m:apply>
+							<m:cn>1</m:cn>
+						    </m:apply>
+						    <m:pi/>
+						</m:apply>		
+						<m:ci><m:msub><m:mi>T</m:mi><m:mi>s</m:mi></m:msub></m:ci>
+					      </m:apply>
+					  </m:lowlimit>
+					  <m:uplimit>
+					      <m:apply>
+					          <m:divide/>
+						  <m:apply>
+						      <m:times/>
+						      <m:apply>
+						          <m:plus/>
+							  <m:apply>
+							      <m:times/>
+							      <m:cn>2</m:cn>
+							      <m:ci>k</m:ci>
+							  </m:apply>
+							  <m:cn>1</m:cn>
+						       </m:apply>
+						       <m:pi/>
+						  </m:apply>
+						  <m:ci><m:msub><m:mi>T</m:mi><m:mi>s</m:mi></m:msub></m:ci>
+					      </m:apply>
+					  </m:uplimit>
+					  <m:apply>
+					      <m:times/>
+			          	      <m:apply>
+					          <m:ci>X</m:ci>
+						  <m:apply>
+						      <m:times/>
+						      <m:imaginaryi/>
+						      <m:ci>Ω</m:ci>
+						  </m:apply>
+	                		      </m:apply>
+					      <m:apply>
+					          <m:exp/>
+						  <m:apply>
+							<m:times/>
+							<m:imaginaryi/>
+							<m:ci>Ω</m:ci>
+							<m:ci>n</m:ci>
+			      				<m:ci><m:msub><m:mi>T</m:mi><m:mi>s</m:mi></m:msub></m:ci>
+						  </m:apply>
+					      </m:apply>
+					  </m:apply>
+				      </m:apply><!--End integral-->
+				  </m:apply><!--End sum-->
+			    </m:apply><!--End right side of equation-->
+			</m:apply>	
+		</m:math>
+		</equation>
+
+			Then we change the integration variable, setting
+			<m:math>
+			    <m:apply>
+				<m:eq/>
+				<m:ci>Ω</m:ci>
+				<m:apply>
+				    <m:plus/>
+				    <m:ci>η</m:ci>
+				    <m:apply>
+					<m:divide/>
+					<m:apply>
+					    <m:times/>
+					    <m:cn>2</m:cn>
+					    <m:cn>π</m:cn>
+					    <m:ci>k</m:ci>
+					</m:apply>
+					<m:ci><m:msub><m:mi>T</m:mi><m:mi>s</m:mi></m:msub></m:ci>
+				    </m:apply>
+				</m:apply>
+
+
+			    </m:apply>
+
+			</m:math>
+
+			<equation id="eqn6"><m:math>
+		<m:apply><m:eq/>
+		   	<m:apply><!--Start left side of eqn-->
+				<m:ci>x</m:ci>
+				<m:apply>
+					<m:times/>
+					<m:ci>n</m:ci>
+					<m:ci><m:msub><m:mi>T</m:mi><m:mi>s</m:mi></m:msub></m:ci>
+				</m:apply>
+		
+			</m:apply><!--End left side of eqn-->
+		
+				<m:apply><!--Start right side of eqn-->
+			      		<m:times/>
+						<m:apply>
+						        <m:divide/>
+						        <m:cn>1</m:cn>
+						        <m:apply>
+								<m:times/>
+								<m:cn>2</m:cn>
+								<m:ci>π</m:ci>
+			        			</m:apply>
+						</m:apply>
+					<m:apply>		<!--Start sum-->			
+						<m:sum/>
+						<m:bvar><m:ci>k</m:ci></m:bvar><!--Summation variable-->
+						<m:lowlimit><m:apply><m:minus/><m:cn>∞</m:cn></m:apply></m:lowlimit>
+					        <m:uplimit><m:ci>∞</m:ci></m:uplimit>						
+
+
+					<m:apply> <!--Start integral-->
+					        <m:int/>
+					        <m:bvar><m:ci>η</m:ci></m:bvar> <!--Integration variable-->
+			        		<m:lowlimit>
+						<m:apply>
+							<m:divide/>
+								<m:apply><m:minus/><m:pi/></m:apply>
+								<m:ci><m:msub><m:mi>T</m:mi><m:mi>s</m:mi></m:msub></m:ci>
+						
+						</m:apply>
+
+						</m:lowlimit>
+					        <m:uplimit>
+							<m:apply>
+								<m:divide/>
+								<m:cn>π</m:cn>
+								<m:ci><m:msub><m:mi>T</m:mi><m:mi>s</m:mi></m:msub></m:ci>
+						
+							</m:apply>
+						</m:uplimit>
+					        <m:apply>
+							<m:times/>
+			          			<m:apply>
+								<m:ci>X</m:ci>
+								<m:apply>
+									<!--<m:apply>-->
+										<m:times/>
+										<m:imaginaryi/>
+										<m:apply>
+										    <m:apply>
+										      <m:plus/>
+										      <m:ci>η</m:ci>
+										      <m:apply>
+										          <m:divide/>
+											  <m:apply>
+											    <m:times/>
+											    <m:cn>2</m:cn>
+											    <m:cn>π</m:cn>
+											    <m:ci>k</m:ci>
+											  </m:apply>
+											  <m:ci><m:msub><m:mrow><m:mi>T</m:mi></m:mrow><m:mrow><m:mi>s</m:mi></m:mrow></m:msub></m:ci>
+						
+							</m:apply>					    
+										    </m:apply>
+										   
+										</m:apply>
+										
+									<!--</m:apply>-->
+									
+								</m:apply>
+	                			        </m:apply>
+
+
+							<m:apply> <!--Exponential-->
+								<m:exp/>
+								<m:apply>
+									<m:times/>
+									<m:imaginaryi/>
+
+									<m:apply>
+										<m:apply>
+										  <m:plus/>
+										  <m:ci>η</m:ci>
+<m:apply>
+										          <m:divide/>
+											  <m:apply>
+											    <m:times/>
+											    <m:cn>2</m:cn>
+											    <m:cn>π</m:cn>
+											    <m:ci>k</m:ci>
+											  </m:apply>
+											  <m:ci><m:msub><m:mrow><m:mi>T</m:mi></m:mrow><m:mrow><m:mi>s</m:mi></m:mrow></m:msub></m:ci>
+						
+										</m:apply>
+										</m:apply>
+									</m:apply>
+
+									<m:ci>n</m:ci>
+			      						<m:ci><m:msub><m:mi>T</m:mi><m:mi>s</m:mi></m:msub></m:ci>
+								</m:apply>
+							</m:apply>
+						</m:apply>
+					</m:apply><!--End integral-->
+					</m:apply><!--End sum-->
+				</m:apply><!--End right side of equation-->
+			</m:apply>	
+		</m:math></equation>
+
+		We obtain the final form by observing that
+		<m:math>
+		    <m:apply>
+			<m:eq/>
+			<m:apply>
+			    <m:exp/>
+			    <m:apply>
+				<m:times/>
+				<m:imaginaryi/>
+				<m:cn>2</m:cn>
+				<m:cn>π</m:cn>
+				<m:ci>k</m:ci>
+				<m:ci>n</m:ci>
+			    </m:apply>
+			</m:apply>
+			<m:ci>1</m:ci>
+		    </m:apply>
+		</m:math>,
+
+		reinserting <m:math><m:apply><m:eq/><m:ci>η</m:ci><m:ci>Ω</m:ci></m:apply></m:math>
+		and multiplying by 
+		<m:math>
+		    <m:apply>
+			<m:divide/>
+			<m:ci><m:msub><m:mi>T</m:mi><m:mi>s</m:mi></m:msub></m:ci>
+			<m:ci><m:msub><m:mi>T</m:mi><m:mi>s</m:mi></m:msub></m:ci>
+		    </m:apply>  
+		</m:math>
+		
+		<equation id="eqn7"><m:math>
+		<m:apply><m:eq/>
+		   	<m:apply><!--Start left side of eqn-->
+				<m:ci>x</m:ci>
+				<m:apply>
+					<m:times/>
+					<m:ci>n</m:ci>
+					<m:ci><m:msub><m:mi>T</m:mi><m:mi>s</m:mi></m:msub></m:ci>
+				</m:apply>
+		
+			</m:apply><!--End left side of eqn-->
+		
+				<m:apply><!--Start right side of eqn-->
+			      		<m:times/>
+						<m:apply>
+						        <m:divide/>
+						        <m:ci><m:msub><m:mi>T</m:mi><m:mi>s</m:mi></m:msub></m:ci>
+						        <m:apply>
+								<m:times/>
+								<m:cn>2</m:cn>
+								<m:ci>π</m:ci>
+			        			</m:apply>
+						</m:apply>
+				<!--	<m:apply>		
+						<m:sum/>
+						<m:bvar><m:ci>k</m:ci></m:bvar>
+						<m:lowlimit><m:apply><m:minus/><m:cn>&infin;</m:cn></m:apply></m:lowlimit>
+					        <m:uplimit><m:ci>&infin;</m:ci></m:uplimit>	-->
+
+
+					<m:apply> <!--Start integral-->
+
+					        <m:int/>
+					        <m:bvar><m:ci>Ω</m:ci></m:bvar> <!--Integration variable-->
+			        		<m:lowlimit><m:apply><m:divide/>
+								<m:apply><m:minus/><m:cn>π</m:cn></m:apply>
+								<m:ci><m:msub><m:mi>T</m:mi><m:mi>s</m:mi></m:msub></m:ci></m:apply>
+						</m:lowlimit>
+					        <m:uplimit><m:apply><m:divide/>	<m:cn>π</m:cn>
+								<m:ci><m:msub><m:mi>T</m:mi><m:mi>s</m:mi></m:msub></m:ci></m:apply>
+						</m:uplimit>
+
+						<m:apply>		<!--Start sum-->			
+						<m:sum/>
+						<m:bvar><m:ci>k</m:ci></m:bvar><!--Summation variable-->
+						<m:lowlimit><m:apply><m:minus/><m:cn>∞</m:cn></m:apply></m:lowlimit>
+					        <m:uplimit><m:ci>∞</m:ci></m:uplimit>
+
+
+
+
+					        <m:apply>
+							<m:times/>
+			          				<m:apply>
+									<m:divide/>						
+									<m:cn>1</m:cn>
+									<m:ci><m:msub><m:mi>T</m:mi><m:mi>s</m:mi></m:msub></m:ci>
+								</m:apply>
+							
+								<m:ci>X</m:ci>
+								<m:apply>
+									<m:times/>
+									<m:imaginaryi/>
+									<m:apply>
+									    <m:apply>
+									      <m:plus/>
+									      <m:ci>Ω</m:ci>
+									      <m:apply>
+									          <m:divide/>
+										  <m:apply>
+										    <m:times/>
+										    <m:cn>2</m:cn>
+										    <m:cn>π</m:cn>
+										    <m:ci>k</m:ci>
+									      </m:apply>
+										  <m:ci><m:msub><m:mi>T</m:mi><m:mi>s</m:mi></m:msub></m:ci>
+								        </m:apply>
+								</m:apply>
+								
+								</m:apply>
+	                			        </m:apply>
+
+
+							<m:apply> <!--Exponential-->
+								<m:exp/>
+								<m:apply>
+									<m:times/>
+									<m:imaginaryi/>
+									<m:ci>Ω</m:ci>
+									<m:ci>n</m:ci>
+			      						<m:ci><m:msub><m:mi>T</m:mi><m:mi>s</m:mi></m:msub></m:ci>
+								</m:apply>
+							</m:apply>
+						</m:apply>
+					</m:apply><!--End integral-->
+					</m:apply><!--End sum-->
+				</m:apply><!--End right side of equation-->
+			</m:apply>	
+		</m:math></equation>
+
+
+		To make 
+		<m:math>
+		    <m:apply>
+		        <m:eq/>
+			<m:apply>
+			    <m:ci><m:msub><m:mi>x</m:mi><m:mi>s</m:mi></m:msub></m:ci>
+			    <m:ci>n</m:ci>
+			</m:apply>
+			<m:apply>
+			    <m:ci>x</m:ci>
+			    <m:apply>
+			        <m:times/>
+				<m:ci>n</m:ci>
+				<m:ci><m:msub><m:mi>T</m:mi><m:mi>s</m:mi></m:msub></m:ci>
+			    </m:apply>
+			</m:apply>
+		    </m:apply>
+		</m:math>
+
+		for all values of <m:math><m:ci>n</m:ci></m:math>, the integrands in <link target-id="eqn2"/> and <link target-id="eqn7"/>
+		have to agreee, that is
+
+
+		<!--.........................................EQUATION 8................................................-->
+		  <equation id="eqn8">
+		      <m:math>
+		      <m:apply>
+		          <m:eq/>
+		   	  <m:apply>
+			      <m:ci><m:msub><m:mi>X</m:mi><m:mi>s</m:mi></m:msub></m:ci>
+			      <m:apply>
+				  <m:exp/>
+				  <m:apply>
+				      <m:times/>
+				      <m:imaginaryi/>
+				      <m:ci>Ω</m:ci>
+				      <m:ci><m:msub><m:mi>T</m:mi><m:mi>s</m:mi></m:msub></m:ci>
+				  </m:apply>
+			      </m:apply>
+		
+			  </m:apply>		
+			  <m:apply><!--Start right side of eqn-->
+			      <m:times/>
+			      <m:apply>
+				  <m:divide/>
+				  <m:cn>1</m:cn>
+				  <m:ci><m:msub><m:mi>T</m:mi><m:mi>s</m:mi></m:msub></m:ci>
+			      </m:apply>
+		              <m:apply>		<!--Start sum-->			
+				  <m:sum/>
+				  <m:bvar><m:ci>k</m:ci></m:bvar><!--Summation variable-->
+				  <m:lowlimit><m:apply><m:minus/><m:cn>∞</m:cn></m:apply></m:lowlimit>
+				  <m:uplimit><m:ci>∞</m:ci></m:uplimit>
+				  <m:apply>
+				      <m:times/>
+			              <m:ci>X</m:ci>
+				      <m:apply>
+				          <m:times/>
+					  <m:imaginaryi/>
+					  <m:apply>
+					      <m:apply>
+					          <m:plus/>
+						  <m:ci>Ω</m:ci>
+						  <m:apply>
+						      <m:divide/>
+						      <m:apply>
+						          <m:times/>
+							  <m:cn>2</m:cn>
+							  <m:pi/>
+							  <m:ci>k</m:ci>
+						      </m:apply>
+						      <m:ci><m:msub><m:mi>T</m:mi><m:mi>s</m:mi></m:msub></m:ci>
+					           </m:apply>
+					      </m:apply>
+				      </m:apply>
+	                	  </m:apply>
+			      </m:apply>
+			  </m:apply><!--End sum-->
+		          </m:apply><!--End right side of equation-->
+		      </m:apply>	
+		  </m:math>
+		  </equation>
+
+		This is a central result. We see that the digital spectrum consists of a sum of shifted versions of
+		the original, analog spectrum. Observe the periodicity!
+		</para><!--End s2p1-->
+
+		<para id="s2p2">
+
+
+		We can also express this relation in terms of the digital angular frequency
+		<m:math>
+		    <m:apply>
+		        <m:eq/>
+			<m:ci>ω</m:ci>
+			<m:apply>
+			    <m:times/>
+			    <m:ci>Ω</m:ci>    
+			    <m:ci><m:msub><m:mi>T</m:mi><m:mi>s</m:mi></m:msub></m:ci>
+			</m:apply>
+		    </m:apply>		
+		</m:math>
+
+		<!--.........................................EQUATION 9................................................-->
+		
+
+		
+		<equation id="eqn9"><m:math>
+		<m:apply><m:eq/>
+		   	<m:apply><!--Start left side of eqn-->
+				<m:ci><m:msub><m:mi>X</m:mi><m:mi>s</m:mi></m:msub></m:ci>
+				<m:apply>
+				    <m:exp/>
+				    <m:apply>
+					<m:times/>
+					<m:imaginaryi/>
+					<m:ci>ω</m:ci>
+				    </m:apply>
+				</m:apply>
+		
+			</m:apply><!--End left side of eqn-->
+		
+				<m:apply><!--Start right side of eqn-->
+			      		<m:times/>
+						<m:apply>
+						        <m:divide/>
+							<m:cn>1</m:cn>
+						        <m:ci><m:msub><m:mi>T</m:mi><m:mi>s</m:mi></m:msub></m:ci>
+						</m:apply>
+		
+						<m:apply>		<!--Start sum-->			
+						<m:sum/>
+						<m:bvar><m:ci>k</m:ci></m:bvar><!--Summation variable-->
+						<m:lowlimit><m:apply><m:minus/><m:cn>∞</m:cn></m:apply></m:lowlimit>
+					        <m:uplimit><m:ci>∞</m:ci></m:uplimit>
+
+					       <m:apply>
+							<m:times/>
+			          				<m:ci>X</m:ci>
+								<m:apply>
+									<m:times/>
+									<m:imaginaryi/>
+									<m:apply>
+									    <m:divide/>
+									    <m:apply>
+									      <m:plus/>
+									      <m:ci>ω</m:ci>
+										  <m:apply>
+										    <m:times/>
+										    <m:cn>2</m:cn>
+										    <m:cn>π</m:cn>
+										    <m:ci>k</m:ci>
+									          </m:apply>
+								       	    </m:apply>
+									     <m:ci><m:msub><m:mi>T</m:mi><m:mi>s</m:mi></m:msub></m:ci>
+									 </m:apply>
+	                			        </m:apply>
+						</m:apply>
+					</m:apply><!--End sum-->
+				</m:apply><!--End right side of equation-->
+			</m:apply>	
+		</m:math></equation>
+
+		This concludes the first part of the proof. Now we want to find a reconstruction formula, so
+		that we can recover 
+		<m:math><m:apply><m:ci>x</m:ci><m:ci>t</m:ci></m:apply></m:math> from 
+		<m:math><m:apply><m:ci><m:msub><m:mi>x</m:mi><m:mi>s</m:mi></m:msub></m:ci><m:ci>n</m:ci></m:apply></m:math>. 
+
+               </para><!--End s2p2-->
+          </section> <!-- End Spectral considerations section-->
+
+	  <section id="s3">
+	      <title>Proof part II - Signal reconstruction</title>   
+	      <para id="s3p1">
+              For a <link document="m11443" target-id="f2">bandlimited</link> signal the inverse fourier transform is
+
+	<!--.........................................EQUATION 10................................................-->
+		 
+	  <equation id="eqn10">
+	      <m:math>
+	    <m:apply>
+	      <m:eq/>
+	      <m:apply>
+		<m:ci>x</m:ci>
+		<m:ci>t</m:ci>
+	      </m:apply>
+	      <m:apply>
+		<m:times/>
+		<m:apply>
+		  <m:divide/>
+		  <m:cn>1</m:cn>
+		  <m:apply>
+		    <m:times/>
+		    <m:cn>2</m:cn>
+		    <m:pi/>
+		  </m:apply>
+		</m:apply>
+		<m:apply>
+		  <m:int/>
+		  <m:bvar><m:ci>Ω</m:ci></m:bvar> <!-- Integration variable-->
+		  <m:lowlimit>
+		    <m:apply>
+		      <m:divide/>
+		      <m:apply><m:minus/><m:pi/></m:apply>
+		      <m:ci><m:msub><m:mi>T</m:mi><m:mi>s</m:mi></m:msub></m:ci>
+		    </m:apply>
+		  </m:lowlimit>
+		  <m:uplimit>
+		    <m:apply>
+		      <m:divide/>
+		      <m:pi/>
+		      <m:ci><m:msub><m:mi>T</m:mi><m:mi>s</m:mi></m:msub></m:ci>
+		    </m:apply>
+		  </m:uplimit>
+		  <m:apply>
+		    <m:times/>
+		    <m:apply>
+		      <m:ci>X</m:ci>
+		      <m:apply>
+			<m:times/>
+			<m:imaginaryi/>
+			<m:ci>Ω</m:ci>
+		      </m:apply>
+		    </m:apply>
+		    <m:apply>
+		      <m:exp/>
+		      <m:apply>
+			<m:times/>
+			<m:imaginaryi/>
+			<m:ci>Ω</m:ci>
+			<m:ci>t</m:ci>
+		      </m:apply>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>
+
+	  </equation>
+	  
+	  In the interval we are integrating we have:
+	  <m:math>
+	      <m:apply>
+		  <m:eq/>
+		  <m:apply>
+		      <m:ci><m:msub><m:mi>X</m:mi><m:mi>s</m:mi></m:msub></m:ci>
+		      <m:apply>
+			  <m:exp/>
+			  <m:apply>
+			      <m:times/>
+			      <m:imaginaryi/>
+			      <m:ci>Ω</m:ci>
+			      <m:ci><m:msub><m:mi>T</m:mi><m:mi>s</m:mi></m:msub></m:ci>
+			  </m:apply>
+		      </m:apply>
+	          </m:apply>
+		  <m:apply>
+		      <m:divide/>
+		      <m:apply>
+			  <m:ci>X</m:ci>
+			  <m:apply>
+			      <m:times/>
+			      <m:imaginaryi/>
+			      <m:ci>Ω</m:ci>
+			   </m:apply>
+		      </m:apply>
+		      <m:ci><m:msub><m:mi>T</m:mi><m:mi>s</m:mi></m:msub></m:ci>
+		  </m:apply>
+	      </m:apply>
+	  </m:math>. Substituting this relation into <link target-id="eqn10"/> we get
+
+	  	<!--.........................................EQUATION 11................................................-->
+
+	  <equation id="eqn11">
+	      <m:math>
+	    <m:apply>
+	      <m:eq/>
+	      <m:apply>
+		<m:ci>x</m:ci>
+		<m:ci>t</m:ci>
+	      </m:apply>
+	      <m:apply>
+		<m:times/>
+		<m:apply>
+		  <m:divide/>
+		  <m:ci><m:msub><m:mi>T</m:mi><m:mi>s</m:mi></m:msub></m:ci>
+		  <m:apply>
+		    <m:times/>
+		    <m:cn>2</m:cn>
+		    <m:pi/>
+		  </m:apply>
+		</m:apply>
+		<m:apply>
+		  <m:int/>
+		  <m:bvar><m:ci>Ω</m:ci></m:bvar> <!-- Integration variable-->
+		  <m:lowlimit>
+		    <m:apply>
+		      <m:divide/>
+		      <m:apply><m:minus/><m:pi/></m:apply>
+		      <m:ci><m:msub><m:mi>T</m:mi><m:mi>s</m:mi></m:msub></m:ci>
+		    </m:apply>
+		  </m:lowlimit>
+		  <m:uplimit>
+		    <m:apply>
+		      <m:divide/>
+		      <m:pi/>
+		      <m:ci><m:msub><m:mi>T</m:mi><m:mi>s</m:mi></m:msub></m:ci>
+		    </m:apply>
+		  </m:uplimit>
+		  <m:apply>
+		    <m:times/>
+		    <m:apply>
+		      <m:ci><m:msub><m:mi>X</m:mi><m:mi>s</m:mi></m:msub></m:ci>
+		      <m:apply>
+			<m:exp/>
+			<m:apply>
+			  <m:times/>
+			  <m:imaginaryi/>
+			  <m:ci>Ω</m:ci>
+			  <m:ci><m:msub><m:mi>T</m:mi><m:mi>s</m:mi></m:msub></m:ci>
+			</m:apply>
+		      </m:apply>
+		    </m:apply>
+		    <m:apply>
+		      <m:exp/>
+		      <m:apply>
+			<m:times/>
+			<m:imaginaryi/>
+			<m:ci>Ω</m:ci>
+			<m:ci>t</m:ci>
+		      </m:apply>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>
+
+	  </equation>
+
+	  Using the <link document="m11450">DTFT</link> relation for
+	  <m:math>
+	      <m:apply>
+		  <m:ci><m:msub><m:mi>X</m:mi><m:mi>s</m:mi></m:msub></m:ci>
+		  <m:apply>
+		      <m:exp/>
+		      <m:apply>
+			  <m:times/>
+			  <m:imaginaryi/>
+			  <m:ci>Ω</m:ci>
+			  <m:ci><m:msub><m:mi>T</m:mi><m:mi>s</m:mi></m:msub></m:ci>
+		      </m:apply>
+		  </m:apply>
+	      </m:apply>
+	  </m:math> we have
+
+	  <!--....................................EQUATION 12....................................-->
+	  <equation id="eqn12">
+	      <m:math>
+	    <m:apply>
+	      <m:eq/>
+	      <m:apply>
+		<m:ci>x</m:ci>
+		<m:ci>t</m:ci>
+	      </m:apply>
+	      <m:apply>
+		<m:times/>
+		<m:apply>
+		  <m:divide/>
+		  <m:ci><m:msub><m:mi>T</m:mi><m:mi>s</m:mi></m:msub></m:ci>
+		  <m:apply>
+		    <m:times/>
+		    <m:cn>2</m:cn>
+		    <m:pi/>
+		  </m:apply>
+		</m:apply>
+		<m:apply>
+		  <m:int/>
+		  <m:bvar><m:ci>Ω</m:ci></m:bvar> <!-- Integration variable-->
+		  <m:lowlimit>
+                    <m:apply>
+		      <m:divide/>
+		      <m:apply><m:minus/><m:pi/></m:apply>
+		      <m:ci><m:msub><m:mi>T</m:mi><m:mi>s</m:mi></m:msub></m:ci>
+		    </m:apply>
+		  </m:lowlimit>
+		  <m:uplimit>
+		    <m:apply> 
+		      <m:divide/>
+		      <m:pi/>
+		      <m:ci><m:msub><m:mi>T</m:mi><m:mi>s</m:mi></m:msub></m:ci>
+		    </m:apply>
+		  </m:uplimit>
+
+		  <m:apply>
+		  <m:sum/>
+		  <m:bvar><m:ci>n</m:ci></m:bvar> <!-- Summation variable-->
+		  <m:lowlimit><m:apply><m:minus/><m:infinity/></m:apply></m:lowlimit>
+		  <m:uplimit><m:infinity/></m:uplimit>
+
+
+		  <m:apply><!--Start integrand-->
+		    <m:times/>
+		    <m:apply>
+		      <m:ci><m:msub><m:mi>x</m:mi><m:mi>s</m:mi></m:msub></m:ci>
+		      <m:ci>n</m:ci></m:apply>
+		      <m:apply>
+			<m:exp/>
+			<m:apply>
+			  <m:minus/>
+			  <m:apply>
+			    <m:times/>
+			    <m:imaginaryi/>
+			    <m:ci>Ω</m:ci>
+			    <m:ci>n</m:ci>
+			    <m:ci><m:msub><m:mi>T</m:mi><m:mi>s</m:mi></m:msub></m:ci>
+			  </m:apply>
+			</m:apply>
+		    </m:apply>
+		    <m:apply>
+		      <m:exp/>
+		      <m:apply>
+			<m:times/>
+			<m:imaginaryi/>
+			<m:ci>Ω</m:ci>
+			<m:ci>t</m:ci>
+		      </m:apply>
+		    </m:apply>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>
+
+	  </equation>
+	  Interchanging integration and summation (under the assumption of convergence) leads to
+
+	  <!--....................................EQUATION 13....................................-->
+	  <equation id="eqn13">
+	      <m:math>
+	    <m:apply>
+	      <m:eq/>
+	      <m:apply>
+		<m:ci>x</m:ci>
+		<m:ci>t</m:ci>
+	      </m:apply>
+	      <m:apply>
+		<m:times/>
+		<m:apply>
+		  <m:divide/>
+		  <m:ci><m:msub><m:mi>T</m:mi><m:mi>s</m:mi></m:msub></m:ci>
+		  <m:apply>
+		    <m:times/>
+		    <m:cn>2</m:cn>
+		    <m:pi/>
+		  </m:apply>
+		</m:apply>
+
+
+		<m:apply>
+		  <m:sum/>
+		  <m:bvar><m:ci>n</m:ci></m:bvar> <!-- Summation variable-->
+		  <m:lowlimit><m:apply><m:minus/><m:infinity/></m:apply></m:lowlimit>
+		  <m:uplimit><m:infinity/></m:uplimit>
+
+		  <m:apply>
+		    <m:times/>
+		    <m:apply>
+		      <m:ci><m:msub><m:mi>x</m:mi><m:mi>s</m:mi></m:msub></m:ci>
+		      <m:ci>n</m:ci>
+		    </m:apply>
+
+		<m:apply>
+		  <m:int/>
+		  <m:bvar><m:ci>Ω</m:ci></m:bvar> <!-- Integration variable-->
+		  <m:lowlimit>
+                    <m:apply>
+		      <m:divide/>
+		      <m:apply><m:minus/><m:pi/></m:apply>
+		      <m:ci><m:msub><m:mi>T</m:mi><m:mi>s</m:mi></m:msub></m:ci>
+		    </m:apply>
+		  </m:lowlimit>
+		  <m:uplimit>
+		    <m:apply> 
+		      <m:divide/>
+		      <m:pi/>
+		      <m:ci><m:msub><m:mi>T</m:mi><m:mi>s</m:mi></m:msub></m:ci>
+		    </m:apply>
+                   
+		  </m:uplimit>
+
+		  
+		  <m:apply><!--Start integrand-->
+		    <!--<m:apply>-->
+		      <m:exp/>
+		      <m:apply>
+			<m:times/>
+			<m:imaginaryi/>
+			<m:ci>Ω</m:ci>
+			<m:apply>
+			    <m:minus/>
+			    <m:ci>t</m:ci>
+			    <m:apply>
+			       <m:times/>
+			        <m:ci>n</m:ci>
+				<m:ci><m:msub><m:mi>T</m:mi><m:mi>s</m:mi></m:msub></m:ci>   
+			    </m:apply>
+			</m:apply>
+		      </m:apply>
+		    </m:apply>
+		    </m:apply>
+		  </m:apply>
+		 <!-- </m:apply>-->
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>
+
+	  </equation>
+
+	  Finally we perform the integration and arrive at the important reconstruction formula	
+		<!--........................................EQUATION 14...............................-->
+
+		  <equation id="eqn14">
+		      <m:math>
+		      <m:apply>
+		          <m:eq/>
+			  <m:apply>
+			      <m:ci>x</m:ci>
+			      <m:ci>t</m:ci>
+			  </m:apply>
+			  <m:apply>
+			      <m:sum/>
+			      <m:bvar><m:ci>n</m:ci></m:bvar>
+			      <m:lowlimit><m:apply><m:minus/><m:infinity/></m:apply></m:lowlimit>
+			      <m:uplimit><m:infinity/></m:uplimit>
+			      <m:apply>
+			          <m:times/>
+				  <m:apply>
+				      <m:ci><m:msub><m:mi>x</m:mi><m:mi>s</m:mi></m:msub></m:ci>
+				      <m:ci>n</m:ci>
+				  </m:apply>
+				  <m:apply>
+				      <m:divide/>
+				      <m:apply>
+				          <m:sin/>
+					  <m:apply>
+					      <m:times/>
+					      <m:apply>
+					          <m:divide/>
+						  <m:pi/>
+						  <m:ci><m:msub><m:mi>T</m:mi><m:mi>s</m:mi></m:msub></m:ci>
+					      </m:apply>
+					      <m:apply>
+					      	  <m:minus/>
+						  <m:ci>t</m:ci>
+						  <m:apply>
+						      <m:times/>
+						      <m:ci>n</m:ci>
+						      <m:ci><m:msub><m:mi>T</m:mi><m:mi>s</m:mi></m:msub></m:ci>
+						  </m:apply>
+					      </m:apply>
+					  </m:apply>
+				      </m:apply>
+				      <m:apply>
+				          <m:times/>
+					  <m:apply>
+					      <m:divide/>
+					      <m:pi/>
+					      <m:ci><m:msub><m:mi>T</m:mi><m:mi>s</m:mi></m:msub></m:ci>
+					  </m:apply>
+				          <m:apply>
+					      <m:minus/>
+					      <m:ci>t</m:ci>
+					      <m:apply>
+					          <m:times/>
+						  <m:ci>n</m:ci>
+						  <m:ci><m:msub><m:mi>T</m:mi><m:mi>s</m:mi></m:msub></m:ci>
+					      </m:apply>
+				          </m:apply>
+				      </m:apply>
+				  </m:apply>
+			      </m:apply>
+			  </m:apply>
+		      </m:apply>
+		      </m:math>
+</equation> <!--End equation 14-->
+	      		  (Thanks to R.Loos for pointing out an error in the proof.)</para>
+
+	  </section><!-- End section s3, (proof part II section)-->
+
+	  <section id="s4">
+	      <title>Summary</title>
+	      <para id="s4p1">
+		  <note type="spectrum sampled signal" id="idp1989040"><label>Spectrum sampled signal</label>
+		      <m:math>
+		      <m:apply>
+		          <m:eq/>
+		   	  <m:apply>
+			      <m:ci><m:msub><m:mi>X</m:mi><m:mi>s</m:mi></m:msub></m:ci>
+			      <m:apply>
+				  <m:exp/>
+				  <m:apply>
+				      <m:times/>
+				      <m:imaginaryi/>
+				      <m:ci>Ω</m:ci>
+				      <m:ci><m:msub><m:mi>T</m:mi><m:mi>s</m:mi></m:msub></m:ci>
+				  </m:apply>
+			      </m:apply>
+		
+			  </m:apply>		
+			  <m:apply><!--Start right side of eqn-->
+			      <m:times/>
+			      <m:apply>
+				  <m:divide/>
+				  <m:cn>1</m:cn>
+				  <m:ci><m:msub><m:mi>T</m:mi><m:mi>s</m:mi></m:msub></m:ci>
+			      </m:apply>
+		              <m:apply>		<!--Start sum-->			
+				  <m:sum/>
+				  <m:bvar><m:ci>k</m:ci></m:bvar><!--Summation variable-->
+				  <m:lowlimit><m:apply><m:minus/><m:cn>∞</m:cn></m:apply></m:lowlimit>
+				  <m:uplimit><m:ci>∞</m:ci></m:uplimit>
+				  <m:apply>
+				      <m:times/>
+			              <m:ci>X</m:ci>
+				      <m:apply>
+				          <m:times/>
+					  <m:imaginaryi/>
+					  <m:apply>
+					      <m:apply>
+					          <m:plus/>
+						  <m:ci>Ω</m:ci>
+						  <m:apply>
+						      <m:divide/>
+						      <m:apply>
+						          <m:times/>
+							  <m:cn>2</m:cn>
+							  <m:pi/>
+							  <m:ci>k</m:ci>
+						      </m:apply>
+						      <m:ci><m:msub><m:mi>T</m:mi><m:mi>s</m:mi></m:msub></m:ci>
+					           </m:apply>
+					      </m:apply>
+				      </m:apply>
+	                	  </m:apply>
+			      </m:apply>
+			  </m:apply><!--End sum-->
+		          </m:apply><!--End right side of equation-->
+		      </m:apply>	
+		      </m:math>
+		  </note>
+	      </para><!--End para s4p1-->
+	      <para id="s4p2">
+	          <note type="Reconstruction formula" id="idm503168"><label>Reconstruction formula</label>
+		      <m:math>
+		      <m:apply>
+		          <m:eq/>
+			  <m:apply>
+			      <m:ci>x</m:ci>
+			      <m:ci>t</m:ci>
+			  </m:apply>
+			  <m:apply>
+			      <m:sum/>
+			      <m:bvar><m:ci>n</m:ci></m:bvar>
+			      <m:lowlimit><m:apply><m:minus/><m:infinity/></m:apply></m:lowlimit>
+			      <m:uplimit><m:infinity/></m:uplimit>
+			      <m:apply>
+			          <m:times/>
+				  <m:apply>
+				      <m:ci><m:msub><m:mi>x</m:mi><m:mi>s</m:mi></m:msub></m:ci>
+				      <m:ci>n</m:ci>
+				  </m:apply>
+				  <m:apply>
+				      <m:divide/>
+				      <m:apply>
+				          <m:sin/>
+					  <m:apply>
+					      <m:times/>
+					      <m:apply>
+					          <m:divide/>
+						  <m:pi/>
+						  <m:ci><m:msub><m:mi>T</m:mi><m:mi>s</m:mi></m:msub></m:ci>
+					      </m:apply>
+					      <m:apply>
+					      	  <m:minus/>
+						  <m:ci>t</m:ci>
+						  <m:apply>
+						      <m:times/>
+						      <m:ci>n</m:ci>
+						      <m:ci><m:msub><m:mi>T</m:mi><m:mi>s</m:mi></m:msub></m:ci>
+						  </m:apply>
+					      </m:apply>
+					  </m:apply>
+				      </m:apply>
+				      <m:apply>
+				          <m:times/>
+					  <m:apply>
+					      <m:divide/>
+					      <m:pi/>
+					      <m:ci><m:msub><m:mi>T</m:mi><m:mi>s</m:mi></m:msub></m:ci>
+					  </m:apply>
+				          <m:apply>
+					      <m:minus/>
+					      <m:ci>t</m:ci>
+					      <m:apply>
+					          <m:times/>
+						  <m:ci>n</m:ci>
+						  <m:ci><m:msub><m:mi>T</m:mi><m:mi>s</m:mi></m:msub></m:ci>
+					      </m:apply>
+				          </m:apply>
+				      </m:apply>
+				  </m:apply>
+			      </m:apply>
+			  </m:apply>
+		      </m:apply>
+		      </m:math>
+		  </note>
+
+	      </para>
+
+	  </section><!--End section s4-->
+          <section id="s5">
+	  <para id="s5p1">Go to
+	      <list id="s0l2" list-type="labeled-item" display="inline">
+		  <item><link document="m11419">Introduction</link></item>
+		  <item><link document="m11443">Illustrations</link></item>
+                  <item><link document="m11549">Matlab Example</link></item>
+                  <item><link document="m11458">Hold operation</link></item>
+                  <item><link document="m11448">Aliasing applet</link></item>
+                  <item><link document="m11465">System view</link></item>
+		  <item><link document="m11442">Exercises</link></item>	
+	      </list> ?
+            
+          </para>
+          </section>
+  
+      </content>
+  
+</document>

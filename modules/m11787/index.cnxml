@@ -1,0 +1,81 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:md="http://cnx.rice.edu/mdml">
+  <title>Library</title>
+  <metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>4d8ebaa5-4e53-4360-82ff-f3e34d40255d</md:uuid>
+</metadata>
+
+  <content>
+    <para id="p00">
+	What follows is a collection of links to other
+	Signal processing and Information theory resources
+	avaliable. Please report dead links and suggestions to
+	links that we should include.
+    </para>
+    <para id="p01">
+	In addition to these links you should try the 
+	<link url="http://cnx.rice.edu/content/search">Connexions 
+	search function</link> which allows you to search through all
+	the material in the Connexions system.
+    </para>
+    <section id="s1">
+	<title>Signal processing</title>
+	<para id="s1p1">
+	   <link document="col10040" version="1.5">Fundamentals
+	   of Electrical Engineering</link>.
+	   A comprehensive course availiable in Roadmap/Connexions.
+	</para>
+	<para id="s1p2">
+	   <link document="col10064" version="1.4">Signals
+	   and Systems</link>.
+	   A comprehensive course availiable in Roadmap/Connexions.
+	</para>
+
+	<para id="s1p3">
+	    <link url="http://www.complextoreal.com">Complex to Real</link>
+	    Basic concepts, Fourier Analysis, ISI, Eye diagram...
+	</para>
+	<para id="s1p4">
+	    <link url="http://www.jhu.edu/~signals/">
+	    Johns Hopkins University: Signals, Systems and Control Demonstrations. Signal Processing Tutorial</link>
+	    An <emphasis>impressive</emphasis> collection of Java Applets
+	    demonstrating various concepts. Recommended.
+	</para>
+	<para id="s1p5">
+	   <link url="http://www.eas.asu.edu/~midle/jdsp/">Java Digital
+	   Signal Processing Editor</link>.
+	   The J-DSP Editor, the first on-line DSP editor, is used 
+	   to simulate various DSP techniques. The simulation
+	   is performed at a high level which gives the "big picture".
+	</para>
+	<para id="s1p6">
+	   <link url="http://www.ieee.org/organizations/society/sp/index.html">
+	   IEEE Signal Processing Society</link>.
+
+	</para>
+
+	
+	
+	
+    </section>
+
+    <section id="s2">
+	<title>Information Theory</title>
+	<para id="s2p1">
+    	    <link url="http://www.inference.phy.cam.ac.uk/mackay/itila/book.html">
+	    Information Theory, Inference, and Learning Algorithms</link>. Free
+	    book by David MacKay of University of Cambridge.
+	</para>   
+	<para id="s2p2">
+    	    <link url="http://http://www.inference.phy.cam.ac.uk/mackay/info-theory/course.html">
+	    A short course in Information Theory</link>,
+	    by David MacKay of University of Cambridge.
+	</para>
+	<para id="s2p3">
+    	    <link url="http://golay.uvic.ca/">
+	    IEEE Information Theory Society </link>. 
+
+	</para>
+
+    </section>
+  </content>
+  
+</document>

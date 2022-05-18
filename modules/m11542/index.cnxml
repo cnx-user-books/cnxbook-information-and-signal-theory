@@ -1,0 +1,47 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:md="http://cnx.rice.edu/mdml">
+  <title>Introduction to Convolution</title>
+  <metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>d02ad92f-f7ff-4620-b4ae-937e9ddca737</md:uuid>
+</metadata>
+
+  <content>
+      <para id="s0p1">
+        In addition to the operations performed on signals
+	in the <link document="m11476">Signals</link> chapter there are several more.
+	The most important operation is linear filtering, which can be
+	performed by <term>convolution</term>. The reason that linear filtering
+	is so important to signal processing is that it solves many problems
+	and that is relatively simple to describe mathematically. In this chapter
+	we will be looking at convolution.
+      </para>
+
+      <para id="s0p2">
+          Convolution helps to determine the effect a system has on an
+	  input signal.  It can be shown that a <link document="m10084">linear, time-invariant system</link> is
+	  completely characterized by its impulse response.
+	  Using the <link document="m11478" target-id="s2s1">sampling property</link> 
+	  of the <link document="m11478" target-id="s2s1">delta function</link> for
+	  for continuous time signals and the 
+	  <link document="m11476" target-id="s3s1">unit sample</link> 
+	  for discrete time signals we can decompose a signal into an infinite 
+	  sum / integral of scaled and shifted impulses.  By knowing how a
+	  system affects a single impulse, and by understanding the way
+	  a signal is comprised of scaled and summed impulses, it seems
+	  reasonable that it should be possible to scale and sum the
+	  impulse responses of a system in order to determine what
+	  output signal will results from a particular input.  This is
+	  precisely what convolution does - <emphasis> convolution
+	  determines the system's output from knowledge of the input
+	  and the system's impulse response</emphasis>.
+       </para>
+
+      <list id="l1">
+          <title>Contents of this chapter</title>
+	  <item>Introduction (current module)</item>	  
+	  <item><link document="m11539">Convolution - Discrete time</link></item>
+	  <item><link document="m11540">Convolution - Continuous time</link></item>
+	  <item><link document="m10088">Properties of convolution</link></item>
+      </list>
+
+  </content>
+  
+</document>

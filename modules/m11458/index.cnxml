@@ -1,0 +1,152 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml">
+  <title>Hold operation</title>
+  <metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>0d94573b-8667-431b-8c27-8869bc6b1401</md:uuid>
+</metadata>
+
+  <content>
+    <para id="s0p1">
+        Any practical reconstruction system must input finite length pulses into the
+        reconstruction filter. The reason is that we need nonzero <link document="m11526" target-id="s1">energy</link> in the nonzero pulses.
+    </para>
+
+    <section id="s1">
+	<title>Introduction</title>
+	<para id="s1p1">
+	    The operation performed to produce these pulses is called <emphasis>hold</emphasis>.
+	    Using the hold-operation we get pulses with a predefined length
+	    and height proportional to the input to the digital-to-analog
+	    converter. By means of the hold operation we get nonzero pulses with <link document="m11526" target-id="s1">energy</link>.
+		
+	    <figure id="f1">
+		<media id="idp8026976" alt=""><image src="../../media/hold.jpg" mime-type="image/jpeg"/></media>
+		<caption>Output signal from the hold device</caption>
+
+	    </figure>
+	</para>	    
+	<para id="s1p2">
+	    As we have made changes relative to the <link document="m11443" target-id="s2p1">ideal reconstruction</link>,
+	    we need to look at the output signal the reconstruction filter will give us. 
+	    Quite obviously the output will not be the original signal. So, is it still useful?
+	</para>
+	</section>
+
+	<section id="s2">
+	    <title>Analysis</title>
+
+	<para id="s2p1">
+	    As before, and as will be the situation later, using the frequency domain simplifies the analysis.
+	    To model the hold operation we use <link document="m11450">convolution</link> with a 
+	    <link document="m11450">delta function</link> 
+	    and a square pulse. The square pulse has unit height and duration <m:math><m:ci>τ</m:ci></m:math>.
+	    The duration <m:math><m:ci>τ</m:ci></m:math> is the <emphasis>holding time</emphasis>, i.e. how
+	    long we <emphasis>hold</emphasis> the incoming value.
+	    For the pulses not to overlap we must choose
+	    <m:math>
+		<m:apply>
+		    <m:lt/>
+		    <m:ci>τ</m:ci>
+		    <m:ci><m:msub><m:mi>T</m:mi><m:mi>s</m:mi></m:msub></m:ci>
+		</m:apply>
+	    </m:math>. 
+	    The convolution can be seen as a filtering operation, using the square pulse as the
+	    impulse response. If we <link document="m11450">fourier transform</link> the square pulse
+	    we obtain the frequency response of the filter, which is a 
+	    <link url="http://ccrma-www.stanford.edu/~jos/Interpolation/sinc_function.html">sinc</link> function.
+	</para>    
+	<para id="s1p3">
+	    <link target-id="f2"/> shows the frequency response of the analog square pulse filter.
+	    We have plotted the frequency response for
+	    <m:math>
+		<m:apply>
+		    <m:eq/>
+		    <m:ci>τ</m:ci>
+		    <m:ci><m:msub><m:mi>T</m:mi><m:mi>s</m:mi></m:msub></m:ci>
+		</m:apply>
+	    </m:math> and
+	    <m:math>
+		<m:apply>
+		    <m:eq/>
+		    <m:ci>τ</m:ci>
+		    <m:apply>
+			<m:divide/>
+			<m:ci><m:msub><m:mi>T</m:mi><m:mi>s</m:mi></m:msub></m:ci>
+			<m:cn>2</m:cn>
+		    </m:apply>
+		</m:apply>
+	    </m:math>.
+	    <figure id="f2">
+	        <media id="idp6645424" alt=""><image src="../../media/Hold_freq.jpg" mime-type="image/jpeg"/></media>
+		<caption>
+		    Frequency response of the analog square filter 
+		    as a function of <emphasis>digital frequency</emphasis> f.
+		</caption>
+	    </figure>
+	    From the figure we can make the following observations
+	    <list id="l1">
+		<item>The signal will be attenuated more and more towards the band edge,
+		    <m:math><m:apply><m:eq/><m:ci>f</m:ci><m:cn>0.5</m:cn></m:apply></m:math>
+		</item>
+		<item>For
+		      <m:math>
+			  <m:apply>
+			      <m:eq/>
+			      <m:ci>τ</m:ci>
+			      <m:ci><m:msub><m:mi>T</m:mi><m:mi>s</m:mi></m:msub></m:ci>
+			  </m:apply>
+		      </m:math>
+		      the maximum attenuation is 3 dB at
+		      <m:math><m:apply><m:eq/><m:ci>f</m:ci><m:cn>0.5</m:cn></m:apply></m:math>.
+		</item>
+		<item>For
+		      <m:math>
+			  <m:apply>
+			      <m:eq/>
+			      <m:ci>τ</m:ci>
+			      <m:apply>
+				  <m:divide/>
+				  <m:ci><m:msub><m:mi>T</m:mi><m:mi>s</m:mi></m:msub></m:ci>
+				  <m:cn>2</m:cn>
+		    	      </m:apply>
+			  </m:apply>
+		      </m:math>
+		      the maximum attenuation is 0.82 dB at
+		      <m:math><m:apply><m:eq/><m:ci>f</m:ci><m:cn>0.5</m:cn></m:apply></m:math>.
+		</item>
+	    </list>
+	    The distortion is a result of linear operations and can thus be compensated for
+	    by using a filter with opposite frequency response in the passband,
+	    <m:math>
+		<m:apply>
+		    <m:in/>
+		    <m:ci>f</m:ci>
+		    <m:interval>
+		        <m:apply><m:minus/><m:cn>0.5</m:cn></m:apply>
+			<m:cn>0.5</m:cn>
+		    </m:interval>
+		</m:apply>
+	    </m:math>.
+	    The compensation will not be exact, but we can make the approximation as accurate
+	    as we wish. The compensation can be made in the reconstruction filter or after the reconstruction
+	    by using a separate analog filter. One can also predistort the signal in a digital filter
+	    before reconstruction. Where to put the compensator and it's quality are cost considerations.
+
+	</para>
+    </section><!--End section s2-->
+    <section id="s3">	
+        <para id="s3p1">
+          Go to?
+          <list id="l2" list-type="labeled-item" display="inline">
+		  <item><link document="m11419">Introduction</link></item>
+		  <item><link document="m11423">Proof</link></item>
+                  <item><link document="m11443">Illustrations</link></item>
+                  <item><link document="m11448">Aliasing applet</link></item>
+  		  <item><link document="m11465">System view</link></item>
+            	  <item><link document="m11442">Exercises</link></item>	
+	   </list>
+        </para>
+    </section>
+
+
+  </content>
+  
+</document>

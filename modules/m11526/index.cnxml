@@ -1,0 +1,485 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml">
+  <title>Energy and Power</title>
+  <metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>be7a272a-dc82-4ae1-beea-7ab891ae1767</md:uuid>
+</metadata>
+  <content>
+
+  <para id="s0p1">
+      From physics we've learned that energy is work and power is work per time
+      unit. Energy was measured in Joule (J) and work in Watts(W).
+      In signal processing energy and power are defined more loosely without
+      any necessary physical units, because the signals may represent very
+      different physical entities. We can say that energy and power are a
+      measure of the signal's "size".
+  </para>
+  <section id="s1">
+      <title>Signal Energy</title>
+
+      <section id="s1s1">
+          <title>Analog signals</title>	      
+	  <para id="s1s1p1">
+	      Since we often think of a signal as a function of varying
+	      amplitude through time, it seems to reason that a good
+	      measurement of the strength of a signal would be the area
+	      under the curve.  However, this area may have a negative part.
+	      This negative part does not have less strength than a positive
+	      signal of the same size. This suggests either squaring the signal or taking its absolute
+	      value, then finding the area under that curve.  It turns out
+	      that what we call the energy of a signal is the
+	      area under the squared signal, see <link target-id="f1"/>
+	  </para>
+	  <para id="s1s1p2">
+	      <note type="Energy - Analog signal" id="idp8465424"><label>Energy - Analog signal</label>
+	          <m:math>
+		      <m:apply>
+		          <m:eq/>
+			  <m:ci><m:msub><m:mi>E</m:mi><m:mi>a</m:mi></m:msub></m:ci>
+			  <m:apply>
+			      <m:int/>
+			      <m:bvar><m:ci>t</m:ci></m:bvar>
+			      <m:lowlimit><m:apply><m:minus/><m:infinity/></m:apply></m:lowlimit>
+			      <m:uplimit><m:infinity/></m:uplimit>
+			      <m:apply>
+			          <m:power/>
+				  <m:apply>
+				      <m:abs/>
+				      <m:apply>
+				          <m:ci>x</m:ci>
+				          <m:ci>t</m:ci>
+				      </m:apply>
+				  </m:apply>
+				  <m:cn>2</m:cn>
+			      </m:apply>
+			  </m:apply>
+		      </m:apply>
+		  </m:math>
+	      </note>
+	      Note that we have used squared magnitude(absolute value) if the signal
+	      should be complex valued. If the signal is real, we can leave out the magnitude
+	      operation.
+
+	      <figure id="f1" orient="vertical">
+                  <subfigure id="idm1160512">
+	              <media id="idm1160160" alt=""><image src="../../media/signal.png" mime-type="image/png"/></media>
+		      <caption>Signal x(t)</caption>
+                  </subfigure>
+                  <subfigure id="idp5030976">
+	              <media id="idp5031360" alt=""><image src="../../media/signal_energy.png" mime-type="image/png"/></media>
+		      <caption>The energy of x(t) is the shaded region</caption>
+                  </subfigure>
+                  <caption>Sketch of energy calculation</caption>
+	      </figure>
+	  </para>
+
+      </section>
+
+      <section id="s1s2">
+          <title>Discrete signals</title>
+	  <para id="s1s2p1">
+	      For time discrete signals the "area under the squared signal"
+	      makes no sense, so we will have to use another energy definiton.
+	      We define energy as the sum of the squared magnitude of the samples.
+	      Mathematically
+	      <note type="Energy - Discrete time signal" id="idp9002880"><label>Energy - Discrete time signal</label>
+	          <m:math>
+		      <m:apply>
+		          <m:eq/>
+			  <m:ci><m:msub><m:mi>E</m:mi><m:mi>d</m:mi></m:msub></m:ci>
+			  <m:apply>
+			      <m:sum/>
+			      <m:bvar><m:ci>n</m:ci></m:bvar>
+			      <m:lowlimit><m:apply><m:minus/><m:infinity/></m:apply></m:lowlimit>
+			      <m:uplimit><m:infinity/></m:uplimit>
+			      <m:apply>
+			          <m:power/>
+				  <m:apply>
+				      <m:abs/>
+				      <m:apply>
+				          <m:ci>x</m:ci>
+				          <m:ci>n</m:ci>
+				      </m:apply>
+				  </m:apply>
+				  <m:cn>2</m:cn>
+			      </m:apply>
+			  </m:apply>
+		      </m:apply>
+		  </m:math>
+	      </note>	      
+	  </para>
+	      <example id="exa1">
+	          <para id="exa1p1">
+		      Given the sequence
+		      <m:math>
+		          <m:apply>
+			      <m:eq/>
+			      <m:apply>
+			          <m:ci>y</m:ci>
+			          <m:ci>l</m:ci>
+			      </m:apply>
+			      <m:apply>
+			          <m:times/>
+				  <m:apply>
+				      <m:power/>
+				      <m:ci>b</m:ci>
+				      <m:ci>l</m:ci>
+				  </m:apply>
+				  <m:apply>
+				      <m:ci>u</m:ci>
+				      <m:ci>l</m:ci>
+				  </m:apply>
+			      </m:apply>
+			  </m:apply>
+		      </m:math>, where u(l) is the <link document="m11476" target-id="s2s2">unit step</link> function. 
+		      Find the energy of the sequence.
+		  </para>
+		  <para id="exa1p2">
+		      We recognize y(l) as a geometric series. Thus we can use the formula for
+		      the sum of a geometric series and we obtain the energy,
+		      <m:math>
+		          <m:apply>
+			      <m:eq/>
+			      <m:apply>
+				  <m:eq/>
+				  <m:ci><m:msub><m:mi>E</m:mi><m:mi>d</m:mi></m:msub></m:ci>
+				  <m:apply>
+			              <m:sum/>
+				      <m:bvar><m:ci>l</m:ci></m:bvar>
+				      <m:lowlimit><m:cn>0</m:cn></m:lowlimit>
+				      <m:uplimit><m:infinity/></m:uplimit>
+				      <m:apply>
+			                  <m:power/>
+					  <m:apply>
+				              <m:ci>y</m:ci>
+					      <m:ci>l</m:ci>
+					  </m:apply>
+					  <m:cn>2</m:cn>
+				      </m:apply>
+			          </m:apply>
+		              </m:apply>
+			      <m:apply>
+			          <m:divide/>
+				  <m:cn>1</m:cn>
+				  <m:apply>
+				      <m:minus/>
+				      <m:cn>1</m:cn>
+				      <m:apply>
+				          <m:power/>
+					  <m:ci>b</m:ci>
+					  <m:cn>2</m:cn>
+				      </m:apply>
+				  </m:apply>
+			      </m:apply>
+			  </m:apply>
+		      </m:math>.
+		      This expression is only valid for
+		      <m:math>
+		          <m:apply>
+			      <m:lt/>
+			      <m:apply>
+			          <m:abs/>
+			          <m:ci>b</m:ci>
+			      </m:apply>
+			      <m:cn>1</m:cn>
+			  </m:apply>
+		      </m:math>. If we have a larger |b|, the series will diverge. The signal
+		      y(l) then has infinite energy. So let's have a look at power...
+		  </para>
+	      </example>
+	  
+      </section>
+
+  </section><!--End section s1-->
+
+  <section id="s2">
+      <title>Signal Power</title>
+      <para id="s2p1">
+	  Our definition of energy seems reasonable, and it is.
+	  However, what if the signal does not decay fast enough?  In this case we
+	  have infinite energy for any such signal.  Does this mean that
+	  a fifty hertz sine wave feeding into your headphones is as
+	  strong as the fifty hertz sine wave coming out of your outlet?
+	  Obviously not.  This is what leads us to the idea of
+	  <emphasis>signal power</emphasis>, which in such cases is a more
+	  adequate description.
+
+	  <figure id="f2">
+	      <media id="idm1642304" alt=""><image src="../../media/infinite_energy.png" mime-type="image/png"/></media>
+	      <caption>Signal with inifinite energy</caption>
+	  </figure>
+      </para>
+
+      <section id="s2s1">
+          <title>Analog signals</title>	      
+	  <para id="s2s1p1">
+	      For analog signals we define power as
+	      <emphasis>energy per time interval</emphasis>.
+	      <note type="Power - analog signal" id="idm669600"><label>Power - analog signal</label>
+	          <m:math>
+		      <m:apply>
+		          <m:eq/>
+			  <m:ci><m:msub><m:mi>P</m:mi><m:mi>a</m:mi></m:msub></m:ci>
+			  <m:apply>
+			      <m:times/>
+			      <m:apply>
+			          <m:divide/>
+				  <m:cn>1</m:cn>
+				  <m:ci><m:msub><m:mi>T</m:mi><m:mn>0</m:mn></m:msub></m:ci>
+			      </m:apply>
+			      <m:apply>
+			          <m:int/>
+				  <m:bvar><m:ci>t</m:ci></m:bvar>
+				  <m:lowlimit>
+				      <m:apply>
+				          <m:minus/>
+					  <m:apply>
+					      <m:divide/>
+					      <m:ci><m:msub><m:mi>T</m:mi><m:mn>0</m:mn></m:msub></m:ci>
+					      <m:cn>2</m:cn>
+					  </m:apply>
+				      </m:apply>
+				  </m:lowlimit>
+				  <m:uplimit>
+				      <m:apply>
+				          <m:divide/>
+					  <m:ci><m:msub><m:mi>T</m:mi><m:mn>0</m:mn></m:msub></m:ci>
+					  <m:cn>2</m:cn>
+				      </m:apply>
+				  </m:uplimit>
+				  <m:apply>
+				      <m:power/>
+				      <m:apply>
+				          <m:abs/>
+					  <m:apply>
+					      <m:ci>x</m:ci>
+					      <m:ci>t</m:ci>
+					  </m:apply>
+				      </m:apply>
+				      <m:cn>2</m:cn>
+				  </m:apply>
+			      </m:apply>
+			  </m:apply>
+		      </m:apply>
+		  </m:math>
+	      </note>
+	  </para>
+      </section>
+
+      <section id="s2s2">
+          <title>Discrete signals</title>
+	  <para id="s2s2p1">
+	      For time discrete signals we define power as energy per sample.
+	      <note type="Power - Discrete time" id="idp6587808"><label>Power - Discrete time</label>
+	          <m:math>
+		      <m:apply>
+		          <m:eq/>
+			  <m:ci><m:msub><m:mi>P</m:mi><m:mi>d</m:mi></m:msub></m:ci>
+			  <m:apply>
+			      <m:times/>
+			      <m:apply>
+			          <m:divide/>
+				  <m:cn>1</m:cn>
+				  <m:ci>N</m:ci>
+			      </m:apply>
+			      <m:apply>
+			          <m:sum/>
+				  <m:bvar><m:ci>n</m:ci></m:bvar>
+				  <m:lowlimit><m:ci><m:msub><m:mi>N</m:mi><m:mn>1</m:mn></m:msub></m:ci></m:lowlimit>
+				  <m:uplimit>
+				      <m:apply>
+				          <m:minus/>
+					  <m:apply>
+					      <m:plus/>					     
+					      <m:ci><m:msub><m:mi>N</m:mi><m:mn>1</m:mn></m:msub></m:ci>
+					      <m:ci>N</m:ci>
+					   </m:apply>
+					   <m:cn>1</m:cn>
+				      </m:apply>
+				  </m:uplimit>
+				  <m:apply>
+				      <m:power/>
+				      <m:apply>
+				          <m:abs/>
+					  <m:apply>
+					      <m:ci>x</m:ci>
+					      <m:ci>n</m:ci>
+					  </m:apply>
+				      </m:apply>
+				      <m:cn>2</m:cn>
+				  </m:apply>
+			      </m:apply>
+			  </m:apply>
+		      </m:apply>
+		  </m:math>
+	      </note>
+	  </para>
+	      <example id="exa2">
+	      	  <para id="exa2p1">
+		      Given the signals
+		      <m:math>
+			  <m:apply>
+			      <m:eq/>
+			      <m:apply>
+			          <m:ci><m:msub><m:mi>x</m:mi><m:mn>1</m:mn></m:msub></m:ci>
+				  <m:ci>t</m:ci>
+			      </m:apply>
+			      <m:apply>
+			          <m:sin/>
+				   <m:apply>
+				      <m:times/>
+				      <m:cn>2</m:cn>
+				      <m:pi/>
+				      <m:ci>t</m:ci>
+				  </m:apply>
+			      </m:apply>
+			  </m:apply>
+		      </m:math> and
+		      <m:math>
+			  <m:apply>
+			      <m:eq/>
+			      <m:apply>
+			          <m:ci><m:msub><m:mi>x</m:mi><m:mn>2</m:mn></m:msub></m:ci>
+				  <m:ci>n</m:ci>
+			      </m:apply>
+			      <m:apply>
+			          <m:sin/>
+				  <m:apply>
+				      <m:times/>
+				      <m:pi/>
+				      <m:apply>
+					  <m:divide/>
+					  <m:cn>1</m:cn>
+					  <m:cn>10</m:cn>
+				      </m:apply>
+				      <m:ci>n</m:ci>
+				  </m:apply>
+			      </m:apply>
+			  </m:apply>
+		      </m:math>, shown in <link target-id="f3"/>, calculate the power for one period.
+		  </para>
+		  <para id="exa2p2">
+		      For the analog sine we have
+		      <m:math>
+			  <m:apply>
+			  <m:eq/>
+			  <m:ci><m:msub><m:mi>P</m:mi><m:mi>a</m:mi></m:msub></m:ci>
+			  <m:apply>
+			      <m:times/>
+			      <m:apply>
+			          <m:divide/>
+				  <m:cn>1</m:cn>
+				  <m:cn>1</m:cn>
+			      </m:apply>
+			      <m:apply>
+			          <m:int/>
+				  <m:bvar><m:ci>t</m:ci></m:bvar>
+				  <m:lowlimit><m:cn>0</m:cn></m:lowlimit>
+				  <m:uplimit><m:cn>1</m:cn></m:uplimit>
+				  <m:apply>
+				      <m:power/>
+				      <m:apply>
+				          <m:sin/>
+					  <m:apply>
+					      <m:times/>
+					      <m:cn>2</m:cn>
+					      <m:pi/>
+					      <m:ci>t</m:ci>
+					  </m:apply>
+				      </m:apply>
+				      <m:cn>2</m:cn>
+				  </m:apply>
+			      </m:apply>
+			  </m:apply>
+			  <m:apply>
+			      <m:divide/>
+			      <m:cn>1</m:cn>
+			      <m:cn>2</m:cn>
+			  </m:apply>
+			  </m:apply>
+		  </m:math>.
+	          </para>
+	          <para id="exa2p3">
+		      For the discrete sine we get
+		      <m:math>
+		      <m:apply>
+		          <m:eq/>
+			  <m:ci><m:msub><m:mi>P</m:mi><m:mi>d</m:mi></m:msub></m:ci>
+			  <m:apply>
+			      <m:times/>
+			      <m:apply>
+			          <m:divide/>
+				  <m:cn>1</m:cn>
+				  <m:cn>20</m:cn>
+			      </m:apply>
+			      <m:apply>
+			          <m:sum/>
+				  <m:bvar><m:ci>n</m:ci></m:bvar>
+				  <m:lowlimit><m:cn>1</m:cn></m:lowlimit>
+				  <m:uplimit><m:cn>20</m:cn></m:uplimit>
+				  <m:apply>
+				      <m:power/>
+				      <m:apply>
+				          <m:sin/>
+					  <m:apply>
+					      <m:times/>
+					      <m:apply>
+					  	  <m:divide/>
+					  	  <m:cn>1</m:cn>
+					  	  <m:cn>10</m:cn>
+				      	      </m:apply>
+					      <m:pi/>
+					      <m:ci>n</m:ci>
+					  </m:apply>
+				      </m:apply>
+				      <m:cn>2</m:cn>
+				  </m:apply>
+			      </m:apply>
+			  </m:apply>
+			  <m:cn>0.500</m:cn>
+		      </m:apply>
+		  </m:math>. Download <link document="m11526" resource="power_sine.m"> power_sine.m</link> for plots and calculation.
+		      			
+
+		      <figure orient="vertical" id="f3">
+		          <subfigure id="idp7644352">
+                              <media id="idp7644704" alt=""><image src="../../media/sine_analog.png" mime-type="image/png"/></media>
+                              <caption>Analog sine</caption>
+                          </subfigure>
+
+			  <subfigure id="idp7646208">
+			      <media id="idp7646592" alt=""><image src="../../media/sine_discrete-be23.png" mime-type="image/png"/></media>
+			      <caption>Discrete time sine</caption>
+                          </subfigure>
+                          <caption>Analog and discrete time sine.</caption>
+		      </figure>
+		      
+		  </para>
+	      </example>
+	  
+	  
+      </section>
+
+  </section><!--End section s2-->
+  <section id="s3">
+      <title>Matlab files</title>
+      <para id="s3p1">
+           <link document="m11526" resource="energy_area.m">energy_area.m</link>
+	   <link document="m11526" resource="power_sine.m"> power_sine.m</link>
+      </para>
+  </section>
+  <section id="s4">
+      <para id="s4p1">
+          <list id="l1" list-type="labeled-item" display="inline">
+          <item><link document="m11479">Introduction</link></item>	  
+	  <item><link document="m11476">Discrete time signals</link></item>
+	  <item><link document="m11478">Analog signals</link></item>
+	  <item><link document="m11527">Discrete vs Analog signals</link></item>
+          <item><link document="m11477">Frequency definitions and periodicity</link></item>
+	  <item><link document="m11482">Exercises</link></item>	 
+      </list>
+      </para>
+
+  </section>
+  </content>
+
+  
+</document>

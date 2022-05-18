@@ -1,0 +1,788 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml">
+  <title>Frequency definitions and periodicity</title>
+  <metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>8ffb9807-e9e8-4842-9e4d-52c84d282f14</md:uuid>
+</metadata>
+
+  <content>
+  <section id="s1">
+      <title>Frequency definitions</title>
+      <para id="s1p1">
+          In signal processing we use several types of frequencies. This may seem confusing at first,
+	  but it is really not that difficult.
+      </para>
+      <section id="s1s1">
+	  <title>Analog frequency</title>
+	  <para id="s1s1p1">
+	      The <emphasis>frequency</emphasis> of an analog signal is the easiest to understand.
+	      A trigonometric function with argument
+	      <m:math>
+	          <m:apply>
+		      <m:eq/>
+		      <m:apply>
+		          <m:times/>
+			  <m:ci>Ω</m:ci>
+			  <m:ci>t</m:ci>
+		      </m:apply>
+		      <m:apply>
+			  <m:times/>
+		          <m:cn>2</m:cn>
+			  <m:pi/>
+			  <m:ci>F</m:ci>
+			  <m:ci>t</m:ci>
+		      </m:apply>
+		  </m:apply>
+	      </m:math>
+	      generates a periodic function with 
+	      <list id="l1">
+	          <item>a <emphasis>single</emphasis> frequency F.</item>
+		  <item>period T</item>
+		  <item>the relation 
+		      <m:math>
+			  <m:apply>
+			      <m:eq/>
+			      <m:ci>T</m:ci>
+			      <m:apply>
+				  <m:divide/>
+				  <m:cn>1</m:cn>
+				  <m:ci>F</m:ci>
+			      </m:apply>
+			  </m:apply>
+		      </m:math>
+		  </item>
+	      </list>
+	      Frequency is then interpreted as how many periods there are per time unit.
+	      If we choose seconds as our time unit, frequency will be measured in Hertz, which is most common.
+	  </para>
+      </section>
+
+      <section id="s1s2">
+	  <title>Digital frequency</title>
+	  <para id="s1s2p1">
+	      The <emphasis>digital frequency</emphasis> is defined as
+	      <m:math>
+		  <m:apply>
+		      <m:eq/>
+		      <m:ci>f</m:ci>
+		      <m:apply>
+		      	  <m:divide/>
+			  <m:ci>F</m:ci>
+			  <m:ci><m:msub><m:mi>F</m:mi><m:mi>s</m:mi></m:msub></m:ci>
+		      </m:apply>
+		    </m:apply>
+	      </m:math>,
+	      where <m:math><m:ci><m:msub><m:mi>F</m:mi><m:mi>s</m:mi></m:msub></m:ci></m:math>
+	      is the sampling frequency.
+	      The sampling interval is the inverse of the sampling frequency,
+	      <m:math>
+		  <m:apply>
+		      <m:eq/>
+		      <m:ci><m:msub><m:mi>T</m:mi><m:mi>s</m:mi></m:msub></m:ci>
+		      <m:apply>
+		      	  <m:divide/>
+			  <m:cn>1</m:cn>
+			  <m:ci><m:msub><m:mi>F</m:mi><m:mi>s</m:mi></m:msub></m:ci>
+		      </m:apply>
+		    </m:apply>
+	      </m:math>.
+	      A discrete time signal with <emphasis>digital frequency</emphasis> f therefore has
+	      a frequency given by
+	      <m:math>
+		  <m:apply>
+		      <m:eq/>
+		      <m:ci>F</m:ci>
+		      <m:apply>
+		      	  <m:times/>
+			  <m:ci>f</m:ci>
+			  <m:ci><m:msub><m:mi>F</m:mi><m:mi>s</m:mi></m:msub></m:ci>
+		      </m:apply>
+		    </m:apply>
+	      </m:math>
+	      if the samples are spaced at
+	      <m:math>
+		  <m:apply>
+		      <m:eq/>
+		      <m:ci><m:msub><m:mi>T</m:mi><m:mi>s</m:mi></m:msub></m:ci>
+		      <m:apply>
+		      	  <m:divide/>
+			  <m:cn>1</m:cn>
+			  <m:ci><m:msub><m:mi>F</m:mi><m:mi>s</m:mi></m:msub></m:ci>
+		      </m:apply>
+		    </m:apply>
+	      </m:math>.
+	  </para>
+      </section>
+
+      <section id="s1s3">
+	  <title>Consequences</title>
+	  <para id="s1s3p1">
+	      In design of digital sinusoids we do not have to settle for a physical
+	      frequency. We can associate <emphasis>any</emphasis> physical frequency F
+	      with the digital frequency f, by choosing the appropriate sampling
+	      frequency
+	      <m:math><m:ci><m:msub><m:mi>F</m:mi><m:mi>s</m:mi></m:msub></m:ci></m:math>.
+	      (Using the relation
+	      <m:math>
+		  <m:apply>
+		      <m:eq/>
+		      <m:ci>f</m:ci>
+		      <m:apply>
+		      	  <m:divide/>
+			  <m:ci>F</m:ci>
+			  <m:ci><m:msub><m:mi>F</m:mi><m:mi>s</m:mi></m:msub></m:ci>
+		      </m:apply>
+		    </m:apply>
+	      </m:math>)
+	  </para>
+	  <para id="s1s3p2">
+	      According to the relation
+	      <m:math>
+		  <m:apply>
+		      <m:eq/>
+		      <m:ci><m:msub><m:mi>T</m:mi><m:mi>s</m:mi></m:msub></m:ci>
+		      <m:apply>
+			  <m:divide/>
+			  <m:cn>1</m:cn>
+			  <m:ci><m:msub><m:mi>F</m:mi><m:mi>s</m:mi></m:msub></m:ci>
+		      </m:apply>
+		  </m:apply>
+	      </m:math>
+	      choosing an appropriate sampling frequency is equivivalent to choosing
+	      a sampling interval, which implies that digital sinusoids can
+	      be designed by specifying the sampling interval.
+	  </para>
+      </section>
+
+      <section id="s1s4">
+	  <title>Angular frequencies</title>
+	  <para id="s1s4p1">
+	      The angular frequencies are obtained by multiplying the
+	      frequencies by the factor <m:math><m:apply><m:times/><m:cn>2</m:cn><m:pi/></m:apply></m:math>:
+	      <list id="l2" list-type="labeled-item">
+	      <item><label>Angular frequency</label>
+		  <m:math>
+		      <m:apply>
+			  <m:eq/>
+			  <m:ci>Ω</m:ci>
+			  <m:apply>
+			      <m:times/>
+			      <m:cn>2</m:cn>
+			      <m:pi/>
+			      <m:ci>F</m:ci>
+			  </m:apply>
+		      </m:apply>
+	          </m:math>
+	      </item>
+	      <item><label>Digital angular frequency</label>
+		  <m:math>
+		      <m:apply>
+			  <m:eq/>
+			  <m:ci>ω</m:ci>
+			  <m:apply>
+			      <m:times/>
+			      <m:cn>2</m:cn>
+			      <m:pi/>
+			      <m:ci>f</m:ci>
+			  </m:apply>
+		      </m:apply>
+	          </m:math>
+	      </item>
+	      </list>
+	  </para>
+	  
+      </section>
+
+
+  </section>
+
+  <section id="s2">
+      <title>Signal periodicity</title>
+      <para id="s2p1">
+          Any analog sine or cosine function is periodic. So it may seem surprising
+	  that discrete trigonometric signals not necessarily are periodic. Let us define
+	  periodicity mathematically.
+      </para>
+      <para id="s2p2">
+
+          If for all
+	  <m:math>
+	      <m:apply>
+	          <m:in/>
+		  <m:ci>k</m:ci>
+		  <m:ci>ℤ</m:ci>
+	      </m:apply>
+	  </m:math> we have
+	  <list id="l3" list-type="labeled-item">
+	      <item><label>Analog signals</label>
+	          <m:math>
+		      <m:apply>
+		          <m:eq/>
+			  <m:apply>
+			      <m:ci>x</m:ci>
+			      <m:ci>t</m:ci>
+			  </m:apply>
+			  <m:apply>
+			      <m:ci>x</m:ci>
+			      <m:apply>
+				  <m:plus/>
+				  <m:ci>n</m:ci>
+				  <m:apply>
+				      <m:times/>
+				      <m:ci>k</m:ci>
+				      <m:ci><m:msub><m:mi>T</m:mi><m:mn>0</m:mn></m:msub></m:ci>
+				  </m:apply>
+			      </m:apply>
+			  </m:apply>
+		      </m:apply>
+		  </m:math>, then <m:math><m:apply><m:ci>x</m:ci><m:ci>t</m:ci></m:apply></m:math> is periodic
+		  with period <m:math><m:ci><m:msub><m:mi>T</m:mi><m:mn>0</m:mn></m:msub></m:ci></m:math>. 
+	      </item>
+	      <item><label>Discrete time signals</label>
+	          <m:math>
+		      <m:apply>
+		          <m:eq/>
+			  <m:apply>
+			      <m:ci>x</m:ci>
+			      <m:ci>n</m:ci>
+			  </m:apply>
+			  <m:apply>
+			      <m:ci>x</m:ci>
+			      <m:apply>
+				  <m:plus/>
+				  <m:ci>n</m:ci>
+				  <m:apply>
+				      <m:times/>
+				      <m:ci>k</m:ci>
+				      <m:ci>N</m:ci>	
+				  </m:apply>
+			      </m:apply>
+			  </m:apply>
+		      </m:apply>
+		  </m:math>, then <m:math><m:apply><m:ci>x</m:ci><m:ci>n</m:ci></m:apply></m:math> is periodic with period N.
+	      </item>
+	  </list>
+      </para>
+	  <example id="exa1">
+	      <para id="exa1p1">
+		    Consider the signal
+		    <m:math>
+		      <m:apply>
+			  <m:eq/>
+			  <m:apply>
+			      <m:ci>x</m:ci>
+			      <m:ci>t</m:ci>
+			  </m:apply>
+			  <m:apply>
+			      <m:sin/>
+			      <m:apply>
+			          <m:times/>
+				  <m:cn>2</m:cn>
+				  <m:pi/>
+				  <m:ci>F</m:ci>
+				  <m:ci>t</m:ci>
+			      </m:apply>
+		          </m:apply>
+		      </m:apply>
+	            </m:math> which obviously is periodic. You can check by using the periodicity definition
+		    and some 
+		    <link url="http://www.sosmath.com/trig/Trig5/trig5/trig5.html">trigonometric identitites</link>.
+	      </para>
+	  </example>
+	  <example id="exa2">
+	      <para id="exa2p1">
+		    Consider the signal
+		    <m:math>
+		      <m:apply>
+			  <m:eq/>
+			  <m:apply>
+			      <m:ci>x</m:ci>
+			      <m:ci>n</m:ci>
+			  </m:apply>
+			  <m:apply>
+			      <m:sin/>
+			      <m:apply>
+			          <m:times/>
+				  <m:cn>2</m:cn>
+				  <m:pi/>
+				  <m:ci>f</m:ci>
+				  <m:ci>n</m:ci>
+			      </m:apply>
+		          </m:apply>
+		      </m:apply>
+	            </m:math>. Q:Is this signal periodic? 
+	      </para>
+	      <para id="exa2p2">	    
+		    A: To check we will use the periodicity definition and some 
+		    <link url="http://www.sosmath.com/trig/Trig5/trig5/trig5.html">trigonometric identities</link>.
+	      </para>
+	      <para id="exa2p3">
+	          Periodicity is obtained if we can find an N which leads to
+		  <m:math>
+		      <m:apply>
+		          <m:eq/>
+			  <m:apply>
+			      <m:ci>x</m:ci>
+			      <m:ci>n</m:ci>
+			  </m:apply>
+			  <m:apply>
+			      <m:ci>x</m:ci>
+			      <m:apply>
+				  <m:plus/>
+				  <m:ci>n</m:ci>
+				  <m:apply>
+				      <m:times/>
+				      <m:ci>k</m:ci>
+				      <m:ci>N</m:ci>	
+				  </m:apply>
+			      </m:apply>
+			  </m:apply>
+		      </m:apply>
+		  </m:math> for all
+		  <m:math>
+		      <m:apply>
+		          <m:in/>
+			  <m:ci>k</m:ci>
+			  <m:ci>ℤ</m:ci>
+		      </m:apply>
+		  </m:math>. Let us expand
+		  <m:math>
+		      <m:apply>
+		          <m:sin/>
+			  <m:apply>
+			      <m:times/>
+			      <m:cn>2</m:cn>
+			      <m:pi/>
+			      <m:ci>f</m:ci>
+			      <m:apply>
+				  <m:plus/>
+				  <m:ci>n</m:ci>
+				  <m:apply>
+				      <m:times/>
+				      <m:ci>k</m:ci>
+				      <m:ci>N</m:ci>	
+				  </m:apply>
+			      </m:apply>
+			  </m:apply>
+		      </m:apply>
+		  </m:math>.
+
+<!--...........................................Equation 1........................................-->
+		  <equation id="eqn1">
+		      <m:math>
+		          <m:apply>
+			      <m:eq/>
+			      <m:apply>
+				  <m:sin/>
+				  <m:apply>
+				      <m:times/>
+				      <m:cn>2</m:cn>
+				      <m:pi/>
+				      <m:ci>f</m:ci>
+				      <m:apply>
+				          <m:plus/>
+					  <m:ci>n</m:ci>
+					  <m:apply>
+				              <m:times/>
+					      <m:ci>k</m:ci>
+					      <m:ci>N</m:ci>	
+					  </m:apply>
+			              </m:apply>
+			          </m:apply>
+		              </m:apply><!--end lhs equation-->
+			      <m:apply>
+			          <m:plus/>
+				  <m:apply>
+				      <m:times/>
+				      <m:apply>
+				          <m:sin/>
+					  <m:apply>
+					      <m:times/>
+					      <m:cn>2</m:cn>
+					      <m:pi/>
+					      <m:ci>f</m:ci>
+					      <m:ci>n</m:ci>
+					  </m:apply>
+				      </m:apply>
+				      <m:apply>
+				          <m:cos/>
+					  <m:apply>
+					      <m:times/>
+					      <m:cn>2</m:cn>
+					      <m:pi/>
+					      <m:ci>f</m:ci>
+					      <m:ci>k</m:ci>
+					      <m:ci>N</m:ci>
+					  </m:apply>
+				      </m:apply>
+				  </m:apply>
+				  <m:apply>
+				      <m:times/>
+				      <m:apply>
+				          <m:cos/>
+					  <m:apply>
+					      <m:times/>
+					      <m:cn>2</m:cn>
+					      <m:pi/>
+					      <m:ci>f</m:ci>
+					      <m:ci>n</m:ci>
+					  </m:apply>
+				      </m:apply>
+				      <m:apply>
+				          <m:sin/>
+					  <m:apply>
+					      <m:times/>
+					      <m:cn>2</m:cn>
+					      <m:pi/>
+					      <m:ci>f</m:ci>
+					      <m:ci>k</m:ci>
+					      <m:ci>N</m:ci>
+					  </m:apply>
+				      </m:apply>
+				  </m:apply>
+			      </m:apply>
+		          </m:apply>
+		      </m:math>
+		  </equation>
+		  To make the right hand side of <link target-id="eqn1"/> equal to
+		  <m:math>
+		      <m:apply>
+			  <m:sin/>
+			  <m:apply>
+			      <m:times/>
+			      <m:cn>2</m:cn>
+			      <m:pi/>
+			      <m:ci>f</m:ci>
+			      <m:ci>n</m:ci>
+			   </m:apply>
+		      </m:apply>
+		  </m:math>,
+		  we need to impose a restriction on the digital frequency f.
+		  According to <link target-id="eqn1"/> only
+		  <m:math>
+		      <m:apply>
+		          <m:eq/>
+			  <m:apply>
+			      <m:times/>
+			      <m:ci>f</m:ci>
+			      <m:ci>N</m:ci>
+			  </m:apply>
+			  <m:ci>m</m:ci>
+		      </m:apply>
+		  </m:math> will yield periodicity,
+		  <m:math>
+		      <m:apply>
+		          <m:in/>
+			  <m:ci>m</m:ci>
+			  <m:ci>ℤ</m:ci>
+		      </m:apply>
+		  </m:math>.
+	      </para>
+	  </example><!-- End example exa2-->
+	  <example id="exa3">
+	      <para id="exa3p1">
+	          Consider the following signals
+		  <m:math>
+		      <m:apply>
+			  <m:eq/>
+			  <m:apply>
+			      <m:ci>x</m:ci>
+			      <m:ci>t</m:ci>
+			  </m:apply>
+			  <m:apply>
+			      <m:cos/>
+			      <m:apply>
+			          <m:times/>
+				  <m:cn>2</m:cn>
+				  <m:pi/>
+				  <m:apply>
+				      <m:divide/>
+				      <m:cn>1</m:cn>
+				      <m:cn>8</m:cn>
+				  </m:apply>
+				  <m:ci>t</m:ci>
+			      </m:apply>
+		          </m:apply>
+		      </m:apply>
+	            </m:math> and 
+		    <m:math>
+		      <m:apply>
+			  <m:eq/>
+			  <m:apply>
+			      <m:ci>x</m:ci>
+			      <m:ci>n</m:ci>
+			  </m:apply>
+			  <m:apply>
+			      <m:cos/>
+			      <m:apply>
+			          <m:times/>
+				  <m:cn>2</m:cn>
+				  <m:pi/>
+				  <m:apply>
+				      <m:divide/>
+				      <m:cn>1</m:cn>
+				      <m:cn>8</m:cn>
+				  </m:apply>
+				  <m:ci>n</m:ci>
+			      </m:apply>
+		          </m:apply>
+		      </m:apply>
+	            </m:math>, as shown in <link target-id="f1"/>.
+		    <figure id="f1">
+		        <subfigure id="idp528656">
+			    <media id="idp529008" alt=""><image src="../../media/periodicity1.png" mime-type="image/png"/></media>
+			    <caption>a) 
+			        <m:math>
+				    <m:apply>
+				        <m:cos/>
+					<m:apply>
+					    <m:times/>
+					    <m:cn>2</m:cn>
+					    <m:pi/>
+					    <m:apply>
+					        <m:divide/>
+						<m:cn>1</m:cn>
+						<m:cn>8</m:cn>
+					    </m:apply>
+					    <m:ci>t</m:ci>
+					</m:apply>
+				    </m:apply>
+			        </m:math>
+			    </caption>
+			</subfigure>
+			<subfigure id="idp2573808">
+			    <media id="idp2574192" alt=""><image src="../../media/periodicity2.png" mime-type="image/png"/></media>
+			    <caption>b) 
+			        <m:math>
+				    <m:apply>
+				        <m:cos/>
+					<m:apply>
+					    <m:times/>
+					    <m:cn>2</m:cn>
+					    <m:pi/>
+					    <m:apply>
+					        <m:divide/>
+						<m:cn>1</m:cn>
+						<m:cn>8</m:cn>
+					    </m:apply>
+					    <m:ci>n</m:ci>
+					</m:apply>
+				    </m:apply>
+			        </m:math>
+			    </caption>
+			</subfigure>
+		    </figure>
+		    Are the signals periodic, and if so, what are the periods?		  
+	      </para>
+	      <para id="exa3p2">
+	          Both the physical and digital frequency is 1/8 so both signals are periodic with period 8.
+	      </para>
+	  </example>
+	   <example id="exa4">
+	      <para id="exa4p1">
+	          Consider the following signals
+		  <m:math>
+		      <m:apply>
+			  <m:eq/>
+			  <m:apply>
+			      <m:ci>x</m:ci>
+			      <m:ci>t</m:ci>
+			  </m:apply>
+			  <m:apply>
+			      <m:cos/>
+			      <m:apply>
+			          <m:times/>
+				  <m:cn>2</m:cn>
+				  <m:pi/>
+				  <m:apply>
+				      <m:divide/>
+				      <m:cn>2</m:cn>
+				      <m:cn>3</m:cn>
+				  </m:apply>
+				  <m:ci>t</m:ci>
+			      </m:apply>
+		          </m:apply>
+		      </m:apply>
+	            </m:math> and 
+		    <m:math>
+		      <m:apply>
+			  <m:eq/>
+			  <m:apply>
+			      <m:ci>x</m:ci>
+			      <m:ci>n</m:ci>
+			  </m:apply>
+			  <m:apply>
+			      <m:cos/>
+			      <m:apply>
+			          <m:times/>
+				  <m:cn>2</m:cn>
+				  <m:pi/>
+				  <m:apply>
+				      <m:divide/>
+				      <m:cn>2</m:cn>
+				      <m:cn>3</m:cn>
+				  </m:apply>
+				  <m:ci>n</m:ci>
+			      </m:apply>
+		          </m:apply>
+		      </m:apply>
+	            </m:math>, as shown in <link target-id="f2"/>.
+		    <figure id="f2">
+		        <subfigure id="idm5743728">
+			    <media id="idm5958960" alt=""><image src="../../media/periodicity3.png" mime-type="image/png"/></media>
+			    <caption>a) 
+			        <m:math>
+				    <m:apply>
+				        <m:cos/>
+					<m:apply>
+					    <m:times/>
+					    <m:cn>2</m:cn>
+					    <m:pi/>
+					    <m:apply>
+					        <m:divide/>
+						<m:cn>2</m:cn>
+						<m:cn>3</m:cn>
+					    </m:apply>
+					    <m:ci>t</m:ci>
+					</m:apply>
+				    </m:apply>
+			        </m:math>
+			    </caption>
+			</subfigure>
+			<subfigure id="idp572048">
+			    <media id="idp556848" alt=""><image src="../../media/periodicity4.png" mime-type="image/png"/></media>
+			    <caption>b) 
+			        <m:math>
+				    <m:apply>
+				        <m:cos/>
+					<m:apply>
+					    <m:times/>
+					    <m:cn>2</m:cn>
+					    <m:pi/>
+					    <m:apply>
+					        <m:divide/>
+						<m:cn>2</m:cn>
+						<m:cn>3</m:cn>
+					    </m:apply>
+					    <m:ci>n</m:ci>
+					</m:apply>
+				    </m:apply>
+			        </m:math>
+			    </caption>
+			</subfigure>
+		    </figure>
+		    Are the signals periodic, and if so, what are the periods?		  
+	      </para>
+	      <para id="exa4p2">
+	          The frequencies are 2/3 in both cases. The analog signal then has period 3/2. The discrete
+		  signal has to have a period that is an integer, so the smallest possible period is then 3.
+	      </para>
+	  </example>
+	  <example id="exa5">
+	      <para id="exa5p1">
+	          Consider the following signals
+		  <m:math>
+		      <m:apply>
+			  <m:eq/>
+			  <m:apply>
+			      <m:ci>x</m:ci>
+			      <m:ci>t</m:ci>
+			  </m:apply>
+			  <m:apply>
+			      <m:cos/>
+			      <m:apply>
+			          <m:times/>
+				  <m:cn>2</m:cn>
+				  <m:ci>t</m:ci>
+			      </m:apply>
+		          </m:apply>
+		      </m:apply>
+	            </m:math> and 
+		    <m:math>
+		      <m:apply>
+			  <m:eq/>
+			  <m:apply>
+			      <m:ci>x</m:ci>
+			      <m:ci>n</m:ci>
+			  </m:apply>
+			  <m:apply>
+			      <m:cos/>
+			      <m:apply>
+			          <m:times/>
+				  <m:cn>2</m:cn>
+				  <m:ci>n</m:ci>
+			      </m:apply>
+		          </m:apply>
+		      </m:apply>
+	            </m:math>, as shown in <link target-id="f3"/>.
+		    <figure id="f3">
+		        <subfigure id="idm6449472">
+			    <media id="idm6073888" alt=""><image src="../../media/periodicity5.png" mime-type="image/png"/></media>
+			    <caption>a) 
+			        <m:math>
+				    <m:apply>
+				        <m:cos/>
+					<m:apply>
+					    <m:times/>
+					    <m:cn>2</m:cn>
+					    <m:ci>t</m:ci>
+					</m:apply>
+				    </m:apply>
+			        </m:math>
+			    </caption>
+			</subfigure>
+			<subfigure id="idm6797632">
+			    <media id="idm373408" alt=""><image src="../../media/periodicity6.png" mime-type="image/png"/></media>
+			    <caption>b) 
+			        <m:math>
+				    <m:apply>
+				        <m:cos/>
+					<m:apply>
+					    <m:times/>
+					    <m:cn>2</m:cn>
+					    <m:ci>n</m:ci>
+					</m:apply>
+				    </m:apply>
+			        </m:math>
+			    </caption>
+			</subfigure>
+		    </figure>
+		    Are the signals periodic, and if so, what are the periods?		  
+	      </para>
+	      <para id="exa5p2">
+	          The frequencies are 1/π in both cases. The analog signal then has period π. The discrete
+		  signal <emphasis>is not periodic because the digital frequency is not a rational number</emphasis>.
+	      </para>
+	  </example>
+	  <section id="s2s1">
+	      <title>Conclusion</title>
+	      <para id="s2s1p1">
+	          For a time discrete trigonometric signal to be periodic its <emphasis>digital
+		  frequency has to be a rational number</emphasis>, i.e. given by the ratio of two integers.
+		  Contrast this to analog trigonometric signals. 		  
+
+	      </para>
+	  </section>
+
+  </section><!--End section s2-->
+  <section id="s3">
+        <title>Matlab file</title>
+	<para id="s3p1">
+	    <link document="m11477" resource="periodicity.m">periodicity.m</link>
+	</para>
+    </section>
+    <section id="s4">
+	      <para id="s4p1">
+	       Take a look at
+	       <list id="l4" list-type="labeled-item" display="inline">
+		   <item><link document="m11479">Introduction</link></item>
+	           <item><link document="m11476">Discrete time signals</link></item>
+                   <item><link document="m11478">Analog signals</link></item>
+	           <item><link document="m11527">Discrete vs Analog signals</link></item>
+		   <item><link document="m11526">Energy &amp; Power</link></item>
+	           <item><link document="m11428">Exercises</link></item>
+	   </list> ?
+      </para>
+      </section>
+
+  </content>
+  
+</document>

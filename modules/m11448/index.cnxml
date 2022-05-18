@@ -1,0 +1,203 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml">
+  <title>Aliasing Applet</title>
+  <metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>03319833-978d-4bf9-8bb6-4aa05503730a</md:uuid>
+</metadata>
+
+ 
+  <content>
+      <para id="s0p1">The applet is courtesy of the Digital Signal Processing tutorial at freeuk.com,
+	  <cite><cite-title>http://www.dsptutor.freeuk.com/</cite-title></cite>. You can
+          also have a look at the <link url="http://flowers.ofthenight.org/wagonWheel/lightWheel.html">Light Wheel
+applet</link>.
+      </para>
+      <section id="s1">
+	  <title>Introduction</title>
+	   
+          <para id="s1p1">
+	      In this module we shall look at sampling a sinusoidal signal.
+	      According to the <link document="m11419" target-id="s4">sampling theorem</link>, 
+	      a sinusoidal signal can be exactly reconstructed from values sampled at 
+	      discrete, uniform intervals as long as the signal frequency is less than half the sampling 
+	      frequency. Any component of a sampled signal with a frequency above this 
+	      limit, often referred to as the folding frequency, is subject to 
+	      <link document="m11443" target-id="s1ss2p2">aliasing</link>.
+	  </para>
+
+	  <para id="s1p2">
+	   The applet is based on a fixed sampling rate of 
+	   <m:math>
+	     <m:apply>
+	       <m:eq/>
+               <m:ci><m:msub><m:mi>F</m:mi><m:mi>s</m:mi></m:msub></m:ci>
+	       <m:cn>8000 samples per second</m:cn>
+	     </m:apply>
+	   </m:math> (one sample every 0.125 milliseconds, i.e
+	   <m:math>
+	     <m:apply>
+	       <m:eq/>
+	       <m:ci><m:msub><m:mi>T</m:mi><m:mi>s</m:mi></m:msub></m:ci>
+	       <m:apply>
+	         <m:divide/>
+	         <m:cn>1</m:cn>
+	         <m:cn>8000</m:cn>
+	       </m:apply>
+	     </m:apply>
+	   </m:math>).
+	  </para>
+      </section>
+
+      <section id="s2">
+	<title>Instructions</title>
+	<para id="s2p1">
+	Set the frequency of the sinusoidal signal, in Hz, in the "Input frequency" box, i.e
+	choose an <m:math><m:ci>f</m:ci></m:math> in the following signal:
+	<m:math>
+	  <m:apply>
+	    <m:sin/>
+	    <m:apply>
+	      <m:times/>
+	      <m:cn>2</m:cn>
+	      <m:pi/>
+	      <m:ci>f</m:ci>
+	      <m:ci>t</m:ci>
+	    </m:apply>
+	  </m:apply>
+	</m:math>.
+	When you click the "Plot" button, with "Input signal" checked, the input signal is plotted against 
+	time. 
+	</para>
+	<para id="s2p2">
+	  The "Grid" checkbox toggles on and off vertical gridlines 
+	  indicating the instants at which the signal is sampled. 
+	  The "Sample points", representing the sampled values 
+	  of the input signal, can also be toggled. 
+      </para>
+      <para id="s2p3">
+	Finally, the "Alias frequency" checkbox 
+	(visible only when 
+	<link document="m11443" target-id="s1ss2p2">aliasing</link> occurs)
+	controls the plotting of the "reconstructed" sinusoidal signal, with
+	<m:math>
+	  <m:apply>
+	    <m:eq/>
+	    <m:ci>f</m:ci>
+	    <m:ci><m:msub><m:mi>f</m:mi><m:mi>alias</m:mi></m:msub></m:ci>
+	  </m:apply>
+	</m:math>.
+      </para>
+      </section>
+    <section id="s3">
+      <title>Overview of the process</title>
+      <para id="s3p1">
+	When using the applet it is important to
+	have an understanding of where the different signals occur
+	in a sampling system.
+	<figure id="f1"> 
+	  <media id="idp742816" alt=""><image src="../../media/ideal_system.jpg" mime-type="image/jpeg"/></media>
+	  <caption>Ideal sampling process</caption>
+	</figure>
+	Relating the applet signals to the figure we get
+	<list id="l1">
+	  <item>Input signal = 
+	    <m:math>
+	      <m:apply>
+		<m:eq/>
+		<m:apply>
+		  <m:ci>x</m:ci>
+		  <m:ci>t</m:ci>
+		</m:apply>
+		<m:apply>
+		  <m:sin/>
+		  <m:apply>
+		    <m:times/>
+		    <m:cn>2</m:cn>
+		    <m:pi/>
+		    <m:ci>f</m:ci>
+		    <m:ci>t</m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:math>, where <m:math><m:ci>f</m:ci></m:math> is the input frequency chosen by the user.
+	  </item>
+	  <item>
+	    The sampled signal =
+	    <m:math>
+	      <m:apply>
+		<m:eq/>
+		<m:apply>
+		  <m:ci><m:msub><m:mi>x</m:mi><m:mi>s</m:mi></m:msub></m:ci>
+		  <m:ci>n</m:ci>
+		</m:apply>
+		<m:apply>
+		  <m:sin/>
+		  <m:apply>
+		    <m:times/>
+		    <m:cn>2</m:cn>
+		    <m:pi/>
+		    <m:ci>f</m:ci>
+		    <m:ci>n</m:ci>
+		    <m:ci><m:msub><m:mi>T</m:mi><m:mi>s</m:mi></m:msub></m:ci>
+		  </m:apply>
+		</m:apply>
+		<m:apply>
+		  <m:sin/>
+		  <m:apply>
+		    <m:times/>
+		    <m:cn>2</m:cn>
+		    <m:pi/>
+		    <m:ci>f</m:ci>
+		    <m:ci>n</m:ci>
+		    <m:apply>
+		      <m:divide/>
+		      <m:cn>1</m:cn>
+		      <m:cn>8000</m:cn>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>		
+	      </m:apply>
+	    </m:math>.
+	  </item>
+	  <item>
+	    The reconstructed signal =  
+	    <m:math>
+	      <m:apply>
+		<m:mover accent="true">
+		  <m:mi>x</m:mi>
+		  <m:mo>̂</m:mo>
+		</m:mover>
+		<m:ci>(t)</m:ci>
+	      </m:apply>
+	    </m:math>,
+	    is shown as the original signal
+	    if sampling is done fast enough, or as the aliased signal
+	    if sampling is too slow.
+	  </item>
+	</list>
+	(<m:math><m:apply><m:ci>h</m:ci><m:ci>t</m:ci></m:apply></m:math> 
+	is an ideal reconstruction filter).
+      </para>
+    </section>
+
+      <section id="s4">
+	  <title>Aliasing demo applet</title>
+	  <para id="s4p1">
+	      <media id="idm809248" alt=""><java-applet src="AliasingDemo.class" mime-type="application/x-java-applet" height="200" width="600" code="AliasingDemo.class" archive="Aliasing.jar"/></media>
+	  </para>
+      </section>
+<!--      <section id='s4'>
+      <para id='s4p1'>
+	  Take a look at
+	  <list id='l1' type='inline'>
+	      <item><cnxn document='m11419'>Introduction</cnxn></item>
+	      <item><cnxn document='m11423'>Proof</cnxn></item>
+	      <item><cnxn document='m11443'>Illustrations</cnxn></item>
+              <item><cnxn document='m11549'>Matlab Example</cnxn></item>
+              <item><cnxn document='m11458'>Hold operation</cnxn></item>
+              <item><cnxn document='m11465'>System view</cnxn></item>
+	      <item><cnxn document='m11442'>Exercises</cnxn></item>	
+	   </list> ?
+      </para>
+      </section>-->
+  </content>
+    
+</document>

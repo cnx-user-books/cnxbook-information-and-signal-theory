@@ -1,0 +1,588 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml">
+  <title>Convolution - Complete example</title>
+  <metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>87407395-5f8e-4971-ab1a-7c63d80dcea8</md:uuid>
+</metadata>
+
+  <content>
+    <section id="s1">
+      <title>Basic Example</title>
+      <para id="s1p1">
+	Let us look at a basic continuous-time convolution example to
+	help express some of the important ideas.  We will convolve together two square pulses,
+	<m:math><m:apply><m:ci>x</m:ci><m:ci>t</m:ci></m:apply></m:math> and
+	<m:math><m:apply><m:ci>h</m:ci><m:ci>t</m:ci></m:apply></m:math>,
+	as shown in <link target-id="f1"/>
+      </para>
+
+      <figure orient="vertical" id="f1">
+	<subfigure id="idm2240576">
+	  <media id="idp1035520" alt=""><image src="../../media/x_t.png" mime-type="image/png"/></media>
+	</subfigure>
+	<subfigure id="idm8182944">
+	  <media id="idm9145584" alt=""><image src="../../media/h_t.png" mime-type="image/png"/></media>
+	</subfigure>
+	<caption>
+	  Two basic signals that we will convolve together.
+	</caption>
+      </figure>
+
+      <section id="s1s1">
+      	<title>Reflect and Shift</title>
+      	<para id="s1s1p1">
+      	  Now we will take one of the functions and reflect it around
+      	  the y-axis.  Then we must shift the function, such that the
+      	  origin, the point of the function that was originally on the
+      	  origin, is labeled as point <m:math><m:ci>t</m:ci></m:math>.  This
+	  step is shown in <link target-id="f2"/>,
+	  <m:math>
+	    <m:apply>
+	      <m:ci>h</m:ci>
+	      <m:apply>
+		<m:minus/>
+		<m:ci>t</m:ci>
+		<m:ci>τ</m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>. 
+	  <figure orient="horizontal" id="f2">
+	<subfigure id="idm2185488">
+	  <media id="idm1671152" alt=""><image src="../../media/h_-tau.png" mime-type="image/png"/></media>
+	  <caption>Reflected square pulse.</caption>
+	</subfigure>
+	<subfigure id="idm2605248">
+	  <media id="idm2059552" alt=""><image src="../../media/h_t-tau.png" mime-type="image/png"/></media>
+	  <caption>Reflected and <emphasis>shifted</emphasis> square pulse.</caption>
+	</subfigure>
+	<caption>
+	    <m:math>
+	    <m:apply>
+	      <m:ci>h</m:ci>
+	      <m:apply>
+		<m:minus/>
+		<m:ci>τ</m:ci>
+		</m:apply>
+	    </m:apply>
+	  </m:math> and
+	    <m:math>
+	    <m:apply>
+	      <m:ci>h</m:ci>
+	      <m:apply>
+		<m:minus/>
+		<m:ci>t</m:ci>
+		<m:ci>τ</m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>.
+	  
+	</caption>
+      </figure>	  
+
+
+	  Note that in <link target-id="f2"/>  <m:math><m:ci>τ</m:ci></m:math>
+	  is the 1st axis variable while <m:math><m:ci>t</m:ci></m:math> is
+	  a constant (in this figure).
+
+	  Since convolution is commutative it will never
+	  matter which function is reflected and shifted; however, as
+	  the functions become more complicated reflecting and shifting
+	  the "right one" will often make the problem much easier.
+	</para>
+      </section>
+
+      <section id="s1s2">
+      	<title>Regions of Integration</title>
+	<para id="s1s2p1">
+	    We start out with the convolution integral,
+	    <m:math display="inline">
+	        <m:apply>
+		    <m:eq/>
+		    <m:apply>
+		        <m:ci>y</m:ci>
+			<m:ci>t</m:ci>
+		    </m:apply>
+		    <m:apply>
+			<m:int/>
+			<m:bvar><m:ci>τ</m:ci></m:bvar>
+			<m:lowlimit><m:apply><m:minus/><m:infinity/></m:apply></m:lowlimit>
+			<m:uplimit><m:infinity/></m:uplimit>
+			<m:apply>
+			    <m:times/>
+			    <m:apply>
+			        <m:ci>x</m:ci>
+				<m:ci>τ</m:ci>
+			    </m:apply>
+			    <m:apply>
+				<m:ci>h</m:ci>
+				<m:apply>
+				    <m:minus/>
+				    <m:ci>t</m:ci>
+				    <m:ci>τ</m:ci>
+				</m:apply>
+			    </m:apply>
+		        </m:apply>
+		    </m:apply>
+		</m:apply>
+	    </m:math>.
+	    The value of the function <m:math><m:ci>y</m:ci></m:math>
+	    at time <m:math><m:ci>t</m:ci></m:math> is given by
+	    the amount of overlap(to be precise the integral of the
+	    overlapping region) between
+	    <m:math>
+	      <m:apply>
+      	          <m:ci>h</m:ci>
+		  <m:apply>
+		      <m:minus/><m:ci>t</m:ci>
+		      <m:ci>τ</m:ci>
+		  </m:apply>
+	      </m:apply>
+	  </m:math> and
+	  <m:math>
+	      <m:apply>
+      	          <m:ci>x</m:ci>
+		  <m:ci>τ</m:ci>
+	      </m:apply>
+	  </m:math>.
+
+	     
+	</para>
+
+      	<para id="s1s2p2">
+      	  Next, we want to look at the functions and divide the span
+      	  of the functions into different limits of integration.
+      	  These different regions can be understood by thinking about
+      	  how we slide 
+	  <m:math>
+	      <m:apply>
+      	          <m:ci>h</m:ci>
+		  <m:apply>
+		      <m:minus/><m:ci>t</m:ci>
+		      <m:ci>τ</m:ci>
+		  </m:apply>
+	      </m:apply>
+	  </m:math> over
+	  <m:math>
+	      <m:apply>
+      	          <m:ci>x</m:ci>
+		  <m:ci>τ</m:ci>
+	      </m:apply>
+	  </m:math>, see <link target-id="f3"/>.
+	  
+	  <figure id="f3" orient="vertical"><subfigure id="idm9055568">
+	          <media id="idp3489808" alt=""><image src="../../media/convolve1.png" mime-type="image/png"/></media>
+		  <caption>
+		     No overlap.
+		  </caption>
+	      </subfigure>
+	      <subfigure id="idp4999056">
+	          <media id="idm577920" alt=""><image src="../../media/convolve2.png" mime-type="image/png"/></media>
+		  <caption>
+		      <m:math>
+	      <m:apply>
+      	          <m:ci>h</m:ci>
+		  <m:apply>
+		      <m:minus/><m:ci>t</m:ci>
+		      <m:ci>τ</m:ci>
+		  </m:apply>
+	      </m:apply>
+	  </m:math> on its way "into"
+	  <m:math>
+	      <m:apply>
+      	          <m:ci>x</m:ci>
+		  <m:ci>τ</m:ci>
+	      </m:apply>
+	  </m:math>
+	  
+		  
+		  </caption>
+	      </subfigure>
+	      <subfigure id="idm437360">
+	          <media id="idp4309728" alt=""><image src="../../media/convolve3.png" mime-type="image/png"/></media>
+		  <caption><m:math>
+	      <m:apply>
+      	          <m:ci>h</m:ci>
+		  <m:apply>
+		      <m:minus/><m:ci>t</m:ci>
+		      <m:ci>τ</m:ci>
+		  </m:apply>
+	      </m:apply>
+	  </m:math> on its way "out of"
+	  <m:math>
+	      <m:apply>
+      	          <m:ci>x</m:ci>
+		  <m:ci>τ</m:ci>
+	      </m:apply>
+	  </m:math>
+	  </caption>
+	      </subfigure>
+	      <subfigure id="idp4016800">
+	          <media id="idm484208" alt=""><image src="../../media/convolve4.png" mime-type="image/png"/></media>
+		  <caption>No overlap.</caption>
+	      </subfigure>
+	      <caption>Figures to help understand the regions of intergration</caption>
+	  </figure>
+
+	  In this case we will have the following four
+	  regions.  Compare these limits of integration to the
+	  four illustrations of <m:math>
+	  <m:apply>
+	      <m:ci>h</m:ci>
+	      <m:apply><m:minus/><m:ci>t</m:ci>
+		<m:ci>τ</m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:math> and <m:math>
+	    <m:apply>
+	      <m:ci>x</m:ci>
+	      <m:ci>τ</m:ci>
+	    </m:apply>
+	  </m:math> in <link target-id="f3"/>.
+
+	  <list id="l1" list-type="enumerated">
+	    <title>Four Limits of Integration</title>
+
+	    <item>
+	      <m:math>
+		<m:apply>
+		  <m:lt/>
+		  <m:ci>t</m:ci>
+		  <m:cn>0</m:cn>
+		</m:apply>
+	      </m:math>
+	    </item>
+
+	    <item>
+	      <m:math>
+		<m:apply>
+		  <m:lt/>
+		  <m:apply>
+		    <m:leq/>
+		    <m:cn>0</m:cn>
+		    <m:ci>t</m:ci>
+		  </m:apply>
+		  <m:cn>1</m:cn>
+		</m:apply>
+	      </m:math>
+	    </item>
+
+	    <item>
+	      <m:math>
+		<m:apply>
+		  <m:lt/>
+		  <m:apply>
+		    <m:leq/>
+		    <m:cn>1</m:cn>
+		    <m:ci>t</m:ci>
+		  </m:apply>
+		  <m:cn>2</m:cn>
+		</m:apply>
+	      </m:math>
+	    </item>
+
+	    <item>
+	      <m:math>
+		<m:apply>
+		  <m:geq/>
+		  <m:ci>t</m:ci>
+		  <m:cn>2</m:cn>
+		</m:apply>
+	      </m:math>
+	    </item>
+	  </list>
+
+	</para>
+      </section>
+
+	  <!--End new material-->
+
+      <section id="s1s3">
+	<title>Using the Convolution Integral</title>
+	<para id="s1s3p1">
+
+	  Finally we are ready for a little math.  Using the convolution
+	  integral, let us integrate the product of
+	  <m:math>
+	    <m:apply>
+	      <m:times/>
+	      <m:apply>
+		<m:ci>x</m:ci>
+		<m:ci>τ</m:ci>
+	      </m:apply>
+	      <m:apply>
+		<m:ci>h</m:ci>
+		<m:apply>
+		  <m:minus/>
+		  <m:ci>t</m:ci>
+		  <m:ci>τ</m:ci>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>.  For our first and fourth region this will be
+	  trivial as it will always be <m:math><m:cn>0</m:cn></m:math>.
+	  The second region,
+	  <m:math>
+	    <m:apply>
+	      <m:lt/>
+	      <m:apply>
+		<m:leq/>
+		<m:cn>0</m:cn>
+		<m:ci>t</m:ci>
+	      </m:apply>
+	      <m:cn>1</m:cn>
+	    </m:apply>
+	  </m:math>, will require the following math:
+
+	  <equation id="eqn1">
+	    <m:math>
+	      <m:apply>
+		<m:eq/>
+		<m:apply>
+		  <m:ci>y</m:ci>
+		  <m:ci>t</m:ci>
+		</m:apply>
+		<m:apply>
+		  <m:int/>
+		  <m:bvar>
+		    <m:ci>τ</m:ci>
+		  </m:bvar>
+		  <m:lowlimit>
+		    <m:cn>0</m:cn>
+		  </m:lowlimit>
+		  <m:uplimit>
+		    <m:ci>t</m:ci>
+		  </m:uplimit>
+		  <m:apply>
+		    <m:cn>1</m:cn>
+		  </m:apply>
+		</m:apply>
+		<m:ci>t</m:ci>
+	      </m:apply>
+	    </m:math>
+	  </equation>
+
+	  The third region,
+	  <m:math>
+	    <m:apply>
+	      <m:lt/>
+	      <m:apply>
+		<m:leq/>
+		<m:cn>1</m:cn>
+		<m:ci>t</m:ci>
+	      </m:apply>
+	      <m:cn>2</m:cn>
+	    </m:apply>
+	  </m:math>, is solved in much the same manner.  Take note of
+	  the changes in our integration though.  As we move
+	  <m:math>
+	    <m:apply>
+	      <m:ci>h</m:ci>
+	      <m:apply><m:minus/><m:ci>t</m:ci>
+		<m:ci>τ</m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:math> across our other function, the left-hand edge of the
+	  function,
+	  <m:math>
+	    <m:apply>
+	      <m:minus/><m:ci>t</m:ci>
+	      <m:ci>1</m:ci>
+	    </m:apply>
+	  </m:math>, becomes our lowlimit for the integral.  This is
+	  shown through our convolution integral as
+
+	  <equation id="eqn2">
+	    <m:math>
+	      <m:apply>
+		<m:eq/>
+		<m:apply>
+		  <m:ci>y</m:ci>
+		  <m:ci>t</m:ci>
+		</m:apply>
+		<m:apply>
+		  <m:int/>
+		  <m:bvar>
+		    <m:ci>τ</m:ci>
+		  </m:bvar>
+		  <m:lowlimit>
+		    <m:apply>
+		      <m:minus/>
+		      <m:ci>t</m:ci>
+		      <m:ci>1</m:ci>
+		    </m:apply>
+		  </m:lowlimit>
+		  <m:uplimit>
+		    <m:cn>1</m:cn>
+		  </m:uplimit>
+		  <m:apply>
+		    <m:cn>1</m:cn>
+		  </m:apply>
+		</m:apply>
+		<m:apply>
+		  <m:minus/>
+		  <m:cn>1</m:cn>
+		  <m:apply>
+		    <m:minus/>
+		    <m:ci>t</m:ci>
+		    <m:cn>1</m:cn>
+		  </m:apply>
+		</m:apply>
+		<m:apply>
+		  <m:minus/>
+		  <m:cn>2</m:cn>
+		  <m:ci>t</m:ci>
+		</m:apply>
+	      </m:apply>
+	    </m:math>
+	  </equation>
+
+	  The above formulas show the method for calculating
+	  convolution; however, do not let the simplicity of this
+	  example confuse you when you work on other problems.  The
+	  method will be the same, you will just have to deal with
+	  more math in more complicated integrals.
+	</para>
+	<para id="s1s3p2">
+	    Note that the value of <m:math><m:apply><m:ci>y</m:ci><m:ci>t</m:ci></m:apply></m:math>
+	    at all time is given by the integral of the overlapping functions. In this
+	    example <m:math><m:ci>y</m:ci></m:math> for a given  <m:math><m:ci>t</m:ci></m:math>
+	    equals the gray area in the plots in <link target-id="f3"/>.
+
+	</para>
+
+      </section>
+
+      <section id="s1s4">
+	<title>Convolution Results</title>
+	<para id="s1s4p1">
+
+	  Thus, we have the following results for our four regions:
+
+	  <equation id="eqn3">
+	    <m:math>
+	      <m:apply>
+		<m:eq/>
+		<m:apply>
+		  <m:ci>y</m:ci>
+		  <m:ci>t</m:ci>
+		</m:apply>
+		<m:apply>
+		  <m:piecewise>
+		    <m:piece>
+		      <m:cn>0</m:cn>
+		      <m:apply>
+			<m:lt/>
+			<m:ci>t</m:ci>
+			<m:cn>0</m:cn>
+		      </m:apply>
+		    </m:piece>
+		    <m:piece>
+		      <m:ci>t</m:ci>
+		      <m:apply>
+			<m:lt/>
+			<m:apply>
+			  <m:leq/>
+			  <m:cn>0</m:cn>
+			  <m:ci>t</m:ci>
+			</m:apply>
+			<m:cn>1</m:cn>
+		      </m:apply>
+		    </m:piece>
+		    <m:piece>
+		      <m:apply>
+			<m:minus/>
+			<m:cn>2</m:cn>
+			<m:ci>t</m:ci>
+		      </m:apply>
+		      <m:apply>
+			<m:lt/>
+			<m:apply>
+			  <m:leq/>
+			  <m:cn>1</m:cn>
+			  <m:ci>t</m:ci>
+			</m:apply>
+			<m:cn>2</m:cn>
+		      </m:apply>
+		    </m:piece>
+		    <m:piece>
+		      <m:cn>0</m:cn>
+		      <m:apply>
+			<m:geq/>
+			<m:ci>t</m:ci>
+			<m:cn>2</m:cn>
+		      </m:apply>
+		    </m:piece>
+		  </m:piecewise>
+		</m:apply>
+	      </m:apply>
+	    </m:math>
+	  </equation>
+
+	  Now that we have found the resulting function for each of the
+	  four regions, we can combine them together and graph the
+	  convolution of
+	  <m:math>
+	    <m:apply>
+	      <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#convolve"/>
+	      <m:apply>
+		<m:ci>x</m:ci>
+		<m:ci>t</m:ci>
+	      </m:apply>
+	      <m:apply>
+		<m:ci>h</m:ci>
+		<m:ci>t</m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>.
+	</para>
+
+	<figure id="f4">
+	  <media id="idm8648416" alt=""><image src="../../media/y_t.png" mime-type="image/png"/></media>
+	  <caption>
+	    Shows the system's output in response to the input,
+	    <m:math><m:apply>
+		<m:ci>x</m:ci>
+		<m:ci>t</m:ci>
+	      </m:apply>
+	    </m:math>.
+	  </caption>
+	</figure>
+      </section><!-- end section s1 subsection s4-->
+      <section id="s1s5">
+	  <title>Common sense approach</title>
+          <para id="s1s5p1">
+	      By looking at <link target-id="f3"/> we can obtain
+	      the system output,
+	      <m:math><m:apply><m:ci>y</m:ci><m:ci>t</m:ci></m:apply></m:math>,
+	      by "common" sense. 
+	      For <m:math><m:apply><m:lt/><m:ci>t</m:ci><m:cn>0</m:cn></m:apply></m:math>
+	      there is no overlap, so <m:math><m:apply><m:ci>y</m:ci><m:ci>t</m:ci></m:apply></m:math> is 0.
+	      As <m:math><m:ci>t</m:ci></m:math> goes from 0 to 1 the overlap will <emphasis>linearly</emphasis>
+	      increase with a maximum for <m:math><m:apply><m:eq/><m:ci>t</m:ci><m:cn>1</m:cn></m:apply></m:math>,
+	      the maximum corresponds to the peak value in the triangular pulse. 
+	      As <m:math><m:ci>t</m:ci></m:math> goes from 1 to 2 the overlap will <emphasis>linearly</emphasis>
+	      decrease. For <m:math><m:apply><m:gt/><m:ci>t</m:ci><m:cn>2</m:cn></m:apply></m:math>
+	      there will be no overlap and hence no output.
+	  </para>
+
+	  <para id="s1s5p2">
+	      We see readily from the "common" sense approach that the output function
+	      <m:math><m:apply><m:ci>y</m:ci><m:ci>t</m:ci></m:apply></m:math> is the
+	      same as obtained above with calculations. When convolving to square
+	      pulses the result will <emphasis>always</emphasis> be a
+	      triangular pulse. Its origin, peak value and strech will, of course, vary.
+	  </para>
+
+      </section><!-- end section 1 subsection 5-->
+
+
+    </section><!--end section s1 -->
+   <section id="s2">
+        <list id="l2">
+          <item><link document="m11542">Introduction</link></item>
+          <item><link document="m11539">Convolution - Discrete time</link></item>
+	  <item><link document="m11540">Convolution - Analog</link></item>
+	  <item><link document="m10088">Properties of convolution</link></item>
+      </list>
+    </section>
+  </content>
+  
+</document>

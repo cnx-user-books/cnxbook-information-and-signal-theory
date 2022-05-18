@@ -1,0 +1,1014 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML">
+  <title>Discrete Time Convolution</title>
+<metadata xmlns:md="http://cnx.rice.edu/mdml">
+  <md:content-id>m10087</md:content-id>
+  <md:title>Discrete Time Convolution</md:title>
+  <md:abstract>Convolution is a concept that extends to all systems that are
+both linear and time-invariant (LTI). It will become apparent
+in this discussion that this condition is necessary by
+demonstrating how linearity and time-invariance give rise to
+convolution.</md:abstract>
+  <md:uuid>4944b8d1-5180-4156-bdfe-cb645c4d5d9a</md:uuid>
+</metadata>
+
+<content>
+    <section id="cid1" class="in">
+      <title>Introduction</title>
+      <para id="id99783">Convolution, one of the most important concepts in electrical engineering, can be used to determine the output a system produces for a given input signal. It can be shown that a linear time invariant system is completely characterized by its impulse response. The sifting property of the discrete time impulse function tells us that the input signal to a system can be represented as a sum of scaled and shifted unit impulses. Thus, by linearity, it would seem reasonable to compute of the output signal as the sum of scaled and shifted unit impulse responses. That is exactly what the operation of convolution accomplishes. Hence, convolution can be used to determine a linear time invariant system's output from knowledge of the input and the impulse response.</para>
+    </section>
+    <section id="cid2" class="th">
+      <title>Convolution and Circular Convolution</title>
+      <section id="eip-457"><title>Convolution</title><section id="uid1">
+        <title>Operation Definition</title>
+        <para id="id100158">Discrete time convolution is an operation on two discrete time signals defined by the integral</para>
+        <equation id="id100162"><m:math overflow="scroll" mode="display">
+            <m:mrow>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:mi>f</m:mi>
+                <m:mo>*</m:mo>
+                <m:mi>g</m:mi>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mrow>
+                <m:mo>[</m:mo>
+                <m:mi>n</m:mi>
+                <m:mo>]</m:mo>
+              </m:mrow>
+              <m:mo>=</m:mo>
+              <m:munderover>
+                <m:mo>∑</m:mo>
+                <m:mrow>
+                  <m:mi>k</m:mi>
+                  <m:mo>=</m:mo>
+                  <m:mo>-</m:mo>
+                  <m:mi>∞</m:mi>
+                </m:mrow>
+                <m:mi>∞</m:mi>
+              </m:munderover>
+              <m:mi>f</m:mi>
+              <m:mrow>
+                <m:mo>[</m:mo>
+                <m:mi>k</m:mi>
+                <m:mo>]</m:mo>
+              </m:mrow>
+              <m:mi>g</m:mi>
+              <m:mrow>
+                <m:mo>[</m:mo>
+                <m:mi>n</m:mi>
+                <m:mo>-</m:mo>
+                <m:mi>k</m:mi>
+                <m:mo>]</m:mo>
+              </m:mrow>
+            </m:mrow>
+          </m:math>
+        </equation><para id="id100234">for all signals <m:math overflow="scroll"><m:mrow><m:mi>f</m:mi><m:mo>,</m:mo><m:mi>g</m:mi></m:mrow></m:math> defined on <m:math overflow="scroll"><m:mi mathvariant="double-struck">Z</m:mi></m:math>. It is important to note that the operation of convolution is commutative, meaning that</para>
+        <equation id="id100263">
+          <m:math overflow="scroll" mode="display">
+            <m:mrow>
+              <m:mi>f</m:mi>
+              <m:mo>*</m:mo>
+              <m:mi>g</m:mi>
+              <m:mo>=</m:mo>
+              <m:mi>g</m:mi>
+              <m:mo>*</m:mo>
+              <m:mi>f</m:mi>
+            </m:mrow>
+          </m:math>
+        </equation>
+        <para id="id100287">for all signals <m:math overflow="scroll"><m:mrow><m:mi>f</m:mi><m:mo>,</m:mo><m:mi>g</m:mi></m:mrow></m:math> defined on <m:math overflow="scroll"><m:mi mathvariant="double-struck">Z</m:mi></m:math>. Thus, the convolution operation could have been just as easily stated using the equivalent definition</para>
+        <equation id="id100315"><m:math overflow="scroll" mode="display">
+            <m:mrow>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:mi>f</m:mi>
+                <m:mo>*</m:mo>
+                <m:mi>g</m:mi>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mrow>
+                <m:mo>[</m:mo>
+                <m:mi>n</m:mi>
+                <m:mo>]</m:mo>
+              </m:mrow>
+              <m:mo>=</m:mo>
+              <m:munderover>
+                <m:mo>∑</m:mo>
+                <m:mrow>
+                  <m:mi>k</m:mi>
+                  <m:mo>=</m:mo>
+                  <m:mo>-</m:mo>
+                  <m:mi>∞</m:mi>
+                </m:mrow>
+                <m:mi>∞</m:mi>
+              </m:munderover>
+              <m:mi>f</m:mi>
+              <m:mrow>
+                <m:mo>[</m:mo>
+                <m:mi>n</m:mi>
+                <m:mo>-</m:mo>
+                <m:mi>k</m:mi>
+                <m:mo>]</m:mo>
+              </m:mrow>
+              <m:mi>g</m:mi>
+              <m:mrow>
+                <m:mo>[</m:mo>
+                <m:mi>k</m:mi>
+                <m:mo>]</m:mo>
+              </m:mrow>
+            </m:mrow>
+          </m:math>
+        </equation><para id="id100387">for all signals <m:math overflow="scroll"><m:mrow><m:mi>f</m:mi><m:mo>,</m:mo><m:mi>g</m:mi></m:mrow></m:math> defined on <m:math overflow="scroll"><m:mi mathvariant="double-struck">Z</m:mi></m:math>. Convolution has several other important properties not listed here but explained and derived in a later module.</para>
+      </section>
+      <section id="uid2">
+        <title>Definition Motivation</title>
+        <para id="id99723">The above operation definition has been chosen to be particularly useful in the study of linear time invariant systems. In order to see this, consider a linear time invariant system <m:math overflow="scroll"><m:mi>H</m:mi></m:math> with unit impulse response <m:math overflow="scroll"><m:mi>h</m:mi></m:math>. Given a system input signal <m:math overflow="scroll"><m:mi>x</m:mi></m:math> we would like to compute the system output signal <m:math overflow="scroll"><m:mrow><m:mi>H</m:mi><m:mo>(</m:mo><m:mi>x</m:mi><m:mo>)</m:mo></m:mrow></m:math>. First, we note that the input can be expressed as the convolution</para>
+        <equation id="id100650"><m:math overflow="scroll" mode="display">
+            <m:mrow>
+              <m:mi>x</m:mi>
+              <m:mrow>
+                <m:mo>[</m:mo>
+                <m:mi>n</m:mi>
+                <m:mo>]</m:mo>
+              </m:mrow>
+              <m:mo>=</m:mo>
+              <m:munderover>
+                <m:mo>∑</m:mo>
+                <m:mrow>
+                  <m:mi>k</m:mi>
+                  <m:mo>=</m:mo>
+                  <m:mo>-</m:mo>
+                  <m:mi>∞</m:mi>
+                </m:mrow>
+                <m:mi>∞</m:mi>
+              </m:munderover>
+              <m:mi>x</m:mi>
+              <m:mrow>
+                <m:mo>[</m:mo>
+                <m:mi>k</m:mi>
+                <m:mo>]</m:mo>
+              </m:mrow>
+              <m:mi>δ</m:mi>
+              <m:mrow>
+                <m:mo>[</m:mo>
+                <m:mi>n</m:mi>
+                <m:mo>-</m:mo>
+                <m:mi>k</m:mi>
+                <m:mo>]</m:mo>
+              </m:mrow>
+            </m:mrow>
+          </m:math>
+        </equation><para id="id100712">by the sifting property of the unit impulse function.
+By linearity</para>
+        <equation id="id100718"><m:math overflow="scroll" mode="display">
+            <m:mrow>
+              <m:mi>H</m:mi>
+<m:mrow><m:mo>(</m:mo>
+              <m:mi>x</m:mi>
+              <m:mrow>
+                <m:mo>[</m:mo>
+                <m:mi>n</m:mi>
+                <m:mo>]</m:mo>
+              </m:mrow>
+<m:mo>)</m:mo> </m:mrow>
+              <m:mo>=</m:mo>
+              <m:munderover>
+                <m:mo>∑</m:mo>
+                <m:mrow>
+                  <m:mi>k</m:mi>
+                  <m:mo>=</m:mo>
+                  <m:mo>-</m:mo>
+                  <m:mi>∞</m:mi>
+                </m:mrow>
+                <m:mi>∞</m:mi>
+              </m:munderover>
+              <m:mi>x</m:mi>
+              <m:mrow>
+                <m:mo>[</m:mo>
+                <m:mi>k</m:mi>
+                <m:mo>]</m:mo>
+              </m:mrow>
+              <m:mi>H</m:mi>
+<m:mrow><m:mo>(</m:mo>
+              <m:mi>δ</m:mi>
+              <m:mrow>
+                <m:mo>[</m:mo>
+                <m:mi>n</m:mi>
+                <m:mo>-</m:mo>
+                <m:mi>k</m:mi>
+                <m:mo>]</m:mo>
+              </m:mrow>
+<m:mo>)</m:mo></m:mrow>
+              <m:mo>.</m:mo>
+            </m:mrow>
+          </m:math>
+        </equation><para id="id100786">Since <m:math overflow="scroll"><m:mrow><m:mi>H</m:mi><m:mo>(</m:mo><m:mi>δ</m:mi><m:mo>[</m:mo><m:mi>n</m:mi><m:mo>-</m:mo><m:mi>k</m:mi><m:mo>]</m:mo><m:mo>)</m:mo></m:mrow></m:math> is the shifted unit impulse response <m:math overflow="scroll"><m:mrow><m:mi>h</m:mi><m:mo>[</m:mo><m:mi>n</m:mi><m:mo>-</m:mo><m:mi>k</m:mi><m:mo>]</m:mo></m:mrow></m:math>, this gives the result</para><equation id="id100833"><m:math overflow="scroll" mode="display">
+            <m:mrow>
+              <m:mi>H</m:mi>
+<m:mrow><m:mo>(</m:mo>
+              <m:mi>x</m:mi>
+              <m:mrow>
+                <m:mo>[</m:mo>
+                <m:mi>n</m:mi>
+                <m:mo>]</m:mo>
+              </m:mrow>
+<m:mo>)</m:mo> </m:mrow>
+              <m:mo>=</m:mo>
+              <m:munderover>
+                <m:mo>∑</m:mo>
+                <m:mrow>
+                  <m:mi>k</m:mi>
+                  <m:mo>=</m:mo>
+                  <m:mo>-</m:mo>
+                  <m:mi>∞</m:mi>
+                </m:mrow>
+                <m:mi>∞</m:mi>
+              </m:munderover>
+              <m:mi>x</m:mi>
+              <m:mrow>
+                <m:mo>[</m:mo>
+                <m:mi>k</m:mi>
+                <m:mo>]</m:mo>
+              </m:mrow>
+              <m:mi>h</m:mi>
+              <m:mrow>
+                <m:mo>[</m:mo>
+                <m:mi>n</m:mi>
+                <m:mo>-</m:mo>
+                <m:mi>k</m:mi>
+                <m:mo>]</m:mo>
+              </m:mrow>
+              <m:mo>=</m:mo>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:mi>x</m:mi>
+                <m:mo>*</m:mo>
+                <m:mi>h</m:mi>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mrow>
+                <m:mo>[</m:mo>
+                <m:mi>n</m:mi>
+                <m:mo>]</m:mo>
+              </m:mrow>
+              <m:mo>.</m:mo>
+            </m:mrow>
+          </m:math>
+        </equation><para id="id100921">Hence, convolution has been defined such that the output of a linear time invariant system is given by the convolution of the system input with the system unit impulse response.</para>
+      </section>
+      <section id="uid3">
+        <title>Graphical Intuition</title>
+        <para id="id100937">It is often helpful to be able to visualize the computation of a convolution in terms of graphical processes. Consider the convolution of two functions <m:math overflow="scroll"><m:mrow><m:mi>f</m:mi><m:mo>,</m:mo><m:mi>g</m:mi></m:mrow></m:math> given by</para>
+        <equation id="id100955"><m:math overflow="scroll" mode="display">
+            <m:mrow>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:mi>f</m:mi>
+                <m:mo>*</m:mo>
+                <m:mi>g</m:mi>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mrow>
+                <m:mo>[</m:mo>
+                <m:mi>n</m:mi>
+                <m:mo>]</m:mo>
+              </m:mrow>
+              <m:mo>=</m:mo>
+              <m:munderover>
+                <m:mo>∑</m:mo>
+                <m:mrow>
+                  <m:mi>k</m:mi>
+                  <m:mo>=</m:mo>
+                  <m:mo>-</m:mo>
+                  <m:mi>∞</m:mi>
+                </m:mrow>
+                <m:mi>∞</m:mi>
+              </m:munderover>
+              <m:mi>f</m:mi>
+              <m:mrow>
+                <m:mo>[</m:mo>
+                <m:mi>k</m:mi>
+                <m:mo>]</m:mo>
+              </m:mrow>
+              <m:mi>g</m:mi>
+              <m:mrow>
+                <m:mo>[</m:mo>
+                <m:mi>n</m:mi>
+                <m:mo>-</m:mo>
+                <m:mi>k</m:mi>
+                <m:mo>]</m:mo>
+              </m:mrow>
+              <m:mo>=</m:mo>
+              <m:munderover>
+                <m:mo>∑</m:mo>
+                <m:mrow>
+                  <m:mi>k</m:mi>
+                  <m:mo>=</m:mo>
+                  <m:mo>-</m:mo>
+                  <m:mi>∞</m:mi>
+                </m:mrow>
+                <m:mi>∞</m:mi>
+              </m:munderover>
+              <m:mi>f</m:mi>
+              <m:mrow>
+                <m:mo>[</m:mo>
+                <m:mi>n</m:mi>
+                <m:mo>-</m:mo>
+                <m:mi>k</m:mi>
+                <m:mo>]</m:mo>
+              </m:mrow>
+              <m:mi>g</m:mi>
+              <m:mrow>
+                <m:mo>[</m:mo>
+                <m:mi>k</m:mi>
+                <m:mo>]</m:mo>
+              </m:mrow>
+              <m:mo>.</m:mo>
+            </m:mrow>
+          </m:math>
+        </equation><para id="id101072">The first step in graphically understanding the operation of convolution is to plot each of the functions. Next, one of the functions must be selected, and its plot reflected across the <m:math overflow="scroll"><m:mrow><m:mi>k</m:mi><m:mo>=</m:mo><m:mn>0</m:mn></m:mrow></m:math> axis. For each real <m:math overflow="scroll"><m:mi>n</m:mi></m:math>, that same function must be shifted left by <m:math overflow="scroll"><m:mi>n</m:mi></m:math>. The point-wise product of the two resulting plots is then computed, and then all of the values are summed.</para></section>
+      <example id="eip-606"><para id="id241138">Recall that the impulse response for a discrete time echoing feedback system with gain <m:math overflow="scroll"><m:mi>a</m:mi></m:math> is</para>
+      <equation id="id241150"><m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>h</m:mi>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:mi>n</m:mi>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:msup>
+              <m:mi>a</m:mi>
+              <m:mi>n</m:mi>
+            </m:msup>
+            <m:mi>u</m:mi>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:mi>n</m:mi>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mo>,</m:mo>
+          </m:mrow>
+        </m:math>
+      </equation><para id="id241189">and consider the response to an input signal that is another exponential</para>
+      <equation id="id241195"><m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>x</m:mi>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:mi>n</m:mi>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:msup>
+              <m:mi>b</m:mi>
+              <m:mi>n</m:mi>
+            </m:msup>
+            <m:mi>u</m:mi>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:mi>n</m:mi>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mo>.</m:mo>
+          </m:mrow>
+        </m:math>
+      </equation><para id="id241235">We know that the output for this input is given by the convolution of the impulse response with the input signal</para>
+      <equation id="id241241"><m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>y</m:mi>
+            <m:mo>[</m:mo>
+            <m:mi>n</m:mi>
+            <m:mo>]</m:mo>
+            <m:mo>=</m:mo>
+            <m:mi>x</m:mi>
+            <m:mo>[</m:mo>
+            <m:mi>n</m:mi>
+            <m:mo>]</m:mo>
+            <m:mo>*</m:mo>
+            <m:mi>h</m:mi>
+            <m:mo>[</m:mo>
+            <m:mi>n</m:mi>
+            <m:mo>]</m:mo>
+            <m:mo>.</m:mo>
+          </m:mrow>
+        </m:math>
+      </equation><para id="id241282">We would like to compute this operation by beginning in a way that minimizes the algebraic complexity of the expression. However, in this case, each possible choice is equally simple. Thus, we would like to compute</para><equation id="id241289"><m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>y</m:mi>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:mi>n</m:mi>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:munderover>
+              <m:mo>∑</m:mo>
+              <m:mrow>
+                <m:mi>k</m:mi>
+                <m:mo>=</m:mo>
+                <m:mo>-</m:mo>
+                <m:mi>∞</m:mi>
+              </m:mrow>
+              <m:mi>∞</m:mi>
+            </m:munderover>
+            <m:msup>
+              <m:mi>a</m:mi>
+              <m:mi>k</m:mi>
+            </m:msup>
+            <m:mi>u</m:mi>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:mi>k</m:mi>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:msup>
+              <m:mi>b</m:mi>
+              <m:mrow>
+                <m:mi>n</m:mi>
+                <m:mo>-</m:mo>
+                <m:mi>k</m:mi>
+              </m:mrow>
+            </m:msup>
+            <m:mi>u</m:mi>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:mi>n</m:mi>
+              <m:mo>-</m:mo>
+              <m:mi>k</m:mi>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mo>.</m:mo>
+          </m:mrow>
+        </m:math>
+      </equation><para id="id241374">The step functions can be used to further simplify this sum. Therefore,</para>
+      <equation id="id241380"><m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>y</m:mi>
+            <m:mo>[</m:mo>
+            <m:mi>n</m:mi>
+            <m:mo>]</m:mo>
+            <m:mo>=</m:mo>
+            <m:mn>0</m:mn>
+          </m:mrow>
+        </m:math>
+      </equation><para id="id241401">for <m:math overflow="scroll"><m:mrow><m:mi>n</m:mi><m:mo>&lt;</m:mo><m:mn>0</m:mn></m:mrow></m:math> and</para>
+      <equation id="id241420"><m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>y</m:mi>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:mi>n</m:mi>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:munderover>
+              <m:mo>∑</m:mo>
+              <m:mrow>
+                <m:mi>k</m:mi>
+                <m:mo>=</m:mo>
+                <m:mn>0</m:mn>
+              </m:mrow>
+              <m:mi>n</m:mi>
+            </m:munderover>
+            <m:msup>
+              <m:mrow>
+                <m:mo>[</m:mo>
+                <m:mi>a</m:mi>
+                <m:mi>b</m:mi>
+                <m:mo>]</m:mo>
+              </m:mrow>
+              <m:mi>k</m:mi>
+            </m:msup>
+          </m:mrow>
+        </m:math>
+      </equation><para id="id241471">for <m:math overflow="scroll"><m:mrow><m:mi>n</m:mi><m:mo>≥</m:mo><m:mn>0</m:mn></m:mrow></m:math>.
+Hence, provided <m:math overflow="scroll"><m:mrow><m:mi>a</m:mi><m:mi>b</m:mi><m:mo>≠</m:mo><m:mn>1</m:mn></m:mrow></m:math>, we have that</para>
+      <equation id="id241505"><m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>y</m:mi>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:mi>n</m:mi>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:mfenced separators="" open="{" close="">
+              <m:mtable>
+                <m:mtr>
+                  <m:mtd>
+                    <m:mn>0</m:mn>
+                  </m:mtd>
+                  <m:mtd>
+                    <m:mrow>
+                      <m:mi>n</m:mi>
+                      <m:mo>&lt;</m:mo>
+                      <m:mn>0</m:mn>
+                    </m:mrow>
+                  </m:mtd>
+                </m:mtr>
+                <m:mtr>
+                  <m:mtd>
+                    <m:mfrac>
+                      <m:mrow>
+                        <m:mn>1</m:mn>
+                        <m:mo>-</m:mo>
+                        <m:msup>
+                          <m:mrow>
+                            <m:mo>(</m:mo>
+                            <m:mi>a</m:mi>
+                            <m:mi>b</m:mi>
+                            <m:mo>)</m:mo>
+                          </m:mrow>
+                          <m:mrow>
+                            <m:mi>n</m:mi>
+                            <m:mo>+</m:mo>
+                            <m:mn>1</m:mn>
+                          </m:mrow>
+                        </m:msup>
+                      </m:mrow>
+                      <m:mrow>
+                        <m:mn>1</m:mn>
+                        <m:mo>-</m:mo>
+                        <m:mo>(</m:mo>
+                        <m:mi>a</m:mi>
+                        <m:mi>b</m:mi>
+                        <m:mo>)</m:mo>
+                      </m:mrow>
+                    </m:mfrac>
+                  </m:mtd>
+                  <m:mtd>
+                    <m:mrow>
+                      <m:mi>n</m:mi>
+                      <m:mo>≥</m:mo>
+                      <m:mn>0</m:mn>
+                    </m:mrow>
+                  </m:mtd>
+                </m:mtr>
+              </m:mtable>
+            </m:mfenced>
+            <m:mo>.</m:mo>
+          </m:mrow>
+        </m:math>
+      </equation></example>
+    </section><section id="eip-254"><title>Circular Convolution</title><para id="id342352">Discrete time circular convolution is an operation on two finite length or periodic discrete time signals defined by the sum </para>
+      <equation id="id342356"><m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mrow>
+              <m:mo>(</m:mo>
+           
+<m:mi>f</m:mi> <m:mo>⊛</m:mo><m:mi>g</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:mi>n</m:mi>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:munderover>
+              <m:mo>∑</m:mo>
+              <m:mrow>
+                <m:mi>k</m:mi>
+                <m:mo>=</m:mo>
+                <m:mn>0</m:mn>
+              </m:mrow>
+              <m:mrow>
+                <m:mi>N</m:mi>
+                <m:mo>-</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+            </m:munderover>
+            <m:mover accent="true">
+              <m:mi>f</m:mi>
+              <m:mo>^</m:mo>
+            </m:mover>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:mi>k</m:mi>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mover accent="true">
+              <m:mi>g</m:mi>
+              <m:mo>^</m:mo>
+            </m:mover>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:mi>n</m:mi>
+              <m:mo>-</m:mo>
+              <m:mi>k</m:mi>
+              <m:mo>]</m:mo>
+            </m:mrow>
+          </m:mrow>
+        </m:math>
+      </equation><para id="id342444">for all signals <m:math overflow="scroll"><m:mrow><m:mi>f</m:mi><m:mo>,</m:mo><m:mi>g</m:mi></m:mrow></m:math> defined on <m:math overflow="scroll"><m:mrow><m:mi mathvariant="double-struck">Z</m:mi><m:mo>[</m:mo><m:mn>0</m:mn><m:mo>,</m:mo><m:mi>N</m:mi><m:mo>-</m:mo><m:mn>1</m:mn><m:mo>]</m:mo></m:mrow></m:math> where <m:math overflow="scroll"><m:mrow><m:mover accent="true"><m:mi>f</m:mi><m:mo>^</m:mo></m:mover><m:mo>,</m:mo><m:mover accent="true"><m:mi>g</m:mi><m:mo>^</m:mo></m:mover></m:mrow></m:math> are periodic extensions of <m:math overflow="scroll"><m:mi>f</m:mi></m:math> and <m:math overflow="scroll"><m:mi>g</m:mi></m:math>. It is important to note that the operation of circular convolution is commutative, meaning that</para>
+      <equation id="id342530"><m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mi>f</m:mi>
+            <m:mo>⊛</m:mo>
+            <m:mi>g</m:mi>
+            <m:mo>=</m:mo>
+            <m:mi>g</m:mi>
+            <m:mo>⊛</m:mo>
+            <m:mi>f</m:mi>
+          </m:mrow>
+        </m:math>
+      </equation><para id="id342554">for all signals <m:math overflow="scroll"><m:mrow><m:mi>f</m:mi><m:mo>,</m:mo><m:mi>g</m:mi></m:mrow></m:math> defined on <m:math overflow="scroll"><m:mrow><m:mi mathvariant="double-struck">Z</m:mi><m:mo>[</m:mo><m:mn>0</m:mn><m:mo>,</m:mo><m:mi>N</m:mi><m:mo>-</m:mo><m:mn>1</m:mn><m:mo>]</m:mo></m:mrow></m:math>. Thus, the circular convolution operation could have been just as easily stated using the equivalent definition</para>
+      <equation id="id342599"><m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>f</m:mi>
+              <m:mo>⊛</m:mo>
+              <m:mi>g</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:mi>n</m:mi>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:munderover>
+              <m:mo>∑</m:mo>
+              <m:mrow>
+                <m:mi>k</m:mi>
+                <m:mo>=</m:mo>
+                <m:mn>0</m:mn>
+              </m:mrow>
+              <m:mrow>
+                <m:mi>N</m:mi>
+                <m:mo>-</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+            </m:munderover>
+            <m:mover accent="true">
+              <m:mi>f</m:mi>
+              <m:mo>^</m:mo>
+            </m:mover>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:mi>n</m:mi>
+              <m:mo>-</m:mo>
+              <m:mi>k</m:mi>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mover accent="true">
+              <m:mi>g</m:mi>
+              <m:mo>^</m:mo>
+            </m:mover>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:mi>k</m:mi>
+              <m:mo>]</m:mo>
+            </m:mrow>
+          </m:mrow>
+        </m:math>
+      </equation><para id="id342687">for all signals <m:math overflow="scroll"><m:mrow><m:mi>f</m:mi><m:mo>,</m:mo><m:mi>g</m:mi></m:mrow></m:math> defined on <m:math overflow="scroll"><m:mrow><m:mi mathvariant="double-struck">Z</m:mi><m:mo>[</m:mo><m:mn>0</m:mn><m:mo>,</m:mo><m:mi>N</m:mi><m:mo>-</m:mo><m:mn>1</m:mn><m:mo>]</m:mo></m:mrow></m:math> where <m:math overflow="scroll"><m:mrow><m:mover accent="true"><m:mi>f</m:mi><m:mo>^</m:mo></m:mover><m:mo>,</m:mo><m:mover accent="true"><m:mi>g</m:mi><m:mo>^</m:mo></m:mover></m:mrow></m:math> are periodic extensions of <m:math overflow="scroll"><m:mi>f</m:mi></m:math> and <m:math overflow="scroll"><m:mi>g</m:mi></m:math>. Circular convolution has several other important properties not listed here but explained and derived in a later module.</para>
+
+
+      <para id="id127881">Alternatively, discrete time circular convolution can be expressed as the sum of two summations given by</para>
+      <equation id="id127885"><m:math overflow="scroll" mode="display">
+          <m:mrow>
+            <m:mrow>
+              <m:mo>(</m:mo>
+              <m:mi>f</m:mi>
+              <m:mo>⊛</m:mo>
+              <m:mi>g</m:mi>
+              <m:mo>)</m:mo>
+            </m:mrow>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:mi>n</m:mi>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mo>=</m:mo>
+            <m:munderover>
+              <m:mo>∑</m:mo>
+              <m:mrow>
+                <m:mi>k</m:mi>
+                <m:mo>=</m:mo>
+                <m:mn>0</m:mn>
+              </m:mrow>
+              <m:mi>n</m:mi>
+            </m:munderover>
+            <m:mi>f</m:mi>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:mi>k</m:mi>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mi>g</m:mi>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:mi>n</m:mi>
+              <m:mo>-</m:mo>
+              <m:mi>k</m:mi>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mo>+</m:mo>
+            <m:munderover>
+              <m:mo>∑</m:mo>
+              <m:mrow>
+                <m:mi>k</m:mi>
+                <m:mo>=</m:mo>
+                <m:mi>n</m:mi>
+                <m:mo>+</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+              <m:mrow>
+                <m:mi>N</m:mi>
+                <m:mo>-</m:mo>
+                <m:mn>1</m:mn>
+              </m:mrow>
+            </m:munderover>
+            <m:mi>f</m:mi>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:mi>k</m:mi>
+              <m:mo>]</m:mo>
+            </m:mrow>
+            <m:mi>g</m:mi>
+            <m:mrow>
+              <m:mo>[</m:mo>
+              <m:mi>n</m:mi>
+              <m:mo>-</m:mo>
+              <m:mi>k</m:mi>
+              <m:mo>+</m:mo>
+              <m:mi>N</m:mi>
+              <m:mo>]</m:mo>
+            </m:mrow>
+          </m:mrow>
+        </m:math>
+      </equation><para id="id128010"> for all signals <m:math overflow="scroll"><m:mrow><m:mi>f</m:mi><m:mo>,</m:mo><m:mi>g</m:mi></m:mrow></m:math> defined on <m:math overflow="scroll"><m:mrow><m:mi mathvariant="double-struck">Z</m:mi><m:mo>[</m:mo><m:mn>0</m:mn><m:mo>,</m:mo><m:mi>N</m:mi><m:mo>-</m:mo><m:mn>1</m:mn><m:mo>]</m:mo></m:mrow></m:math>.</para>
+      <para id="id128055">Meaningful examples of computing discrete time circular convolutions in the time domain would involve complicated algebraic manipulations dealing with the wrap around behavior, which would ultimately be more confusing than helpful. Thus, none will be provided in this section. Of course, example computations in the time domain are easy to program and demonstrate. However, disrete time circular convolutions are more easily computed using frequency domain tools as will be shown in the discrete time Fourier series section.</para>
+    
+
+      <section id="uid5">
+        <title>Definition Motivation</title>
+        <para id="id342782">The above operation definition has been chosen to be particularly useful in the study of linear time invariant systems. In order to see this, consider a linear time invariant system <m:math overflow="scroll"><m:mi>H</m:mi></m:math> with unit impulse response <m:math overflow="scroll"><m:mi>h</m:mi></m:math>. Given a periodic system input signal <m:math overflow="scroll"><m:mi>x</m:mi></m:math> we would like to compute the system output signal <m:math overflow="scroll"><m:mrow><m:mi>H</m:mi><m:mo>(</m:mo><m:mi>x</m:mi><m:mo>)</m:mo></m:mrow></m:math>. First, we note that the input can be expressed as the circular convolution</para><equation id="id342828"><m:math overflow="scroll" mode="display">
+            <m:mrow>
+              <m:mi>x</m:mi>
+              <m:mrow>
+                <m:mo>[</m:mo>
+                <m:mi>n</m:mi>
+                <m:mo>]</m:mo>
+              </m:mrow>
+              <m:mo>=</m:mo>
+              <m:munderover>
+                <m:mo>∑</m:mo>
+                <m:mrow>
+                  <m:mi>k</m:mi>
+                  <m:mo>=</m:mo>
+                  <m:mn>0</m:mn>
+                </m:mrow>
+                <m:mrow>
+                  <m:mi>N</m:mi>
+                  <m:mo>-</m:mo>
+                  <m:mn>1</m:mn>
+                </m:mrow>
+              </m:munderover>
+              <m:mover accent="true">
+                <m:mi>x</m:mi>
+                <m:mo>^</m:mo>
+              </m:mover>
+              <m:mrow>
+                <m:mo>[</m:mo>
+                <m:mi>k</m:mi>
+                <m:mo>]</m:mo>
+              </m:mrow>
+              <m:mover accent="true">
+                <m:mi>δ</m:mi>
+                <m:mo>^</m:mo>
+              </m:mover>
+              <m:mrow>
+                <m:mo>[</m:mo>
+                <m:mi>n</m:mi>
+                <m:mo>-</m:mo>
+                <m:mi>k</m:mi>
+                <m:mo>]</m:mo>
+              </m:mrow>
+            </m:mrow>
+          </m:math>
+        </equation><para id="id342906">by the sifting property of the unit impulse function.
+By linearity,</para>
+        <equation id="id342911"><m:math overflow="scroll" mode="display">
+            <m:mrow>
+                            <m:mi>H</m:mi>
+<m:mrow><m:mo>(</m:mo>
+              <m:mi>x</m:mi>
+              <m:mrow>
+                <m:mo>[</m:mo>
+                <m:mi>n</m:mi>
+                <m:mo>]</m:mo>
+              </m:mrow>
+<m:mo>)</m:mo> </m:mrow>
+              <m:mo>=</m:mo>
+              <m:munderover>
+                <m:mo>∑</m:mo>
+                <m:mrow>
+                  <m:mi>k</m:mi>
+                  <m:mo>=</m:mo>
+                  <m:mn>0</m:mn>
+                </m:mrow>
+                <m:mrow>
+                  <m:mi>N</m:mi>
+                  <m:mo>-</m:mo>
+                  <m:mn>1</m:mn>
+                </m:mrow>
+              </m:munderover>
+              <m:mover accent="true">
+                <m:mi>x</m:mi>
+                <m:mo>^</m:mo>
+              </m:mover>
+              <m:mrow>
+                <m:mo>[</m:mo>
+                <m:mi>k</m:mi>
+                <m:mo>]</m:mo>
+              </m:mrow>
+              <m:mi>H</m:mi>
+<m:mrow><m:mo>(</m:mo>
+              <m:mover accent="true">
+                <m:mi>δ</m:mi>
+                <m:mo>^</m:mo>
+              </m:mover>
+              <m:mrow>
+                <m:mo>[</m:mo>
+                <m:mi>n</m:mi>
+                <m:mo>-</m:mo>
+                <m:mi>k</m:mi>
+                <m:mo>]</m:mo>
+              </m:mrow>
+<m:mo>)</m:mo></m:mrow>
+              <m:mo>.</m:mo>
+            </m:mrow>
+          </m:math>
+        </equation><para id="id342996">Since <m:math overflow="scroll"><m:mrow><m:mi>H</m:mi><m:mo>(</m:mo><m:mi>δ</m:mi><m:mo>[</m:mo><m:mi>n</m:mi><m:mo>-</m:mo><m:mi>k</m:mi><m:mo>]</m:mo><m:mo>)</m:mo></m:mrow></m:math> is the shifted unit impulse response <m:math overflow="scroll"><m:mrow><m:mi>h</m:mi><m:mo>[</m:mo><m:mi>n</m:mi><m:mo>-</m:mo><m:mi>k</m:mi><m:mo>]</m:mo></m:mrow></m:math>, this gives the result</para><equation id="id343042"><m:math overflow="scroll" mode="display">
+            <m:mrow>
+              <m:mi>H</m:mi>
+<m:mrow><m:mo>(</m:mo>
+              <m:mi>x</m:mi>
+              <m:mrow>
+                <m:mo>[</m:mo>
+                <m:mi>n</m:mi>
+                <m:mo>]</m:mo>
+              </m:mrow>
+<m:mo>)</m:mo> </m:mrow>
+              <m:mo>=</m:mo>
+              <m:munderover>
+                <m:mo>∑</m:mo>
+                <m:mrow>
+                  <m:mi>k</m:mi>
+                  <m:mo>=</m:mo>
+                  <m:mn>0</m:mn>
+                </m:mrow>
+                <m:mrow>
+                  <m:mi>N</m:mi>
+                  <m:mo>-</m:mo>
+                  <m:mn>1</m:mn>
+                </m:mrow>
+              </m:munderover>
+              <m:mover accent="true">
+                <m:mi>x</m:mi>
+                <m:mo>^</m:mo>
+              </m:mover>
+              <m:mrow>
+                <m:mo>[</m:mo>
+                <m:mi>k</m:mi>
+                <m:mo>]</m:mo>
+              </m:mrow>
+              <m:mover accent="true">
+                <m:mi>h</m:mi>
+                <m:mo>^</m:mo>
+              </m:mover>
+              <m:mrow>
+                <m:mo>[</m:mo>
+                <m:mi>n</m:mi>
+                <m:mo>-</m:mo>
+                <m:mi>k</m:mi>
+                <m:mo>]</m:mo>
+              </m:mrow>
+              <m:mo>=</m:mo>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:mi>x</m:mi>
+                <m:mo>⊛</m:mo>
+                <m:mi>h</m:mi>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mrow>
+                <m:mo>[</m:mo>
+                <m:mi>n</m:mi>
+                <m:mo>]</m:mo>
+              </m:mrow>
+              <m:mo>.</m:mo>
+            </m:mrow>
+          </m:math>
+        </equation><para id="id343146">Hence, circular convolution has been defined such that the output of a linear time invariant system is given by the convolution of the system input with the system unit impulse response.</para>
+      </section>
+      <section id="uid6">
+        <title>Graphical Intuition</title>
+        <para id="id343162">It is often helpful to be able to visualize the computation of a circular convolution in terms of graphical processes. Consider the circular convolution of two finite length functions <m:math overflow="scroll"><m:mrow><m:mi>f</m:mi><m:mo>,</m:mo><m:mi>g</m:mi></m:mrow></m:math> given by</para>
+        <equation id="id343180"><m:math overflow="scroll" mode="display">
+            <m:mrow>
+              <m:mrow>
+                <m:mo>(</m:mo>
+                <m:mi>f</m:mi>
+                <m:mo>⊛</m:mo>
+                <m:mi>g</m:mi>
+                <m:mo>)</m:mo>
+              </m:mrow>
+              <m:mrow>
+                <m:mo>[</m:mo>
+                <m:mi>n</m:mi>
+                <m:mo>]</m:mo>
+              </m:mrow>
+              <m:mo>=</m:mo>
+              <m:munderover>
+                <m:mo>∑</m:mo>
+                <m:mrow>
+                  <m:mi>k</m:mi>
+                  <m:mo>=</m:mo>
+                  <m:mn>0</m:mn>
+                </m:mrow>
+                <m:mrow>
+                  <m:mi>N</m:mi>
+                  <m:mo>-</m:mo>
+                  <m:mn>1</m:mn>
+                </m:mrow>
+              </m:munderover>
+              <m:mover accent="true">
+                <m:mi>f</m:mi>
+                <m:mo>^</m:mo>
+              </m:mover>
+              <m:mrow>
+                <m:mo>[</m:mo>
+                <m:mi>k</m:mi>
+                <m:mo>]</m:mo>
+              </m:mrow>
+              <m:mover accent="true">
+                <m:mi>g</m:mi>
+                <m:mo>^</m:mo>
+              </m:mover>
+              <m:mrow>
+                <m:mo>[</m:mo>
+                <m:mi>n</m:mi>
+                <m:mo>-</m:mo>
+                <m:mi>k</m:mi>
+                <m:mo>]</m:mo>
+              </m:mrow>
+              <m:mo>=</m:mo>
+              <m:munderover>
+                <m:mo>∑</m:mo>
+                <m:mrow>
+                  <m:mi>k</m:mi>
+                  <m:mo>=</m:mo>
+                  <m:mn>0</m:mn>
+                </m:mrow>
+                <m:mrow>
+                  <m:mi>N</m:mi>
+                  <m:mo>-</m:mo>
+                  <m:mn>1</m:mn>
+                </m:mrow>
+              </m:munderover>
+              <m:mover accent="true">
+                <m:mi>f</m:mi>
+                <m:mo>^</m:mo>
+              </m:mover>
+              <m:mrow>
+                <m:mo>[</m:mo>
+                <m:mi>n</m:mi>
+                <m:mo>-</m:mo>
+                <m:mi>k</m:mi>
+                <m:mo>]</m:mo>
+              </m:mrow>
+              <m:mover accent="true">
+                <m:mi>g</m:mi>
+                <m:mo>^</m:mo>
+              </m:mover>
+              <m:mrow>
+                <m:mo>[</m:mo>
+                <m:mi>k</m:mi>
+                <m:mo>]</m:mo>
+              </m:mrow>
+              <m:mo>.</m:mo>
+            </m:mrow>
+          </m:math>
+        </equation><para id="id343329">The first step in graphically understanding the operation of convolution is to plot each of the periodic extensions of the functions. Next, one of the functions must be selected, and its plot reflected across the <m:math overflow="scroll"><m:mrow><m:mi>k</m:mi><m:mo>=</m:mo><m:mn>0</m:mn></m:mrow></m:math> axis. For each <m:math overflow="scroll"><m:mrow><m:mi>n</m:mi><m:mo>∈</m:mo><m:mi mathvariant="double-struck">Z</m:mi><m:mo>[</m:mo><m:mn>0</m:mn><m:mo>,</m:mo><m:mi>N</m:mi><m:mo>-</m:mo><m:mn>1</m:mn><m:mo>]</m:mo></m:mrow></m:math>, that same function must be shifted left by <m:math overflow="scroll"><m:mi>n</m:mi></m:math>. The point-wise product of the two resulting plots is then computed, and finally all of these values are summed.</para></section>
+      
+    </section></section>
+    
+    
+    
+    <section id="eip-711" class="ie"><title>Interactive Element</title><figure id="demoonline"><media id="CNXdemoonline" alt="timeshiftDemo">
+<image mime-type="image/png" src="../../media/Lecture04-DConvolution_display.cdf" thumbnail="Lecture04-DConvolution_display.png" width="400"/>
+<object width="400" height="400" src="Lecture04-DConvolution_display.cdf" mime-type="application/vnd.wolfram.cdf" for="webview2.0"/>
+<image mime-type="application/postscript" for="pdf" src="../../media/Lecture04-DConvolution_display.png" width="400"/>
+</media>
+<caption>Interact (when online) with the Mathematica CDF demonstrating Discrete Linear Convolution. To download, right click and save file as .cdf</caption>
+</figure></section><section id="cid6" class="cn">
+      <title>Convolution Summary</title>
+      <para id="id102170">Convolution, one of the most important concepts in electrical engineering, can be used to determine the output signal of a linear time invariant system for a given input signal with knowledge of the system's unit impulse response. The operation of discrete time convolution is defined such that it performs this function for infinite length discrete time signals and systems. The operation of discrete time circular convolution is defined such that it performs this function for finite length and periodic discrete time signals. In each case, the output of the system is the convolution or circular convolution of the input signal with the unit impulse response.</para>
+    </section>
+  </content>
+</document>

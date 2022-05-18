@@ -1,0 +1,167 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml">
+  <title>Introduction</title>
+  <metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>14247495-af7e-49c8-9b2e-30e5348e206c</md:uuid>
+</metadata>
+  <!-- Kommentarfelt-->
+  <content>
+
+
+       <para id="s0p1">
+	      <list id="l1">
+		  <title>Contents of Sampling chapter</title>
+		  <item>Introduction(Current module)</item>
+		  <item><link document="m11423">Proof</link></item>
+		  <item><link document="m11443">Illustrations</link></item>
+                  <item><link document="m11549">Matlab Example</link></item>
+                  <item><link document="m11458">Hold operation</link></item>
+                  <item><link document="m11465">System view</link></item>
+                  <item><link document="m11448">Aliasing applet</link></item>	                  <item><link document="m11442">Exercises</link></item>
+                  <item><link document="m11450">Table of formulas</link></item>
+	      </list>
+	  </para>
+
+
+
+      <section id="s1">
+	  <title>Why sample?</title>
+	  <para id="s1p1">
+	      This section introduces sampling. Sampling is the necessary fundament for all digital
+	      signal processing and communication. Sampling can be defined as the
+	      process of measuring an analog signal at distinct points. 
+	  </para>
+	  
+	  <para id="s1p2">
+	      
+	      Digital representation of analog signals offers advantages in terms of 
+	      <list id="s1l1">
+	          <item>robustness towards noise, meaning we can send more bits/s</item>
+		  <item>use of flexible processing equipment, in particular the computer</item>
+		  <item>more reliable processing equipment</item>
+		  <item>easier to adapt complex algorithms</item>
+	      </list>
+
+	  </para>
+      
+	 
+      </section>  
+    
+      <section id="s2">
+	  <title>Claude E. Shannon</title>
+	  <figure id="s1pic1">
+	      <media id="idp7685264" alt=""><image src="../../media/Shannon_3.jpeg" mime-type="image/jpeg"/></media>
+	      <caption>Claude Elwood Shannon (1916-2001) </caption>
+	  </figure>
+	  <para id="s2p1">
+		<link url="http://www.research.att.com/~njas/doc/ces5.html">Claude Shannon</link> 
+		has been called the father of information theory, mainly due to his landmark papers on the 
+		<link url="http://cm.bell-labs.com/cm/ms/what/shannonday/shannon1948.pdf">"Mathematical theory of communication"</link>.
+		<link url="http://www.wikipedia.org/wiki/Harry_Nyquist">Harry Nyquist</link> was the first
+		to state the sampling theorem in 1928, but it was not proven until Shannon proved it 21 years later in the paper
+		<link url="http://www.stanford.edu/class/ee104/shannonpaper.pdf">"Communications in the presence of noise"</link>.
+
+          </para>
+      </section>
+
+      <section id="s3">
+	  <title>Notation</title>
+          <para id="s3p1">
+	      In this chapter we will be using the following notation
+	  <list id="s3l1">
+	      <item>Original analog signal <m:math><m:apply><m:ci>x</m:ci><m:ci>t</m:ci></m:apply></m:math></item>
+	      <item>Sampling frequency <m:math><m:ci><m:msub><m:mi>F</m:mi><m:mi>s</m:mi></m:msub></m:ci></m:math></item>
+	      <item>Sampling interval <m:math><m:ci><m:msub><m:mi>T</m:mi><m:mi>s</m:mi></m:msub></m:ci></m:math>
+	      (Note that:
+	          <m:math>
+		      <m:apply>
+		          <m:eq/>
+		          <m:ci><m:msub><m:mi>F</m:mi><m:mi>s</m:mi></m:msub></m:ci>
+			  <m:apply>
+			      <m:divide/>
+			      <m:cn>1</m:cn>
+			      <m:ci><m:msub><m:mi>T</m:mi><m:mi>s</m:mi></m:msub></m:ci>
+			  </m:apply>
+	              </m:apply>
+		  </m:math>)
+	      </item>
+	      <item>
+		  Sampled signal 
+		  <m:math>
+		      <m:apply>
+		          <m:ci><m:msub><m:mi>x</m:mi><m:mi>s</m:mi></m:msub></m:ci>
+			  <m:ci>n</m:ci>
+	              </m:apply>
+		  </m:math>.
+		  (Note that
+		  <m:math>
+		      <m:apply>
+			  <m:eq/>
+		          <m:apply>
+			      <m:ci><m:msub><m:mi>x</m:mi><m:mi>s</m:mi></m:msub></m:ci>
+			      <m:ci>n</m:ci>
+			  </m:apply>
+			  <m:apply>
+			      <m:ci>x</m:ci>
+			      <m:apply>
+			          <m:times/>
+				  <m:ci>n</m:ci>
+				  <m:ci><m:msub><m:mi>T</m:mi><m:mi>s</m:mi></m:msub></m:ci>
+			      </m:apply>
+			  </m:apply>
+		      </m:apply>
+		  </m:math>)
+	      </item>
+	      <item>Real angular frequency <m:math><m:ci>Ω</m:ci></m:math></item>
+	      <item>Digital angular frequency <m:math><m:ci>ω</m:ci></m:math>.
+	          (Note that:
+		   <m:math>
+		      <m:apply>
+			  <m:eq/>
+			  <m:ci>ω</m:ci>
+			  <m:apply>
+			      <m:times/>
+			      <m:ci>Ω</m:ci>
+			      <m:ci><m:msub><m:mi>T</m:mi><m:mi>s</m:mi></m:msub></m:ci>
+			  </m:apply>
+		      </m:apply>
+		  </m:math>)
+	      </item>
+	      
+	 </list>
+             
+	  </para>
+      </section>
+
+
+
+      <section id="s4">
+	  <title>The Sampling Theorem</title>
+          <para id="s4p1">
+	      <note type="The Sampling theorem" id="idp6883376"><label>The Sampling theorem</label>
+	          When sampling an analog signal the sampling frequency must be greater than twice the 
+		  highest frequency component of the analog signal to be able to reconstruct the 
+		  original signal from the sampled version.
+	      </note>
+             
+	  </para>
+      </section>
+
+      <section id="s5">
+      <para id="s5p1">
+          Finished? Have at look at:
+          <list id="s0l2" list-type="labeled-item" display="inline">
+		  <item><link document="m11423">Proof</link></item>
+		  <item><link document="m11443">Illustrations</link></item>
+                  <item><link document="m11549">Matlab Example</link></item>
+                  <item><link document="m11448">Aliasing                                                          
+                  applet</link></item>
+                  <item><link document="m11458">Hold operation</link></item>
+                  <item><link document="m11465">System view</link></item>
+                  <item><link document="m11442">Exercises</link></item>	
+	   </list>
+      </para>
+      </section>
+      
+ 
+  </content>
+  
+</document>

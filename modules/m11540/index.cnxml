@@ -1,0 +1,435 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml">
+  <title>Convolution - Analog</title>
+  <metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>bbdb393b-707f-4fdd-8be3-cde255cc24c5</md:uuid>
+</metadata>
+
+  <content>
+
+      <para id="s0p1">
+	In this module we examine convolution for continuous
+	time signals. This will
+	result in the convolution integral and
+	its <link document="m10088">properties</link>.
+	These concepts are very important in Electrical
+	Engineering and will make any engineer's life a lot easier if
+	the time is spent now to truly understand what is going on.
+      </para>
+
+      <para id="s0p2">
+	In order to fully understand convolution,
+	you may find it useful to look at the <link document="m10087">discrete-time convolution</link> as well.
+	Accompanied to this module there is a fully worked out <link document="m11541">example</link> with mathematics and figures.
+	It will also be helpful to experiment with the <link url="http://www.jhu.edu/~signals/convolve/">Convolution
+        - Continuous time</link> applet available from
+	<link url="http://www.jhu.edu">Johns Hopkins University</link>.  These resources offers different approaches
+	to this crucial concept.
+      </para>
+
+    <section id="s2">
+      <title>Derivation of the convolution integral</title>
+      <para id="s2p1">
+	The derivation used here closely follows the one discussed in
+	the motivation	section above.  To begin this, it is necessary to state the
+	assumptions we will be making.  In this instance, the only
+	constraints on our system are that it be linear and
+	time-invariant.
+
+	<list id="list1" list-type="enumerated">
+	  <title>Brief Overview of Derivation Steps:</title>
+	  <item>An impulse input leads to an impulse response output.</item>
+	  <item>
+	    A shifted impulse input leads to a shifted impulse response
+	    output.  This is due to the time-invariance of the system.
+	  </item>
+	  <item>
+	    We now scale the impulse input to get a scaled impulse
+	    output.  This is using the scalar multiplication property of
+	    linearity.
+	  </item>
+	  <item>
+	    We can now "sum up" an infinite number of these scaled
+	    impulses to get a sum of an infinite number of scaled
+	    impulse responses.  This is using the additivity attribute
+	    of linearity.
+	  </item>
+	  <item>
+	    Now we recognize that this infinite sum is nothing more than
+	    an integral, so we convert both sides into integrals.
+	  </item>
+	  <item>
+	    Recognizing that the input is the function
+	    <m:math display="inline">
+	      <m:apply>
+		<m:ci type="function">f</m:ci>
+		<m:ci>t</m:ci>
+	      </m:apply>
+	    </m:math>, we also recognize that the output is exactly the
+	    convolution integral.
+	  </item>
+	</list>
+      </para>
+
+      <figure id="f1">
+	<media id="idp6615632" alt=""><image src="../../media/ctimpresp1.png" mime-type="image/png"/></media>
+	<caption>
+	  We begin with a system defined by its impulse response,
+	  <m:math display="inline">
+	    <m:apply>
+	      <m:ci type="function">h</m:ci>
+	      <m:ci>t</m:ci>
+	    </m:apply>
+	  </m:math>.
+	</caption>
+      </figure>
+
+      <figure id="f2">
+	<media id="idp9253872" alt=""><image src="../../media/ctimpresp2.png" mime-type="image/png"/></media>
+	<caption>
+	  We then consider a shifted version of the input impulse.
+	  Due to the time invariance of the system, we obtain a
+	  shifted version of the output impulse response.
+	</caption>
+      </figure>
+
+      <figure id="fig3">
+	<media id="idp7923792" alt=""><image src="../../media/ctimpresp3.png" mime-type="image/png"/></media>
+	<caption>
+	  Now we use the scaling part of linearity by scaling the
+	  system by a value,
+	  <m:math display="inline">
+	    <m:apply>
+	      <m:ci type="function">f</m:ci>
+	      <m:ci>τ</m:ci>
+	    </m:apply>
+	  </m:math>,
+	  that is constant with respect to the system variable,
+	  <m:math><m:ci>t</m:ci></m:math>.
+	</caption>
+      </figure>
+
+      <figure id="f4">
+	<media id="idm487360" alt=""><image src="../../media/ctimpresp4.png" mime-type="image/png"/></media>
+	<caption>
+	  We can now use the additivity aspect of linearity to add an
+	  infinite number of these, one for each possible
+	  <m:math><m:ci>τ</m:ci></m:math>.  Since an infinite sum
+	  is exactly an integral, we end up with the integration known
+	  as the Convolution Integral.  Using the <link document="m11478" target-id="s2s1">
+	  sampling property</link>, we recognize the left-hand side simply as the input
+	  <m:math>
+	    <m:apply>
+	      <m:ci type="fn">f</m:ci>
+	      <m:ci>t</m:ci>
+	    </m:apply>
+	  </m:math>.
+	</caption>
+      </figure>
+    </section>
+    
+    <section id="s3">
+      <title>Convolution Integral</title>
+      <para id="s3p1">
+	As mentioned above, the convolution integral provides an easy
+	mathematical way to express the output of an LTI system based
+	on an arbitrary signal,
+	<m:math>
+	  <m:apply>
+	    <m:ci>x</m:ci>
+	    <m:ci>t</m:ci>
+	  </m:apply>
+	</m:math>, and the system's impulse response,
+	<m:math>
+	  <m:apply>
+	    <m:ci>h</m:ci>
+	    <m:ci>t</m:ci>
+	  </m:apply>
+	</m:math>.  The
+	<term>convolution integral</term> is expressed as
+
+	<equation id="eqn1">
+	  <m:math>
+	    <m:apply>
+	      <m:eq/>
+	      <m:apply>
+		<m:ci>y</m:ci>
+		<m:ci>t</m:ci>
+	      </m:apply>
+	      <m:apply>
+		<m:int/>
+		<m:bvar>
+		  <m:ci>τ</m:ci>
+		</m:bvar>
+		<m:lowlimit>
+		  <m:apply>
+		    <m:minus/>
+		    <m:infinity/>
+		  </m:apply>
+		</m:lowlimit>
+		<m:uplimit>
+		  <m:infinity/>
+		</m:uplimit>
+		<m:apply>
+		  <m:times/>
+		  <m:apply>
+		    <m:ci>x</m:ci>
+		    <m:ci>τ</m:ci>
+		  </m:apply>
+		  <m:apply>
+		    <m:ci>h</m:ci>
+		    <m:apply>
+		      <m:minus/>
+		      <m:ci>t</m:ci>
+		      <m:ci>τ</m:ci>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>
+	</equation>
+
+	Convolution is such an important tool that it is represented
+	by the symbol *, and can be written as
+
+	<equation id="eqn2">
+	  <m:math>
+	    <m:apply>
+	      <m:eq/>
+	      <m:apply>
+		<m:ci>y</m:ci>
+		<m:ci>t</m:ci>
+	      </m:apply>
+	      <m:apply>
+		<m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#convolve"/>
+		<m:apply>
+		  <m:ci>x</m:ci>
+		  <m:ci>t</m:ci>
+		</m:apply>
+		<m:apply>
+		  <m:ci>h</m:ci>
+		  <m:ci>t</m:ci>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>
+	</equation>
+
+	By making a simple change of variables into the convolution
+	integral,
+	<m:math>
+	  <m:apply>
+	    <m:eq/>
+	    <m:ci>τ</m:ci>
+	    <m:apply>
+	      <m:minus/>
+	      <m:ci>t</m:ci>
+	      <m:ci>τ</m:ci>
+	    </m:apply>
+	  </m:apply>
+	</m:math>,
+	we can easily show that convolution is
+	<term>commutative</term>:
+
+	<equation id="eqn3">
+	  <m:math>
+	    <m:apply>
+	      <m:eq/>
+	      <m:apply>
+		<m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#convolve"/>
+		<m:apply>
+		  <m:ci>x</m:ci>
+		  <m:ci>t</m:ci>
+		</m:apply>
+		<m:apply>
+		  <m:ci>h</m:ci>
+		  <m:ci>t</m:ci>
+		</m:apply>
+	      </m:apply>
+	      <m:apply>
+		<m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#convolve"/>
+		<m:apply>
+		  <m:ci>h</m:ci>
+		  <m:ci>t</m:ci>
+		</m:apply>
+		<m:apply>
+		  <m:ci>x</m:ci>
+		  <m:ci>t</m:ci>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>
+	</equation> which gives an equivivalent form of <link target-id="eqn1"/>
+	<equation id="eqn4">
+	    <m:math>
+	        <m:apply>
+		    <m:eq/>
+		    <m:apply>
+			<m:ci>y</m:ci>
+			<m:ci>t</m:ci>
+		    </m:apply>
+		    <m:apply>
+			<m:int/>
+			<m:bvar><m:ci>τ</m:ci></m:bvar>
+			<m:lowlimit><m:apply><m:minus/><m:infinity/></m:apply></m:lowlimit>
+			<m:uplimit><m:infinity/></m:uplimit>
+			<m:apply>
+			    <m:times/>
+			    <m:apply>
+				<m:ci>x</m:ci>
+				<m:apply>
+				    <m:minus/>
+				    <m:ci>t</m:ci>
+				    <m:ci>τ</m:ci>
+				</m:apply>
+			    </m:apply>
+		  	    <m:apply>
+			        <m:ci>h</m:ci>
+				<m:ci>τ</m:ci>
+			    </m:apply>
+			</m:apply>
+		    </m:apply>
+	        </m:apply>
+	    </m:math>
+	</equation>
+	
+
+	For more information on the characteristics of the convolution
+	integral, read about the <link document="m10088">Properties of Convolution</link>.
+      </para>
+    </section><!-- end section s3-->
+
+    
+    <section id="s4">
+      <title>Implementation of Convolution</title>
+      <para id="s4p1">
+	Taking a closer look at the convolution integral, we find that
+	we are multiplying the input signal by the time-reversed
+	impulse response and integrating.  This will give us the value
+	of the output at one given value of <m:math display="inline"><m:ci>t</m:ci></m:math>.  If we then shift
+	the time-reversed impulse response by a small amount, we get
+	the output for another value of <m:math display="inline"><m:ci>t</m:ci></m:math>.  Repeating this for
+	every possible value of <m:math display="inline"><m:ci>t</m:ci></m:math>, yields the total
+	output function.  While we would never actually do this
+	computation by hand in this fashion, it does provide us with
+	some insight into what is actually happening.  We find that we
+	are essentially reversing the impulse response function and
+	sliding it across the input function, integrating as we go.
+	This method, referred to as the <term>graphical method</term>,
+	provides us with a much simpler way to solve for the output
+	for simple (contrived) signals, while improving our intuition
+	for the more complex cases where we rely on computers.  In
+	fact <link url="http://www.ti.com">Texas Instruments</link>
+	develops <link url="http://dspvillage.ti.com/docs/toolssoftwarehome.jhtml">Digital
+	Signal Processors</link> which have special instruction sets
+	for computations such as convolution.
+      </para>
+    </section>
+
+    <section id="s5">
+        <title>Summary</title>
+	<para id="s5p1">
+	    Convolution is a truly important concept, which <emphasis>must</emphasis>
+	    be well understood.
+	</para>
+        <note type="convoltion integral" id="idp6883984"><label>Convoltion integral</label>
+
+	  <m:math>
+	    <m:apply>
+	      <m:eq/>
+	      <m:apply>
+		<m:ci>y</m:ci>
+		<m:ci>t</m:ci>
+	      </m:apply>
+	      <m:apply>
+		<m:int/>
+		<m:bvar>
+		  <m:ci>τ</m:ci>
+		</m:bvar>
+		<m:lowlimit>
+		  <m:apply>
+		    <m:minus/>
+		    <m:infinity/>
+		  </m:apply>
+		</m:lowlimit>
+		<m:uplimit>
+		  <m:infinity/>
+		</m:uplimit>
+		<m:apply>
+		  <m:times/>
+		  <m:apply>
+		    <m:ci>x</m:ci>
+		    <m:ci>τ</m:ci>
+		  </m:apply>
+		  <m:apply>
+		    <m:ci>h</m:ci>
+		    <m:apply>
+		      <m:minus/>
+		      <m:ci>t</m:ci>
+		      <m:ci>τ</m:ci>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>
+
+	</note>
+	<note type="convoltion integral" id="idp8829760"><label>Convoltion integral</label>
+	  <m:math>
+	    <m:apply>
+	      <m:eq/>
+	      <m:apply>
+		<m:ci>y</m:ci>
+		<m:ci>t</m:ci>
+	      </m:apply>
+	      <m:apply>
+		<m:int/>
+		<m:bvar>
+		  <m:ci>τ</m:ci>
+		</m:bvar>
+		<m:lowlimit>
+		  <m:apply>
+		    <m:minus/>
+		    <m:infinity/>
+		  </m:apply>
+		</m:lowlimit>
+		<m:uplimit>
+		  <m:infinity/>
+		</m:uplimit>
+		<m:apply>
+		  <m:times/>
+		  <m:apply>
+		    <m:ci>h</m:ci>
+		    <m:ci>τ</m:ci>
+		  </m:apply>
+		  <m:apply>
+		    <m:ci>x</m:ci>
+		    <m:apply>
+		      <m:minus/>
+		      <m:ci>t</m:ci>
+		      <m:ci>τ</m:ci>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>
+
+	</note>
+    </section>
+      
+   <section id="s6">
+        <para id="s6p1">
+	    Go to? 
+	    <list id="l1" list-type="labeled-item" display="inline">
+	        <item><link document="m11542">Introduction</link></item>
+	        <item><link document="m11541">Convolution - Full example</link></item>
+	        <item><link document="m10087">Convolution - Discrete time</link></item>
+	        <item><link document="m10088">Properties of convolution</link></item>
+	    </list>
+	</para>
+    </section>
+
+  </content>
+  
+</document>

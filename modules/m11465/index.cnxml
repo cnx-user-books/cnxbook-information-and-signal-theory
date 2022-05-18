@@ -1,0 +1,201 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml">
+  <title>Systems view of sampling and reconstruction</title>
+  <metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>68c26899-86af-414d-8556-4430274e93d2</md:uuid>
+</metadata>
+
+  <content>
+    <section id="s1">
+        <title>Ideal reconstruction system</title>
+	<para id="s1p1">
+	    <link target-id="f1"/> shows the ideal reconstruction system based
+	    on the results of the Sampling theorem <link document="m11423">proof</link>.
+	</para>
+	<para id="s1p2">
+	    <link target-id="f1"/> consists of a sampling device which produces a time-discrete sequence 
+	    <m:math><m:apply><m:ci><m:msub><m:mi>x</m:mi><m:mi>s</m:mi></m:msub></m:ci><m:ci>n</m:ci></m:apply></m:math>.
+	    The reconstruction filter, <m:math><m:apply><m:ci>h</m:ci><m:ci>t</m:ci></m:apply></m:math>, is
+	    an ideal analog 
+	    <link url="http://ccrma-www.stanford.edu/~jos/Interpolation/sinc_function.html">sinc</link> filter, with
+	    <m:math>
+		<m:apply>
+		    <m:eq/>
+		    <m:apply>
+		    	<m:ci>h</m:ci>
+			<m:ci>t</m:ci>
+		    </m:apply>
+		    <m:apply>
+	        	<m:ci type="fn">sinc</m:ci>
+			<m:apply>
+			    <m:divide/>
+			    <m:ci>t</m:ci>
+	        	    <m:ci><m:msub><m:mi>T</m:mi><m:mi>s</m:mi></m:msub></m:ci>
+			</m:apply>
+	      	    </m:apply>
+	    	</m:apply>
+	    </m:math>. We can't apply the time-discrete sequence
+	    <m:math><m:apply><m:ci><m:msub><m:mi>x</m:mi><m:mi>s</m:mi></m:msub></m:ci><m:ci>n</m:ci></m:apply></m:math>
+	    directly to the analog filter <m:math><m:apply><m:ci>h</m:ci><m:ci>t</m:ci></m:apply></m:math>.
+	    To solve this problem we turn the sequence into an analog signal using <link document="m11450">delta functions</link>.
+	    Thus we write
+	    <m:math>
+		<m:apply>
+		    <m:eq/>
+		    <m:apply>
+		    	<m:ci><m:msub><m:mi>x</m:mi><m:mi>s</m:mi></m:msub></m:ci>
+			<m:ci>t</m:ci>
+		    </m:apply>
+		    <m:apply>
+			<m:sum/>
+			<m:bvar><m:ci>n</m:ci></m:bvar>
+			<m:lowlimit><m:apply><m:minus/><m:infinity/></m:apply></m:lowlimit>
+			<m:uplimit><m:infinity/></m:uplimit>
+	        	<m:apply>
+			    <m:times/>
+			    <m:apply>
+				<m:ci><m:msub><m:mi>x</m:mi><m:mi>s</m:mi></m:msub></m:ci>
+				<m:ci>n</m:ci>
+			    </m:apply>
+			    <m:apply>
+				<m:ci>δ</m:ci>
+				<m:apply>
+				    <m:minus/>
+				    <m:ci>t</m:ci>
+				    <m:apply>
+					<m:times/>
+					<m:ci>n</m:ci>
+					<m:ci>T</m:ci>
+				    </m:apply>
+				</m:apply>
+			    </m:apply>
+			</m:apply>
+	      	    </m:apply>
+	    	</m:apply>
+	    </m:math>.
+
+	    <figure id="f1">
+	        <media id="idp1817968" alt=""><image src="../../media/ideal.jpg" mime-type="image/jpeg"/></media>
+		<caption>Ideal reconstruction system</caption>
+	    </figure>
+	    But when will the system produce an output
+	    <m:math>
+		<m:apply>
+		    <m:eq/>
+		    <m:apply>
+			<m:ci><m:mover accent="true"><m:mi>x</m:mi><m:mo>̂</m:mo></m:mover></m:ci>
+		        <m:ci>t</m:ci>
+		    </m:apply>
+		    <m:apply>
+			<m:ci>x</m:ci>
+			<m:ci>t</m:ci>
+		    </m:apply>
+		</m:apply>
+	    </m:math>?
+	    According to the <link document="m11419" target-id="s4">sampling theorem</link> we have
+	    <m:math>
+		<m:apply>
+		    <m:eq/>
+		    <m:apply>
+			<m:ci><m:mover accent="true"><m:mi>x</m:mi><m:mo>̂</m:mo></m:mover></m:ci>
+		        <m:ci>t</m:ci>
+		    </m:apply>
+		    <m:apply>
+			<m:ci>x</m:ci>
+			<m:ci>t</m:ci>
+		    </m:apply>
+		</m:apply>
+	    </m:math>
+	    when the sampling frequency, <m:math><m:ci><m:msub><m:mi>F</m:mi><m:mi>s</m:mi></m:msub></m:ci></m:math>,
+	    is at least twice the highest frequency component of <m:math><m:apply><m:ci>x</m:ci><m:ci>t</m:ci></m:apply></m:math>.
+
+
+	</para>
+    </section>
+
+    <section id="s2">
+        <title>Ideal system including anti-aliasing</title>
+	<para id="s2p1">
+	    To be sure that the reconstructed signal is free of aliasing it is customary to
+	    apply a lowpass filter, an <link document="m11443" target-id="s1ss2p4">anti-aliasing filter</link>, before
+	    sampling as shown in <link target-id="f2"/>.
+	    
+	    <figure id="f2">
+	        <media id="idp2920864" alt=""><image src="../../media/sampling_antialias.jpg" mime-type="image/jpeg"/></media>
+		<caption>
+		    Ideal reconstruction system with <link document="m11443" target-id="s1ss2p4">
+		    anti-aliasing filter</link>
+		</caption>
+	    </figure>
+	    Again we ask the question of when the system will produce an output
+	    <m:math>
+		<m:apply>
+		    <m:eq/>
+		    <m:apply>
+			<m:ci><m:mover accent="true"><m:mi>x</m:mi><m:mo>̂</m:mo></m:mover></m:ci>
+			<m:ci>t</m:ci>
+		    </m:apply>
+		    <m:apply>
+		        <m:ci>s</m:ci>
+			<m:ci>t</m:ci>
+		    </m:apply>
+		</m:apply>
+	    </m:math>?
+	    If the signal is entirely confined within the passband of the lowpass filter we will
+	    get perfect reconstruction if <m:math><m:ci><m:msub><m:mi>F</m:mi><m:mi>s</m:mi></m:msub></m:ci></m:math>
+	    is high enough.
+	</para>
+	<para id="s2p2">
+	    But if the anti-aliasing filter removes the "higher" frequencies, (which in fact is the job
+	    of the anti-aliasing filter), we will <emphasis>never</emphasis> be able
+	    to <emphasis>exactly</emphasis> reconstruct the original signal,
+	    <m:math><m:apply><m:ci>s</m:ci><m:ci>t</m:ci></m:apply></m:math>. If
+	    we sample fast enough we can reconstruct <m:math><m:apply><m:ci>x</m:ci><m:ci>t</m:ci></m:apply></m:math>,
+	    which in most cases is satisfying.
+	</para>
+
+	<para id="s2p3">
+	    The reconstructed signal,
+	    <m:math>
+		<m:apply>
+		    <m:ci><m:mover accent="true"><m:mi>x</m:mi><m:mo>̂</m:mo></m:mover></m:ci>
+		    <m:ci>t</m:ci>
+		</m:apply>
+	    </m:math>, will not have aliased frequencies. This is essential for further use of the signal.
+		    
+	</para>
+    </section>
+
+    <section id="s3">
+        <title>Reconstruction with hold operation</title>
+	<para id="s3p1">
+	    To make our reconstruction system realizable there are many things to look into.
+	    Among them are the fact that any practical reconstruction system must input finite length pulses into the
+            reconstruction filter. This can be accomplished by the <link document="m11458">hold operation</link>.
+	    To alleviate the distortion caused by the hold opeator we apply the output from the hold device
+	    to a compensator. The compensation can be as accurate as we wish, this is cost and application consideration.
+	    <figure id="f3">
+	        <media id="idp758832" alt=""><image src="../../media/sampling_hold.jpg" mime-type="image/jpeg"/></media>
+		<caption>
+		    More practical reconstruction system with a <link document="m11458">
+		    hold component</link>
+		</caption>
+	    </figure>
+	    By the use of the hold component the reconstruction will not be exact, but as mentioned
+	    above we can get as close as we want.
+	</para>
+    </section>
+    <section id="s4">
+       <div id="idp684144"><list id="l1" list-type="labeled-item" display="inline">
+       <item><link document="m11419">Introduction</link></item>
+       <item><link document="m11423">Proof</link></item>
+       <item><link document="m11443">Illustrations</link></item>
+       <item><link document="m11549">Matlab example</link></item>
+       <item><link document="m11458">Hold operation</link></item>
+       <item><link document="m11448">Aliasing applet</link></item>
+       <item><link document="m11442">Exercises</link></item>
+       </list></div>
+    </section>
+
+ 
+  </content>
+  
+</document>

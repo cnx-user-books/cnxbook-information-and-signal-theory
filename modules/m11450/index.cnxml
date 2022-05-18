@@ -1,0 +1,922 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml">
+  <title>Table of Formulas</title>
+  <metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>dd0d9ee8-74c5-4da3-aece-025eb86fa083</md:uuid>
+</metadata>
+
+  <content>
+    <para id="s0p1">
+        <table frame="none" id="t1" summary="">
+<!--	    <name>Table of formulas</name>-->
+	    <tgroup cols="2" colsep="0" rowsep="0">
+	      <thead>
+		<row>
+		  <entry>Analog</entry>
+		  <entry>Time Discrete</entry>
+		</row>
+	      </thead>
+	      <tbody>
+                <row><entry align="left">Delta function</entry>
+                     <entry align="left">Unit sample</entry>
+                </row>
+		<row><!-- Delta row-->
+		    <entry align="left">
+			<m:math>
+			    <m:apply>
+				<m:eq/>
+				<m:apply>
+				    <m:ci>δ</m:ci>
+				    <m:ci>t</m:ci>
+				</m:apply>
+				<m:cn>0</m:cn>
+			    </m:apply>
+			</m:math> for
+			<m:math><m:apply><m:neq/><m:ci>t</m:ci><m:cn>0</m:cn></m:apply></m:math>,
+			<m:math>
+			    <m:apply>
+				<m:eq/>
+				<m:apply>
+				    <m:int/>
+				    <m:bvar><m:ci>t</m:ci></m:bvar>
+				    <m:lowlimit><m:apply><m:minus/><m:infinity/></m:apply></m:lowlimit>
+				    <m:uplimit><m:infinity/></m:uplimit>
+				    <m:apply>
+				    	<m:ci>δ</m:ci>
+					<m:ci>t</m:ci>
+				    </m:apply>
+			  	</m:apply>
+				<m:cn>1</m:cn>
+			    </m:apply>
+			</m:math>
+		    </entry>
+		    <entry align="left">
+		        <m:math>
+			    <m:apply>
+				<m:eq/>
+				<m:apply>
+				    <m:ci>δ</m:ci>
+				    <m:ci>n</m:ci>
+				</m:apply>
+				<m:piecewise>
+				    <m:piece>
+				        <m:cn>1</m:cn>
+					<m:apply><m:eq/><m:ci>n</m:ci><m:cn>0</m:cn></m:apply>
+				    </m:piece>
+				    <m:otherwise>
+				        <m:cn>0</m:cn>
+				    </m:otherwise>
+				</m:piecewise>
+			    </m:apply>
+			</m:math>
+		    </entry>
+		   
+		</row><!--end row 1-->
+		<row>
+		    <entry align="left"/>
+		    <entry align="left"/>
+		</row>		
+		<row><!--Unit step row-->
+		    <entry align="left">Unit step function</entry>
+		    <entry align="left">Unit step function</entry>
+		</row>
+		<row>
+		   <entry align="left">
+			<m:math>
+			    <m:apply>
+				<m:eq/>
+				<m:apply>
+				    <m:ci>u</m:ci>
+				    <m:ci>t</m:ci>
+				</m:apply>
+				<m:piecewise>
+				    <m:piece>
+				        <m:cn>1</m:cn>
+					<m:apply><m:geq/><m:ci>t</m:ci><m:cn>0</m:cn></m:apply>
+				    </m:piece>
+				    <m:otherwise>
+				        <m:cn>0</m:cn>
+				    </m:otherwise>
+				</m:piecewise>
+			    </m:apply>
+			</m:math>
+		    </entry>
+		    <entry align="left">
+		        <m:math>
+			    <m:apply>
+				<m:eq/>
+				<m:apply>
+				    <m:ci>u</m:ci>
+				    <m:ci>n</m:ci>
+				</m:apply>
+				<m:piecewise>
+				    <m:piece>
+				        <m:cn>1</m:cn>
+					<m:apply><m:geq/><m:ci>n</m:ci><m:cn>0</m:cn></m:apply>
+				    </m:piece>
+				    <m:otherwise>
+				        <m:cn>0</m:cn>
+				    </m:otherwise>
+				</m:piecewise>
+			    </m:apply>
+			</m:math>
+		    </entry>
+		   
+		</row><!--end row 2-->
+		<row>
+		    <entry align="left"/>
+		    <entry align="left"/>
+
+		</row>		
+		<row>
+		    <entry align="left">Angular frequency</entry>
+		    <entry align="left">Angular frequency</entry>
+		</row>
+		<row>
+		    <entry align="left">
+		    	<m:math>		
+			    <m:apply>
+				<m:eq/>
+				<m:ci>Ω</m:ci>
+				<m:apply>
+				    <m:times/>
+				    <m:cn>2</m:cn>
+				    <m:pi/>
+				    <m:ci>F</m:ci>
+				</m:apply>
+			    </m:apply>
+			</m:math>
+		    </entry>
+		    <entry align="left">
+		    	<m:math>		
+			    <m:apply>
+				<m:eq/>
+				<m:ci>ω</m:ci>
+				<m:apply>
+				    <m:times/>
+				    <m:cn>2</m:cn>
+				    <m:pi/>
+				    <m:ci>f</m:ci>
+				</m:apply>
+			    </m:apply>
+			</m:math>
+		    </entry>
+		</row>
+		<row>
+		    <entry align="left"/>
+		    <entry align="left"/>
+
+		</row>		
+		<row>
+		    <entry align="left">Energy
+		    <m:math>
+		      <m:apply>
+		          <m:eq/>
+			  <m:ci><m:msub><m:mi>E</m:mi><m:mi>a</m:mi></m:msub></m:ci>
+			  <m:apply>
+			      <m:int/>
+			      <m:bvar><m:ci>t</m:ci></m:bvar>
+			      <m:lowlimit><m:apply><m:minus/><m:infinity/></m:apply></m:lowlimit>
+			      <m:uplimit><m:infinity/></m:uplimit>
+			      <m:apply>
+			          <m:power/>
+				  <m:apply>
+				      <m:abs/>
+				      <m:apply>
+				          <m:ci>x</m:ci>
+				          <m:ci>t</m:ci>
+				      </m:apply>
+				  </m:apply>
+				  <m:cn>2</m:cn>
+			      </m:apply>
+			  </m:apply>
+		      </m:apply>
+		  </m:math>			
+		    </entry>
+		    <entry align="left">Energy
+			<m:math>
+		      <m:apply>
+		          <m:eq/>
+			  <m:ci><m:msub><m:mi>E</m:mi><m:mi>d</m:mi></m:msub></m:ci>
+			  <m:apply>
+			      <m:sum/>
+			      <m:bvar><m:ci>n</m:ci></m:bvar>
+			      <m:lowlimit><m:apply><m:minus/><m:infinity/></m:apply></m:lowlimit>
+			      <m:uplimit><m:infinity/></m:uplimit>
+			      <m:apply>
+			          <m:power/>
+				  <m:apply>
+				      <m:abs/>
+				      <m:apply>
+				          <m:ci>x</m:ci>
+				          <m:ci>n</m:ci>
+				      </m:apply>
+				  </m:apply>
+				  <m:cn>2</m:cn>
+			      </m:apply>
+			  </m:apply>
+		      </m:apply>
+		  </m:math>
+		    </entry>
+	
+		</row>
+		<row>
+		    <entry align="left"/>
+		    <entry align="left"/>
+		</row>
+   		<row>		
+		    <entry align="left">Power
+		    <m:math>
+		      <m:apply>
+		          <m:eq/>
+			  <m:ci><m:msub><m:mi>P</m:mi><m:mi>a</m:mi></m:msub></m:ci>
+			  <m:apply>
+			      <m:times/>
+			      <m:apply>
+			          <m:divide/>
+				  <m:cn>1</m:cn>
+				  <m:ci><m:msub><m:mi>T</m:mi><m:mn>0</m:mn></m:msub></m:ci>
+			      </m:apply>
+			      <m:apply>
+			          <m:int/>
+				  <m:bvar><m:ci>t</m:ci></m:bvar>
+				  <m:lowlimit>
+				      <m:apply>
+				          <m:minus/>
+					  <m:apply>
+					      <m:divide/>
+					      <m:ci><m:msub><m:mi>T</m:mi><m:mn>0</m:mn></m:msub></m:ci>
+					      <m:cn>2</m:cn>
+					  </m:apply>
+				      </m:apply>
+				  </m:lowlimit>
+				  <m:uplimit>
+				      <m:apply>
+				          <m:divide/>
+					  <m:ci><m:msub><m:mi>T</m:mi><m:mn>0</m:mn></m:msub></m:ci>
+					  <m:cn>2</m:cn>
+				      </m:apply>
+				  </m:uplimit>
+				  <m:apply>
+				      <m:power/>
+				      <m:apply>
+				          <m:abs/>
+					  <m:apply>
+					      <m:ci>x</m:ci>
+					      <m:ci>t</m:ci>
+					  </m:apply>
+				      </m:apply>
+				      <m:cn>2</m:cn>
+				  </m:apply>
+			      </m:apply>
+			  </m:apply>
+		      </m:apply>
+		  </m:math>
+        </entry>
+	<entry align="left">Power
+	    <m:math>
+		<m:apply>
+		    <m:eq/>
+		    <m:ci><m:msub><m:mi>P</m:mi><m:mi>d</m:mi></m:msub></m:ci>
+		    <m:apply>
+			<m:times/>
+			<m:apply>
+			    <m:divide/>
+		            <m:cn>1</m:cn>
+			    <m:ci>N</m:ci>
+			</m:apply>
+			<m:apply>
+			    <m:sum/>
+		            <m:bvar><m:ci>n</m:ci></m:bvar>
+			    <m:lowlimit><m:ci><m:msub><m:mi>N</m:mi><m:mn>1</m:mn></m:msub></m:ci></m:lowlimit>
+			    <m:uplimit>
+				<m:apply>
+				    <m:minus/>
+					<m:apply>
+					    <m:plus/>					     
+					    <m:ci><m:msub><m:mi>N</m:mi><m:mn>1</m:mn></m:msub></m:ci>
+					    <m:ci>N</m:ci>
+					</m:apply>
+					<m:cn>1</m:cn>
+				</m:apply>
+			    </m:uplimit>
+			    <m:apply>
+				<m:power/>
+				      <m:apply>
+				          <m:abs/>
+					  <m:apply>
+					      <m:ci>x</m:ci>
+					      <m:ci>n</m:ci>
+					  </m:apply>
+				      </m:apply>
+				      <m:cn>2</m:cn>
+				  </m:apply>
+			      </m:apply>
+			  </m:apply>
+		      </m:apply>
+		  </m:math>
+		    </entry>
+		</row>
+		<row>
+		    <entry align="left"/>
+		    <entry align="left"/>
+		</row>
+		<row>
+		    <entry align="left">Convol.
+			<m:math>
+			    <m:apply>
+				<m:eq/>
+				<m:apply>
+				    <m:ci>y</m:ci>
+				    <m:ci>t</m:ci>
+				</m:apply>
+				<m:apply>
+				    <m:int/>
+				    <m:bvar><m:ci>τ</m:ci></m:bvar>
+				    <m:lowlimit><m:apply><m:minus/><m:infinity/></m:apply></m:lowlimit>
+				    <m:uplimit><m:infinity/></m:uplimit>
+				    <m:apply>
+					<m:times/>
+					<m:apply>
+					    <m:ci>x</m:ci>
+					    <m:ci>τ</m:ci> 
+					</m:apply>
+					<m:apply>
+					    <m:ci>h</m:ci>
+					    <m:apply>
+						<m:minus/>
+						<m:ci>t</m:ci>
+						<m:ci>τ</m:ci> 
+					    </m:apply>
+					</m:apply>
+				    </m:apply>
+				</m:apply>
+			    </m:apply>
+			</m:math>
+		    </entry>
+		    
+		    <entry align="left">Convol.
+		        <m:math>
+			    <m:apply>
+				<m:eq/>
+				<m:apply>
+				    <m:ci>y</m:ci>
+				    <m:ci>n</m:ci>
+				</m:apply>
+				<m:apply>
+				    <m:sum/>
+				    <m:bvar><m:ci>k</m:ci></m:bvar>
+				    <m:lowlimit><m:apply><m:minus/><m:infinity/></m:apply></m:lowlimit>
+				    <m:uplimit><m:infinity/></m:uplimit>
+				    <m:apply>
+					<m:times/>
+					<m:apply>
+					    <m:ci>x</m:ci>
+					    <m:ci>k</m:ci> 
+					</m:apply>
+					<m:apply>
+					    <m:ci>h</m:ci>
+					    <m:apply>
+						<m:minus/>
+						<m:ci>n</m:ci>
+						<m:ci>k</m:ci> 
+					    </m:apply>
+					</m:apply>
+				    </m:apply>
+				</m:apply>
+			    </m:apply>
+			</m:math>
+		    </entry>
+		</row>
+		<row>
+		    <entry align="left"/>
+		    <entry align="left"/>
+		</row>		
+		<row>
+		    <entry align="left">Fourier Transformation</entry>
+		    <entry align="left">Discrete Time Fourier Transform</entry>
+		</row>
+		<row>
+		  <entry align="left">
+		      <m:math>
+		      <m:apply>
+			<m:eq/>
+			<m:apply>
+			    <m:ci>X</m:ci>
+			    <m:apply>
+				<m:times/>
+				<m:imaginaryi/>
+				<m:ci>Ω</m:ci>
+			    </m:apply>
+			</m:apply>
+						    			    
+			    <m:apply>
+			        <m:int/>
+			        <m:bvar><m:ci>t</m:ci></m:bvar>
+			        <m:lowlimit><m:apply><m:minus/><m:infinity/></m:apply></m:lowlimit>
+			        <m:uplimit><m:infinity/></m:uplimit>
+			        <m:apply>
+				    <m:times/>
+				    <m:apply>
+				        <m:ci>x</m:ci>
+					<m:ci>t</m:ci>
+				    </m:apply>
+				    <m:apply>
+				        <m:exp/>
+					<m:apply>
+                                            <m:minus/>
+		                            <m:apply>
+                                               <m:times/>     
+                                               <m:imaginaryi/>
+                                               <m:ci>Ω</m:ci>
+					       <m:ci>t</m:ci>
+                                            </m:apply>
+					</m:apply>
+				    </m:apply>
+				</m:apply>
+			    </m:apply>
+			   
+			</m:apply>
+		    </m:math>
+
+		  </entry>
+		  <entry align="left">
+		      <m:math>
+	  <m:apply>
+	    <m:eq/>
+	    <m:apply>
+	      <m:ci>X</m:ci>
+	      <m:apply>
+		<m:exp/>
+		<m:apply>
+		  <m:times/>
+		  <m:imaginaryi/>
+		  <m:ci>ω</m:ci>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	    <m:apply>
+	      <m:sum/>
+	      <m:bvar><m:ci>n</m:ci></m:bvar>
+	      
+	      <m:lowlimit><m:apply><m:minus/><m:infinity/></m:apply></m:lowlimit>
+	      <m:uplimit><m:infinity/></m:uplimit>
+	      <m:apply>
+		<m:times/>
+		<m:apply>
+		  <m:ci>x</m:ci>
+		  <m:ci>n</m:ci>
+		</m:apply>
+		<m:apply>
+		  <m:exp/>
+		  <m:apply>
+		    <m:minus/>
+		    <m:apply>
+		      <m:times/>
+		      <m:imaginaryi/>
+		      <m:ci>ω</m:ci>
+		      <m:ci>n</m:ci>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:math>   
+	</entry>
+	</row>
+	<row>
+	    <entry align="left"/>
+	    <entry align="left"/>
+	</row>
+		<row>
+		    <entry align="left">Inverse Fourier Transform</entry>
+		    <entry align="left">Inverse DTFT</entry>
+		</row>		
+	 <row>
+	     <entry align="left">
+	     
+	     <m:math>
+	     <m:apply>
+	         <m:eq/>
+	         <m:apply>
+		     <m:ci>x</m:ci>
+		     <m:ci>t</m:ci>
+		 </m:apply>
+		 <m:apply>
+	      	     <m:times/>
+		     <m:apply>
+		         <m:divide/>
+			 <m:cn>1</m:cn>
+			 <m:apply>
+			     <m:times/>
+			     <m:cn>2</m:cn>
+			     <m:pi/>
+			 </m:apply>
+		      </m:apply>
+		      
+		      <m:apply>
+		      <m:int/>
+		      <m:bvar><m:ci>Ω</m:ci></m:bvar>
+	      <m:lowlimit><m:apply><m:minus/><m:infinity/></m:apply></m:lowlimit>
+	      <m:uplimit><m:infinity/></m:uplimit>
+	      <m:apply>
+	      <m:times/>
+		<m:apply>
+		  <m:ci>X</m:ci>
+		  <m:apply>
+		      <m:times/>
+		      <m:imaginaryi/>
+		      <m:ci>ω</m:ci>
+		  </m:apply>
+		</m:apply>
+		<m:apply>
+		  <m:exp/>
+		  <m:apply>
+		    <m:plus/>
+		    <m:apply>
+		      <m:times/>
+		      <m:imaginaryi/>
+		      <m:ci>Ω</m:ci>
+		      <m:ci>t</m:ci>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+	     
+	     </entry>
+	     <entry align="left">
+	  <m:math>
+	  <m:apply>
+	    <m:eq/>
+	    <m:apply>
+	      <m:ci>x</m:ci>
+	      <m:ci>n</m:ci>
+	    </m:apply>
+
+	    <m:apply>
+	      	     <m:times/>
+		     <m:apply>
+		         <m:divide/>
+			 <m:cn>1</m:cn>
+			 <m:apply>
+			     <m:times/>
+			     <m:cn>2</m:cn>
+			     <m:pi/>
+			 </m:apply>
+		      </m:apply>
+	      <m:apply>
+	      <m:int/>
+	      <m:bvar><m:ci>ω</m:ci></m:bvar>
+	      <m:lowlimit><m:apply><m:minus/><m:pi/></m:apply></m:lowlimit>
+	      <m:uplimit><m:pi/></m:uplimit>
+	      <m:apply>
+	      <m:times/>
+		<m:apply>
+		  <m:ci>X</m:ci>
+		  <m:apply>
+		    <m:exp/>
+		    <m:apply>
+		      <m:times/>
+		      <m:imaginaryi/>
+		      <m:ci>ω</m:ci>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+		<m:apply>
+		  <m:exp/>
+		  <m:apply>
+		    <m:plus/>
+		    <m:apply>
+		      <m:times/>
+		      <m:imaginaryi/>
+		      <m:ci>ω</m:ci>
+		      <m:ci>n</m:ci>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+	</entry>
+	</row>
+	<row>
+	    <entry align="left"/>
+	    <entry align="left"/>
+	</row>
+	<row>
+	    <entry align="left">Fourier coeffecients</entry>
+	    <entry align="left">Discrete Fourier Transform</entry>
+	</row>
+	<row>
+	    <entry align="left">
+	        <m:math>
+		<m:apply>
+		    <m:eq/>
+		    <m:ci><m:msub><m:mi>α</m:mi><m:mi>k</m:mi></m:msub></m:ci>
+		    <m:apply>
+		    <m:times/>
+			<m:apply>
+			    <m:divide/>
+			    <m:cn>1</m:cn>
+			    <m:ci><m:msub><m:mi>T</m:mi><m:mn>0</m:mn></m:msub></m:ci>
+			</m:apply>
+		    <m:apply>
+			<m:int/>
+			<m:bvar><m:ci>t</m:ci></m:bvar>
+			<m:lowlimit><m:cn>0</m:cn></m:lowlimit>
+			<m:uplimit><m:ci><m:msub><m:mi>T</m:mi><m:mn>0</m:mn></m:msub></m:ci></m:uplimit>
+			        <m:apply>
+				    <m:times/>
+				    <m:apply>
+				        <m:ci>x</m:ci>
+					<m:ci>t</m:ci>
+				    </m:apply>
+				    <m:apply>
+				        <m:exp/>
+					<m:apply>
+                                            <m:minus/>
+		                            <m:apply>
+                                               <m:times/>     
+                                               <m:imaginaryi/>
+					       <m:ci>k</m:ci>
+                                               <m:ci><m:msub><m:mi>Ω</m:mi><m:mn>0</m:mn></m:msub></m:ci>
+					       <m:ci>t</m:ci>
+                                            </m:apply>
+					</m:apply>
+				    </m:apply>
+				</m:apply>
+			    </m:apply>
+			   </m:apply>
+			   </m:apply>
+		    </m:math>	
+	    </entry>
+
+		  <entry align="left">
+		       <m:math>
+	  <m:apply>
+	    <m:eq/>
+	    <m:apply>
+	      <m:ci>X</m:ci>
+	      <m:ci>k</m:ci>
+	    </m:apply>
+	    <m:apply>
+	      <m:sum/>
+	      <m:bvar><m:ci>n</m:ci></m:bvar>
+	      <m:lowlimit><m:cn>0</m:cn></m:lowlimit>
+	      <m:uplimit><m:apply><m:minus/><m:ci>N</m:ci><m:cn>1</m:cn></m:apply></m:uplimit>
+	      <m:apply>
+		<m:times/>
+		<m:apply>
+		  <m:ci>x</m:ci>
+		  <m:ci>n</m:ci>
+		</m:apply>
+		<m:apply>
+		  <m:exp/>
+		  <m:apply>
+		    <m:minus/>
+		    <m:apply>
+		      <m:times/>
+		      <m:imaginaryi/>
+		      <m:apply>
+		        <m:divide/>
+			<m:apply>
+			  <m:times/>
+		          <m:cn>2</m:cn>
+		          <m:pi/>
+			</m:apply>
+			<m:ci>N</m:ci>
+		      </m:apply>
+		      <m:ci>k</m:ci>
+		      <m:ci>n</m:ci>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:math>   
+	</entry>	
+		
+	</row>
+	<row>
+	    <entry align="left"/>
+	    <entry align="left"/>
+	</row>		
+	<row>
+	    <entry align="left">Series expansion</entry>
+	    <entry align="left">Inverse DFT</entry>
+	</row>		
+	<row>
+	<entry align="left">
+	    <m:math>
+	    <m:apply>
+		<m:eq/>
+		<m:apply>
+		    <m:ci>x</m:ci>
+		    <m:ci>t</m:ci>
+		</m:apply>
+		<m:apply>
+		    <m:sum/>
+		    <m:bvar><m:ci>k</m:ci></m:bvar>
+		    <m:lowlimit><m:apply><m:minus/><m:infinity/></m:apply></m:lowlimit>
+		    <m:uplimit><m:apply><m:infinity/></m:apply></m:uplimit>
+		    <m:apply>
+		        <m:times/>
+			<m:ci><m:msub><m:mi>α</m:mi><m:mi>k</m:mi></m:msub></m:ci>
+			<m:apply>
+			    <m:exp/>
+			    <m:apply>
+				<m:times/>
+				<m:imaginaryi/>
+				<m:ci>k</m:ci>
+				<m:ci><m:msub><m:mi>Ω</m:mi><m:mn>0</m:mn></m:msub></m:ci>
+				<m:ci>t</m:ci>
+			    </m:apply>
+		        </m:apply>
+		    </m:apply>
+		</m:apply>
+	    </m:apply>
+	    </m:math>
+	</entry>
+        
+	<entry align="left">
+	    <m:math>
+		<m:apply>
+		    <m:eq/>
+		    <m:apply>
+			<m:ci>x</m:ci>
+			<m:ci>n</m:ci>
+		    </m:apply>
+		    <m:apply>
+			<m:times/>
+			<m:apply>
+			    <m:divide/>
+			    <m:cn>1</m:cn>
+			    <m:ci>N</m:ci>
+			</m:apply>
+
+			<m:apply>
+			    <m:sum/>
+			    <m:bvar><m:ci>k</m:ci></m:bvar>
+			    <m:lowlimit><m:cn>0</m:cn></m:lowlimit>
+			    <m:uplimit><m:apply><m:minus/><m:ci>N</m:ci><m:cn>1</m:cn></m:apply></m:uplimit>
+
+			    <m:apply>
+			        <m:times/>
+			        <m:apply>
+				    <m:ci>X</m:ci>
+				    <m:ci>k</m:ci>
+				</m:apply>
+				<m:apply>
+				    <m:exp/>
+				    <m:apply>
+				        <m:times/>
+					<m:imaginaryi/>
+					<m:apply>
+					    <m:divide/>
+					    <m:apply>
+						<m:times/>
+						<m:cn>2</m:cn>
+						<m:pi/>
+					     </m:apply>
+					     <m:ci>N</m:ci>
+					</m:apply>
+					<m:ci>k</m:ci>
+					<m:ci>n</m:ci>
+				    </m:apply>
+				</m:apply>
+			    </m:apply>
+			</m:apply>
+		    </m:apply>
+		</m:apply>
+	    </m:math>   
+	</entry>	
+	</row>
+	<row>
+	    <entry align="left"/>
+	    <entry align="left"/>
+	</row>
+	<row>
+	    <entry align="left">Parseval</entry>
+	    <entry align="left">Parseval</entry>
+	</row>
+	<row>
+	    <entry align="left">
+		<m:math>
+		    <m:apply>
+		        <m:eq/>
+			<m:apply>
+		            <m:int/>
+			    <m:bvar><m:ci>t</m:ci></m:bvar>
+			    <m:lowlimit>
+			   	<m:ci><m:msub><m:mi>T</m:mi><m:mn>1</m:mn></m:msub></m:ci>
+			    </m:lowlimit>
+			    <m:uplimit>
+			        <m:ci><m:msub><m:mi>T</m:mi><m:mn>0</m:mn></m:msub></m:ci>
+			    </m:uplimit>
+			    <m:apply>
+				<m:power/>
+				<m:apply>
+				    <m:abs/>
+				    <m:apply>
+					<m:ci>x</m:ci>
+					<m:ci>t</m:ci>
+				    </m:apply>
+				</m:apply>
+				<m:cn>2</m:cn>
+			    </m:apply>
+			  </m:apply>
+		      
+		          <m:apply>
+		      	      <m:sum/>
+			      <m:bvar><m:ci>k</m:ci></m:bvar>
+			      <m:lowlimit><m:cn>1</m:cn></m:lowlimit>
+			      <m:uplimit><m:infinity/></m:uplimit>
+			      <m:apply>
+			      <m:power/>
+			      <m:apply>
+			          <m:abs/>
+				  <m:apply>
+		 		      <m:ci><m:msub><m:mi>α</m:mi><m:mi>k</m:mi></m:msub></m:ci>
+				  </m:apply>
+			      </m:apply>
+			      <m:cn>2</m:cn>
+			   </m:apply>
+		      </m:apply>
+		      </m:apply>
+		  </m:math>
+	    </entry>
+	    <entry align="left">
+		<m:math>
+		    <m:apply>
+		        <m:eq/>
+			<m:apply>
+			    <m:times/>
+			    <m:apply><m:divide/><m:cn>1</m:cn><m:ci>N</m:ci></m:apply>
+			<m:apply>
+			    <m:sum/>
+			    <m:bvar><m:ci>k</m:ci></m:bvar>
+			    <m:lowlimit><m:cn>0</m:cn></m:lowlimit>
+			    <m:uplimit><m:apply><m:minus/><m:ci>N</m:ci><m:cn>1</m:cn></m:apply></m:uplimit>
+			    <m:apply>
+			        <m:power/>
+				<m:apply>
+				    <m:abs/>
+				    <m:apply>
+				        <m:ci>X</m:ci>
+				        <m:ci>k</m:ci>
+				    </m:apply>
+				 </m:apply>
+				 <m:cn>2</m:cn>
+			      </m:apply>
+			      </m:apply>
+			  </m:apply>
+			<m:apply>
+			    <m:sum/>
+			    <m:bvar><m:ci>n</m:ci></m:bvar>
+			    <m:lowlimit><m:cn>0</m:cn></m:lowlimit>
+			    <m:uplimit><m:apply><m:minus/><m:ci>N</m:ci><m:cn>1</m:cn></m:apply></m:uplimit>
+			    <m:apply>
+			        <m:power/>
+				<m:apply>
+				    <m:abs/>
+				    <m:apply>
+				        <m:ci>x</m:ci>
+				        <m:ci>n</m:ci>
+				    </m:apply>
+				 </m:apply>
+				 <m:cn>2</m:cn>
+			      </m:apply>
+			  </m:apply>
+		      </m:apply>
+		  </m:math>
+	    </entry>
+	</row>
+
+
+	      </tbody>
+	    </tgroup>
+	  </table>   
+    </para>
+    
+<!--    <para id="s0p2">
+	<list id="l1">
+	    <item>FT - Fourier Transform, FC - Fourier Coeffecients </item>
+	    <item>DTFT - Discrete Time Fourier Transform, DFT - Discrete Fourier Transform</item>
+            <item>SE - Series expansion</item>
+            
+	</list>
+    </para> -->
+  <!--  <section id='s1'>
+	<para id='s1p1'>
+	    Back to <cnxn document='m11419'>Sampling Theorem</cnxn>
+	</para>
+    </section> -->
+  </content>
+  
+</document>

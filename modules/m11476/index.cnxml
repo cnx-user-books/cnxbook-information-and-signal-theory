@@ -1,0 +1,467 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml">
+  <title>Discrete time signals</title>
+  <metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>3b010c1c-e710-4d32-834d-6c8df610bd30</md:uuid>
+</metadata>
+
+  <content>
+      <para id="s0p1">
+          The signals and relations presented in this module are quite similar to
+          those in the <link document="m11478">Analog signals</link> module.
+          So do compare and find similarities and differences!
+      </para>
+       <section id="s1">
+          <title>Sequences</title>
+	  <para id="s1p1">
+	      Generally a time discrete signal is a <emphasis>sequence</emphasis> of
+	      real or complex numbers. Each component in the sequence is identified
+	      by an index: ...x(n-1),x(n), x(n+1),...
+	  </para>
+	      <example id="exa1">
+	          <para id="exa1p1">
+		      [x(n)] = [0.5 2.4 3.2 4.5] is a sequence. Using the index
+		      to identify a component we have
+		      <m:math>
+		          <m:apply>
+			      <m:eq/>
+			      <m:apply>
+			          <m:ci>x</m:ci>
+			          <m:cn>0</m:cn>
+			      </m:apply>
+			      <m:cn>0.5</m:cn>
+			  </m:apply>
+		      </m:math>,
+		      <m:math>
+		          <m:apply>
+			      <m:eq/>
+			      <m:apply>
+			          <m:ci>x</m:ci>
+			          <m:cn>1</m:cn>
+			      </m:apply>
+			      <m:cn>2.4</m:cn>
+			  </m:apply>
+		      </m:math> and so on.
+		  </para>
+	      </example>
+      </section>
+      <section id="s2">
+          <title>Manipulating sequences</title>
+	  <para id="s2p1">
+	      <list id="l1" list-type="labeled-item">
+	          <item><label>Addition</label>Add individually each component with similar index</item>
+	          <item><label>Multiplication by a constant</label>Multiply every component by the constant</item>
+	          <item><label>Multiplication of sequences</label>Multiply each component individually</item>
+	          <item><label>Delay</label>A delay by <m:math><m:cn>k</m:cn></m:math> implies that we
+		        shift the sequence by k. For this to make sense the sequence has to be of infinite length.
+		  </item>
+	      </list>
+	  </para>
+	  <example id="exa2">
+	          <para id="exa2p1">
+		      Given the sequences [x(n)] = [0.5 2.4 3.2 4.5] and  
+		      [y(n)] = [0.0 2.2 7.2 5.5].
+		  </para>
+		  <para id="exa2p2">
+		      a)Addition. [z(n)]=[x(n)]+[y(n)]=[0.5 4.6 10.4 10.0]
+		  </para>
+		  <para id="exa2p3">
+		      b)Multiplication by a constant c=2. [w(n)]= 2 *[x(n)] = [1.0 4.8 6.4 9.0]
+		  </para>
+	      </example>
+      </section>
+     
+      <section id="s3">
+          <title>Elementary signals &amp; relations</title>
+	  <section id="s3s1">
+	      <title>The unit sample</title>
+	      <para id="s3s1p1">
+	          The <emphasis>unit sample</emphasis> is a signal which is
+		  zero everywhere except when its argument is zero, then
+		  it is equal to 1. Mathematically
+		  
+		  <note type="unit sample" id="idm2061152"><label>Unit sample</label>
+		       <m:math>
+			    <m:apply>
+				<m:eq/>
+				<m:apply>
+				    <m:ci>δ</m:ci>
+				    <m:ci>n</m:ci>
+				</m:apply>
+				<m:piecewise>
+				    <m:piece>
+				        <m:cn>1</m:cn>
+					<m:apply><m:eq/><m:ci>n</m:ci><m:cn>0</m:cn></m:apply>
+				    </m:piece>
+				    <m:otherwise>
+				        <m:cn>0</m:cn>
+				    </m:otherwise>
+				</m:piecewise>
+			    </m:apply>
+			</m:math>
+		  </note>
+		  The unit sample function is very useful in that it can be seen as the
+		  elementary constituent in any discrete signal.
+		  Let <m:math><m:apply><m:ci>x</m:ci><m:ci>n</m:ci></m:apply></m:math> be
+		  a sequence. Then we can express <m:math><m:apply><m:ci>x</m:ci><m:ci>n</m:ci></m:apply></m:math>
+		  as follows (using the unit sample definition and the delay operation)
+		  <equation id="eqn1">
+		      <m:math>
+			    <m:apply>
+				<m:eq/>
+				<m:apply>
+				    <m:ci>x</m:ci>
+				    <m:ci>n</m:ci>
+				</m:apply>
+				<m:apply>
+				    <m:sum/>
+				    <m:bvar><m:ci>k</m:ci></m:bvar>
+				    <m:lowlimit><m:apply><m:minus/><m:infinity/></m:apply></m:lowlimit>
+				    <m:uplimit><m:infinity/></m:uplimit>
+				    <m:apply>
+					<m:times/>
+					<m:apply>
+					    <m:ci>x</m:ci>
+					    <m:ci>k</m:ci> 
+					</m:apply>
+					<m:apply>
+					    <m:ci>δ</m:ci>
+					    <m:apply>
+						<m:minus/>
+						<m:ci>n</m:ci>
+						<m:ci>k</m:ci> 
+					    </m:apply>
+					</m:apply>
+				    </m:apply>
+				</m:apply>
+			    </m:apply>
+			</m:math>
+		  </equation>
+		    
+		</para>
+	  </section>
+	  <section id="s3s2">
+	      <title>The unit step</title>
+	      <para id="s3s2p1">
+		  The <emphasis>unit step</emphasis> function is equal to zero when its index is
+		  negative and equal to one for non-negative indexes,
+                  see <link target-id="f1"/> for plots.
+		  <note type="unit step" id="idm7485552"><label>Unit step</label>
+		      <m:math>
+			    <m:apply>
+				<m:eq/>
+				<m:apply>
+				    <m:ci>u</m:ci>
+				    <m:ci>n</m:ci>
+				</m:apply>
+				<m:piecewise>
+				    <m:piece>
+				        <m:cn>1</m:cn>
+					<m:apply><m:geq/><m:ci>n</m:ci><m:cn>0</m:cn></m:apply>
+				    </m:piece>
+				    <m:otherwise>
+				        <m:cn>0</m:cn>
+				    </m:otherwise>
+				</m:piecewise>
+			    </m:apply>
+			</m:math>		  
+		  </note>
+		  <figure orient="vertical" id="f1">
+                      
+                      <subfigure id="idm7676272">
+                          <media id="idm7675920" alt=""><image src="../../media/unit_step_no_delay.png" mime-type="image/png"/></media>
+                          <caption>Unit step function, no delay.</caption>
+                      </subfigure>
+                          
+                      <subfigure id="idp1854752">
+                          <media id="idp1855136" alt=""><image src="../../media/unit_step_delay_5.png" mime-type="image/png"/></media>
+                          <caption>Unit step function, delayed by 5.</caption> 
+                      </subfigure>
+                      <caption>Two unit step functions.</caption>
+                  </figure>
+	      </para>
+	  </section>
+
+	  <section id="s3s3">
+	      <title>Trigonometric functions</title>
+	      <para id="s3s3p1">
+		  The discrete <emphasis>trigonometric</emphasis> functions are defined as follows.
+		  <m:math><m:cn>n</m:cn></m:math> is the sequence index and
+		  <m:math><m:cn>ω</m:cn></m:math> is the angular frequency.
+		  <m:math>
+		      <m:apply>
+		          <m:eq/>
+			  <m:ci>ω</m:ci>
+			  <m:apply>
+			      <m:times/>
+			      <m:cn>2</m:cn>
+			      <m:pi/>
+			      <m:ci>f</m:ci>
+			  </m:apply>
+		      </m:apply>
+		  </m:math>, where f is the digital frequency.
+		  <note type="Discrete sine" id="idm143008"><label>Discrete sine</label>
+		      <m:math>
+			    <m:apply>
+				<m:eq/>
+				<m:apply>
+				    <m:ci>x</m:ci>
+				    <m:ci>n</m:ci>
+				</m:apply>
+				<m:apply>
+				    <m:sin/>
+				    <m:apply>
+				        <m:times/>
+					<m:ci>ω</m:ci>
+				        <m:ci>n</m:ci>
+				    </m:apply>
+				</m:apply>
+			    </m:apply>
+			</m:math>		  
+		  </note>
+
+		  <note type="Discrete cosine" id="idp1847328"><label>Discrete cosine</label>
+		      <m:math>
+			    <m:apply>
+				<m:eq/>
+				<m:apply>
+				    <m:ci>x</m:ci>
+				    <m:ci>n</m:ci>
+				</m:apply>
+				<m:apply>
+				    <m:cos/>
+				    <m:apply>
+				        <m:times/>
+					<m:ci>ω</m:ci>
+				        <m:ci>n</m:ci>
+				    </m:apply>
+				</m:apply>
+			    </m:apply>
+			</m:math>		  
+		  </note>
+		  <figure id="f2">
+		      <media id="idp214192" alt=""><image src="../../media/sine_discrete-6910.png" mime-type="image/png"/></media>
+		      <caption>A discrete sine with digital frequency 1/20.</caption>
+		  </figure>
+	      </para>
+	  </section>
+
+
+	  <section id="s3s4">
+	      <title>The complex exponential function</title>
+	      <para id="s3s4p1">
+		  The <emphasis>complex exponential</emphasis> function is central
+		  to signal processing and some call it <emphasis>the</emphasis> most important signal. 
+		  Remember that it is a sequence and that
+		  <m:math>
+		      <m:apply>
+		          <m:eq/>
+			  <m:imaginaryi/>
+			  <m:apply>
+			      <m:root/>
+			      <m:apply>
+				  <m:minus/>
+			          <m:cn>1</m:cn>
+			      </m:apply>
+			  </m:apply>
+		      </m:apply>
+		  </m:math> is the imaginary unit.
+		  
+		  <note type="complex exponential" id="idm7390480"><label>Complex exponential</label>
+		      <m:math>
+			    <m:apply>
+				<m:eq/>
+				<m:apply>
+				    <m:ci>x</m:ci>
+				    <m:ci>n</m:ci>
+				</m:apply>
+				<m:apply>
+				    <m:exp/>
+				    <m:apply>
+				        <m:times/>
+					<m:imaginaryi/>
+				        <m:ci>ω</m:ci>
+				        <m:ci>n</m:ci>
+				    </m:apply>
+				</m:apply>
+			    </m:apply>
+			</m:math>
+		  </note>
+		  
+	      </para>
+	  </section>
+
+	  
+      </section><!--End section s3-->
+      <section id="s4">
+	      <title>Euler's relations</title>
+	      <para id="s4p1">
+		  The <emphasis>complex exponential</emphasis> function can be written
+		  as a sum of its real and imaginary part.
+		  <equation id="eqn2">
+		    <m:math>
+		        <m:apply>
+			    <m:eq/>
+			    <m:apply><!--Start lhs 1eq sign-->
+			        <m:eq/>
+				<m:apply>
+				    <m:ci>x</m:ci>
+				    <m:ci>n</m:ci>
+				</m:apply>
+			        <m:apply>
+				    <m:exp/>
+				    <m:apply>
+				        <m:times/>
+					<m:imaginaryi/>
+					<m:ci>ω</m:ci>
+					<m:ci>n</m:ci>
+				    </m:apply>
+				</m:apply>
+			    </m:apply><!--End rhs 1eq sign-->
+			    <m:apply>
+			        <m:plus/>
+				<m:apply>
+				    <m:cos/>
+					<m:apply>
+					    <m:times/>
+					    <m:ci>ω</m:ci>
+					    <m:ci>n</m:ci>
+					</m:apply>
+			        </m:apply>
+				    <m:apply>
+					<m:times/>
+					<m:imaginaryi/>
+					<m:apply>
+					    <m:sin/>
+					    <m:apply>
+						<m:times/>
+						<m:ci>ω</m:ci>
+						<m:ci>n</m:ci>
+					    </m:apply>
+					</m:apply>
+				    </m:apply>
+				
+			     </m:apply>			
+			   </m:apply>
+		     </m:math>
+		  </equation>
+
+		  By complex conjugating <link target-id="eqn2"/> and add / subtract the result with <link target-id="eqn2"/>
+		  we obtain Euler's relations.
+		  <note type="Euler relation 1" id="idp811936"><label>Euler relation 1</label>
+		      <m:math>
+			    <m:apply>
+				<m:eq/>
+				<m:apply>
+				    <m:cos/>
+				    <m:apply>
+				        <m:times/>
+					<m:ci>ω</m:ci>
+				        <m:ci>n</m:ci>
+				    </m:apply>
+				</m:apply>
+				<m:apply>
+				    <m:divide/>
+				    <m:apply>
+				        <m:plus/>
+					<m:apply>
+					    <m:exp/>
+					        <m:apply>
+						    <m:times/>
+						    <m:imaginaryi/>
+						    <m:ci>ω</m:ci>
+						    <m:ci>n</m:ci>
+						</m:apply>
+					</m:apply>
+					<m:apply>
+					    <m:exp/>
+					        <m:apply>
+						    <m:minus/>
+						    <m:apply>
+							<m:times/>
+							<m:imaginaryi/>
+							<m:ci>ω</m:ci>
+							<m:ci>n</m:ci>
+						    </m:apply>
+						</m:apply>
+					</m:apply>
+					
+				    </m:apply>
+				    <m:cn>2</m:cn>
+				</m:apply>
+			    </m:apply>
+			</m:math>
+		  </note>
+		  <note type="Euler relation 2" id="idp896768"><label>Euler relation 2</label>
+		      <m:math>
+			    <m:apply>
+				<m:eq/>
+				<m:apply>
+				    <m:sin/>
+				    <m:apply>
+				        <m:times/>
+					<m:ci>ω</m:ci>
+				        <m:ci>n</m:ci>
+				    </m:apply>
+				</m:apply>
+				<m:apply>
+				    <m:divide/>
+				    <m:apply>
+				        <m:minus/>
+					<m:apply>
+					    <m:exp/>
+					        <m:apply>
+						    <m:times/>
+						    <m:imaginaryi/>
+						    <m:ci>ω</m:ci>
+						    <m:ci>n</m:ci>
+						</m:apply>
+					</m:apply>
+					<m:apply>
+					    <m:exp/>
+					        <m:apply>
+						    <m:minus/>
+						    <m:apply>
+							<m:times/>
+							<m:imaginaryi/>
+							<m:ci>ω</m:ci>
+							<m:ci>n</m:ci>
+						    </m:apply>
+						</m:apply>
+					</m:apply>
+				    </m:apply>
+				    <m:apply>
+					<m:times/>
+					<m:cn>2</m:cn>
+					<m:imaginaryi/>
+				    </m:apply>
+				</m:apply>
+			    </m:apply>
+			</m:math>
+		  </note>
+		  The importance of Euler's relations can hardly be stressed enough.
+	      </para>
+	  </section><!--End section s4-->
+	  <section id="s5">
+	      <title>Matlab files</title>
+	      <para id="s5p1">
+	          <link document="m11476" resource="unit_step_discrete.m">unit_step_discrete.m</link>
+              </para>
+	  </section>
+	  <section id="s6">
+      	      <para id="s6p1">
+	          Take a look at
+		  <list id="l2" list-type="labeled-item" display="inline">
+		      <item><link document="m11479">Introduction</link></item>
+	              <item><link document="m11478">Analog signals</link></item>
+		      <item><link document="m11527">Discrete vs Analog signals</link></item>
+		      <item><link document="m11477">Frequency definitions and periodicity</link></item>
+		      <item><link document="m11526">Energy &amp; Power</link></item>
+		      <item><link document="m11482">Exercises</link></item>	
+	          </list> ?
+	      </para>
+      </section>
+
+
+
+  </content>
+  
+</document>

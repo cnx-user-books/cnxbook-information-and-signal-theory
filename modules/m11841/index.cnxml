@@ -1,0 +1,247 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml">
+  <title>Information</title>
+  <metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>a139bfcc-f862-4a24-bb19-20f7c16efd48</md:uuid>
+</metadata>
+
+  <content>
+    <para id="s0p1">
+      In this module we introduce the concept of self information for
+      an outcome of a stochastic variable.
+    </para>
+    <section id="s1">
+    <example id="exa2">
+      <para id="exa2p1">
+	Bergen, Norway is a rainy city. If the locals are "lucky" there
+	is "only" 200 rainy days in a particular year.
+	Let the random variable Z take the two values: "Rain", "No rain".
+	Assuming 200 rainy days a year, we get
+	<m:math>
+	  <m:apply>
+	    <m:eq/>
+	    <m:apply>
+	      <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#probability"/>
+	      <m:apply>
+		<m:eq/>
+		<m:ci>Z</m:ci>
+		<m:ci>Rain</m:ci>
+	      </m:apply>
+	    </m:apply>
+	    <m:apply>
+	      <m:divide/>
+	      <m:cn>200</m:cn>
+	      <m:cn>365</m:cn>
+	    </m:apply>
+	  </m:apply>
+	</m:math> and
+	<m:math>
+	  <m:apply>
+	    <m:eq/>
+	    <m:apply>
+	      <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#probability"/>
+	      <m:apply>
+		<m:eq/>
+		<m:ci>Z</m:ci>
+		<m:ci>No Rain</m:ci>
+	      </m:apply>
+	    </m:apply>
+	    <m:apply>
+	      <m:divide/>
+	      <m:cn>165</m:cn>
+	      <m:cn>365</m:cn>
+	    </m:apply>
+	  </m:apply>
+	</m:math>.
+	
+	We state that 
+	<m:math>
+	  <m:apply>
+	    <m:eq/>
+	    <m:ci>Z</m:ci>
+	    <m:ci>No Rain</m:ci>
+	  </m:apply>
+	</m:math>
+	carries more information than 
+	<m:math>
+	  <m:apply>
+	    <m:eq/>
+	    <m:ci>Z</m:ci>
+	    <m:ci>Rain</m:ci>
+	  </m:apply>
+	</m:math>,
+	the reason is that the inhabitans of Bergen
+	expect rain, so whenever it's not raining they are (more) surprised.
+	An intuitive definition of an information measure should be larger 
+	when the probability is small.
+      </para>
+    </example>
+    
+    <example id="exa3">
+      <para id="exa3p1">
+	The information content in a statement about the temperature
+	and new lottery millionaires in Verdal,Norway on a given saturday 
+	should be <emphasis>the sum</emphasis> of the information on temperature 
+	on the particular saturday in Verdal and the information of the number
+	of new lucky lottery winners, (under the assumption that these observations
+	are independent). Let I denote the information of an event, then
+
+	<equation id="eq02">
+	  <m:math display="block">
+	    <m:apply>
+	      <m:eq/>
+              <m:apply>
+                <m:ci>I</m:ci>
+                <m:ci>temperature</m:ci>
+                <m:ci>lottery winners</m:ci>
+              </m:apply>
+              <m:apply>
+                <m:plus/>
+		<m:apply>
+		  <m:ci>I</m:ci>
+		  <m:ci>temperature</m:ci>
+		</m:apply>
+		<m:apply>
+		  <m:ci>I</m:ci>
+		  <m:ci>lottery winners</m:ci>
+		</m:apply>
+              </m:apply>
+	    </m:apply>
+	  </m:math>
+	</equation>
+      </para>
+    </example>
+    </section>
+    <section id="s2">
+      <title>The self information formula</title>
+      <para id="s2p1">
+      An intuitive and meaningful measure of self information in an event should have
+      the following properties:
+      <list id="l1" list-type="enumerated">
+	<item>
+	  The more <emphasis>uncertain</emphasis> you, in advance, are about
+	  the outcome, the <emphasis>more new information</emphasis> you
+	  get by observing the actual outcome, or equivalently an event
+	  with low probability,
+	  <m:math>
+	    <m:ci><m:msub><m:mi>p</m:mi><m:mi>n</m:mi></m:msub></m:ci>
+	  </m:math>, has high self information
+	  <m:math>
+	    <m:apply>
+	      <m:ci>I</m:ci>
+	      <m:ci><m:msub><m:mi>p</m:mi><m:mi>n</m:mi></m:msub></m:ci>
+	    </m:apply>
+	  </m:math>.
+	  <m:math>
+	    <m:apply>
+	      <m:ci>I</m:ci>
+	      <m:ci><m:msub><m:mi>p</m:mi><m:mi>n</m:mi></m:msub></m:ci>
+	    </m:apply>
+	  </m:math> should be a monotonically decreasing function of
+	  <m:math><m:ci><m:msub><m:mi>p</m:mi><m:mi>n</m:mi></m:msub></m:ci></m:math>.
+	</item>
+	<item>
+	  Oberserving an event with certain outcome, i.e
+	  <m:math>
+	    <m:apply>
+	      <m:eq/>
+	      <m:ci><m:msub><m:mi>p</m:mi><m:mi>n</m:mi></m:msub></m:ci>
+	      <m:cn>1</m:cn>
+	    </m:apply>
+	  </m:math>, should give zero information. The event
+	  <m:math><m:ci><m:msub><m:mi>p</m:mi><m:mi>n</m:mi></m:msub></m:ci></m:math>
+	  is then said to have zero self information. Since
+	  <m:math>
+	    <m:apply>
+	      <m:ci>I</m:ci>
+	      <m:ci><m:msub><m:mi>p</m:mi><m:mi>n</m:mi></m:msub></m:ci>
+	    </m:apply>
+	  </m:math>
+	  is monotonically decreasing for
+	  <m:math>
+	    <m:apply>
+	      <m:in/>
+	      <m:ci><m:msub><m:mi>p</m:mi><m:mi>n</m:mi></m:msub></m:ci>
+	      <m:interval>
+                <m:cn>0</m:cn>
+	        <m:cn>1</m:cn>
+	      </m:interval>
+	    </m:apply>
+	  </m:math> this implies that the self information can never
+	  be less than zero, the observer can never lose information
+	  by observing an outcome.
+	</item>
+	<item>
+	  If we receive independent messages, the information should
+	  accumulate. This means that the measure must be additive.
+	</item>
+<!--
+        <item>
+	  Self information should decrease with increasing probability.
+        </item>
+        <item>
+	  Self information of two independent events should be their
+          sum.
+        </item>
+        <item>
+	  Self information should be a continuous function of the
+          probability.
+        </item> -->
+      </list>
+      </para>
+      <para id="s1p2">
+      It can be shown that there only exists one function satisfying the above conditions.
+      <note type="Self Information" id="idp7188176"><label>Self Information</label>
+	
+	<m:math>
+	  <m:apply>
+	    <m:eq/>
+	    <m:apply>
+	      <m:ci>I</m:ci>
+	      <m:ci><m:msub><m:mi>p</m:mi><m:mi>n</m:mi></m:msub></m:ci>
+	    </m:apply>
+	    <m:apply>
+	      <m:log/>
+	      <m:logbase><m:ci>b</m:ci></m:logbase>
+	      <m:apply>
+		 <m:divide/>
+		 <m:cn>1</m:cn>
+	         <m:ci><m:msub><m:mi>p</m:mi><m:mi>n</m:mi></m:msub></m:ci>
+	      </m:apply>
+	    </m:apply>
+	    <m:apply>
+	      <m:minus/>
+	      <m:apply>	
+	        <m:log/>
+	        <m:logbase><m:ci>b</m:ci></m:logbase>
+	        <m:ci><m:msub><m:mi>p</m:mi><m:mi>n</m:mi></m:msub></m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+      </note>
+    </para>
+    <para id="s1p3">
+      In the above equation the logarithm base can be chosen arbitrary.
+      Usually
+      <m:math>
+	<m:apply>
+	  <m:eq/>
+	  <m:ci>b</m:ci>
+	  <m:cn>2</m:cn>
+	</m:apply>
+      </m:math>
+      is chosen so that the denomination is <emphasis>information bit</emphasis>.
+      The choice
+      <m:math>
+	<m:apply>
+	  <m:eq/>
+	  <m:ci>b</m:ci>
+	  <m:cn>2</m:cn>
+	</m:apply>
+      </m:math> is made to adapt to a digital "world", that is to
+      facilitate electronic storage and transmission.
+      
+    </para>
+    </section>
+  </content>
+  
+</document>

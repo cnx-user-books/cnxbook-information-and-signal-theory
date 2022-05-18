@@ -1,0 +1,132 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml">
+  <title>Introduction</title>
+  <metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>62d54e8c-dcdf-4ac2-bfa4-d708ff41eef1</md:uuid>
+</metadata>
+
+  <content>
+      <para id="s0p1">
+	  To describe signals and to understand that signals can carry information we
+	  need tools for mathematical description and manipulation of signals.
+      </para>
+      <para id="s0p2">
+	In this chapter we introduce several important signals and show simple methods
+	of describing them. Depending on which type of signals we are looking at, it will be
+	different methods availiable for manipulating them. The elementary operations for
+	manipulating signals and sequences will be described.
+      </para>
+      <list id="l1">
+          <title>Contents of this chapter</title>
+	  <item>Introduction (current module)</item>	  
+	  <item><link document="m11476">Discrete time signals</link></item>
+	  <item><link document="m11478">Analog signals</link></item>
+	  <item><link document="m11527">Discrete vs Analog signals</link></item>
+          <item><link document="m11477">Frequency definitions and periodicity</link></item>
+	  <item><link document="m11526">Energy &amp; Power</link></item>
+	  <item><link document="m11482">Exercises</link></item>	 
+      </list>
+      <para id="s0p3">
+          The simplest signals are one-dimensional and what follows is a classification of them.
+      </para>
+
+      <section id="s1">
+          <title>Classification of signals</title>
+
+	  <section id="s1s1">
+	      <title>Analog signals</title>
+	      <para id="s1s1p1">
+		  An <emphasis>analog signal</emphasis> is a continuous function of
+		  a continuous variable. Referring to <link target-id="f1"/>, this corresponds
+		  to that both the 1st AND the 2nd axis is continuous. The 1st axis
+		  will in general correspond to the variable <m:math><m:ci>t</m:ci></m:math>, meaning time.
+		  In this context we define
+		  <list id="l2">
+		      <item>signal range - the possible amplitude values the signal can take</item>
+		      <item>signal axis - the time interval for which the signal exists</item>
+		  </list>
+                  <figure id="f1">
+                      <media id="idm393680" alt=""><image src="../../media/axes.png" mime-type="image/png"/></media>
+		      <caption>Reference axes</caption>
+                  </figure>
+	      </para>
+	  </section>
+
+	  <section id="s1s2">
+	      <title>Time discrete signals</title>
+	      <para id="s1s2p1">
+	          A <emphasis>time discrete signal</emphasis> is a continuous signal of a discrete variable.
+		  Referring to <link target-id="f1"/>, we have the 1st axis discrete while the 2nd axis is continuous.
+		  Often we assign the values of the 1st axis to a variable <m:math><m:ci>n</m:ci></m:math>.
+		  Time discrete signals often originate from analog signals being sampled.
+		  More on that in the <link document="m11419">Sampling theorem</link> chapter.
+		  <figure id="f2">
+		      <media id="idp5403680" alt=""><image src="../../media/time_discrete.png" mime-type="image/png"/></media>
+		      <caption>Time discrete signal</caption>
+		  </figure>
+
+		  Note that the signal is only defined for integer values along the 1st axis.
+		  We do not have any information other than the values at index points.
+		  
+	      </para>
+	  </section>
+
+	  <section id="s1s3">
+	      <title>Digital signals</title>
+	      <para id="s1s3p1">
+	          Let the signal be a discrete function of a discrete variable, e.g. 1st and 2nd
+		  axis discrete, then the signal will be <emphasis>digital</emphasis>. Examples of digital
+		  signals are a binary sequence. Digital signals often arise from sampling
+		  analog signals and the samples being assigned to a discrete value.
+	      </para>
+	  </section>
+
+	  <section id="s1s4">
+	      <title>Periodic vs non periodic signals</title>
+	      <para id="s1s4p1">
+	          All the signals mentioned above can be periodic. For time discrete and digital
+		  signals one has to be extra cautious when "declaring" periodicity as we
+		  will see in <link document="m11477">Frequency definitions &amp; periodicity</link>.
+ 		  <link target-id="f3"/> shows a periodic signal with period
+		  <m:math><m:ci><m:msub><m:mi>T</m:mi><m:mn>0</m:mn></m:msub></m:ci></m:math>
+		  and an aperiodic signal.
+
+		  <figure orient="vertical" id="f3">
+		      <subfigure id="idp7108912">
+		          <media id="idp6627840" alt=""><image src="../../media/sigclass3.png" mime-type="image/png"/></media>
+			  <caption>Periodic signal</caption>
+		      </subfigure>
+		      <subfigure id="idp6629344">
+		          <media id="idm6592" alt=""><image src="../../media/sigclass4.png" mime-type="image/png"/></media>
+			  <caption>Aperiodic signal</caption>
+		      </subfigure>
+		      <caption>(Figures by Melissa Selik)</caption>
+		  </figure>
+	      </para>
+	  </section>
+
+
+      </section><!--End section s1-->
+      <section id="s2">
+          <title>Matlab file</title>
+	  <para id="s2p1">
+	      <link document="m11479" resource="time_discrete.m">time_discrete.m</link>
+	  </para>
+      </section>
+
+    <section id="s3">
+      <para id="s4p1">
+	  Take a look at
+	  <list id="l3" list-type="labeled-item" display="inline">
+              <item><link document="m11476">Discrete time signals</link></item>
+	      <item><link document="m11478">Analog signals</link></item>
+	      <item><link document="m11527">Discrete vs Analog signals</link></item>
+	      <item><link document="m11477">Frequency definitions and periodicity</link></item>
+	      <item><link document="m11526">Energy &amp; Power</link></item>
+	      <item><link document="m11482">Exercises</link></item>	
+	  </list> ?
+      </para>
+      </section>
+
+    
+  </content>
+  
+</document>

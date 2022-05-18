@@ -1,0 +1,613 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml">
+  <title>Entropy</title>
+  <metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>39e5d527-bed1-4bc5-b4d3-af596f76a03c</md:uuid>
+</metadata>
+
+  <content>
+    <section id="s1">
+      <para id="s1p1">
+	The <link document="m11841">self information</link> gives the information in
+	a single outcome. In most cases, e.g in data compression, it is much more
+	interesting to know the  <emphasis>average information content</emphasis>
+	of a source. This average is given by the <emphasis>expected</emphasis> 
+	value of the self information with respect to the source's probability 
+	distribution. This average of self information is called the source entropy.
+
+      </para>
+    <section id="s1ss1">
+	<title>Definition of entropy</title>
+	<definition id="def1">
+	  <term>Entropy</term>
+	  <meaning id="idm302480">
+	    The entropy (average self information) of a discrete random
+	    variable <m:math><m:ci>X</m:ci></m:math> is a function of its
+	    probability mass function and is defined as
+	<equation id="eq03">
+	  <m:math display="block">
+	    <m:apply>
+	      <m:eq/>
+              <m:apply>
+                <m:ci>H</m:ci>
+                <m:ci>X</m:ci>
+              </m:apply>
+              <m:apply>
+                <m:minus/>
+		<m:apply>
+		  <m:sum/>
+		  <m:bvar>
+		    <m:ci>i</m:ci>
+		  </m:bvar>
+		  <m:lowlimit>
+		    <m:cn>1</m:cn>
+		  </m:lowlimit>
+		  <m:uplimit>
+		    <m:ci>N</m:ci>
+		  </m:uplimit>
+		  <m:apply>
+		    <m:times/>
+		    <m:apply>
+		      <m:ci type="fn">
+			<m:msub>
+			  <m:mi>p</m:mi>
+			  <m:mi>X</m:mi>
+			</m:msub>
+		      </m:ci>
+		      <m:ci>
+			<m:msub>
+			  <m:mi>x</m:mi>
+			  <m:mi>i</m:mi>
+			</m:msub>
+		      </m:ci>
+		    </m:apply>
+		    <m:apply>
+		      <m:log/>
+		      <m:apply>
+			<m:ci type="fn">
+			  <m:msub>
+			    <m:mi>p</m:mi>
+			    <m:mi>X</m:mi>
+			  </m:msub>
+			</m:ci>
+			<m:ci>
+			  <m:msub>
+			    <m:mi>x</m:mi>
+			    <m:mi>i</m:mi>
+			  </m:msub>
+			</m:ci>
+		      </m:apply>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+              </m:apply>
+	    </m:apply>
+	  </m:math>
+	</equation>
+
+	where <m:math><m:ci>N</m:ci></m:math> is the number of
+	possible values of <m:math><m:ci>X</m:ci></m:math> and
+	<m:math display="inline">
+	  <m:apply>
+	    <m:eq/>
+            <m:apply>
+              <m:ci type="fn">
+                <m:msub>
+                  <m:mi>P</m:mi>
+                  <m:mi>X</m:mi>
+                </m:msub>
+              </m:ci>
+              <m:ci>
+                <m:msub>
+                  <m:mi>x</m:mi>
+                  <m:mi>i</m:mi>
+                </m:msub>
+              </m:ci>
+            </m:apply>
+            <m:apply>
+              <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#probability"/>
+              <m:apply>
+                <m:eq/>
+		<m:ci>X</m:ci>
+		<m:ci>
+		  <m:msub>
+		    <m:mi>x</m:mi>
+		    <m:mi>i</m:mi>
+		  </m:msub>
+		</m:ci>
+              </m:apply>
+            </m:apply>
+	  </m:apply>
+	</m:math>.  If log is base 2 then the unit of entropy is bits per (source)symbol.
+	Entropy is a measure of uncertainty in a random variable and a
+	measure of information it can reveal.
+      </meaning>
+
+      <meaning id="idm7121648">
+	  If symbol has zero probability, which means it never occurs, 
+	  it should not affect the entropy. Letting
+	  <m:math>
+	    <m:apply>
+	      <m:eq/>
+	      <m:apply>
+		<m:times/>
+		<m:cn>0</m:cn>
+		<m:apply>
+		  <m:log/>
+		  <m:cn>0</m:cn>
+		</m:apply>
+	      </m:apply>
+	      <m:cn>0</m:cn>
+	    </m:apply>
+	  </m:math>, we have dealt with that.
+      </meaning>
+    </definition>
+	<para id="s2p1">
+	  In texts you will find that the argument to the entropy function
+	  may vary. The two most common are
+	  <m:math>
+	    <m:apply>
+	      <m:ci>H</m:ci>
+	      <m:ci>X</m:ci>
+	    </m:apply>
+	  </m:math> and
+	  <m:math>
+	    <m:apply>
+	      <m:ci>H</m:ci>
+	      <m:ci>p</m:ci>
+	    </m:apply>
+	  </m:math>.
+	  We calculate the entropy of a source X, but the entropy is,
+	  strictly speaking, a function of the source's probabilty function p.
+	  So both notations are justified.
+	</para>
+      </section>
+      <section id="s1ss2">
+	<title>Calculating the binary logarithm</title>
+	<para id="s1ss2p1">
+	  Most calculators does not allow you to directly calculate the
+	  logarithm with base 2, so we have to use a logarithm base that most
+	  calculators support. Fortunately it is easy to convert between different
+	  bases.
+	</para>
+	<para id="s1ss2p2">
+	  Assume you want to calculate
+	  <m:math>
+	    <m:apply>
+	      <m:log/>
+	      <m:logbase><m:cn>2</m:cn></m:logbase>
+	      <m:ci>x</m:ci>
+	    </m:apply>
+	  </m:math>, where 
+	  <m:math>
+	    <m:apply>
+	      <m:gt/>
+	      <m:ci>x</m:ci>
+	      <m:cn>0</m:cn>
+	    </m:apply>
+	  </m:math>.
+	  Then
+	  <m:math>
+	    <m:apply>
+	      <m:eq/>
+	      <m:apply>
+		<m:log/>
+		<m:logbase><m:cn>2</m:cn></m:logbase>
+		<m:ci>x</m:ci>
+	      </m:apply>
+	      <m:ci>y</m:ci>
+	    </m:apply>
+	  </m:math>
+	  implies that
+	  <m:math>
+	    <m:apply>
+	      <m:eq/>
+	      <m:apply>
+		<m:power/>
+		<m:cn>2</m:cn>
+		<m:ci>y</m:ci>
+	      </m:apply>
+	      <m:ci>x</m:ci>
+	    </m:apply>
+	  </m:math>.
+
+	  Taking the natural logarithm on both sides we obtain
+	  <note type="Logarithm conversion" id="idm8082400"><label>Logarithm conversion</label>
+	  <m:math>
+	    <m:apply>
+	      <m:eq/>
+	      <m:apply>
+		<m:log/>
+		<m:logbase><m:cn>2</m:cn></m:logbase>
+		<m:ci>x</m:ci>
+	      </m:apply>
+	      <m:apply>
+		<m:divide/>
+		<m:apply>
+		  <m:ln/>
+		  <m:ci>x</m:ci>
+		</m:apply>
+		<m:apply>
+		  <m:ln/>
+		  <m:cn>2</m:cn>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>
+	      </note>
+	</para>
+      </section>
+      <section id="s1ss3">
+	<title>Examples</title>
+	<example id="exa1">
+	  <para id="exa1p1">
+	    When throwing a dice, one may ask for the average information conveyed
+	    in a single throw. Using the formula for entropy we get
+	    <m:math>
+	      <m:apply>
+		<m:eq/>
+		<m:apply>
+		  <m:ci>H</m:ci>
+		  <m:ci>X</m:ci>
+		</m:apply>
+
+		<m:apply>
+		  <m:minus/>
+		  <m:apply>
+		    <m:sum/>
+		    <m:bvar><m:ci>i</m:ci></m:bvar>
+		    <m:lowlimit><m:cn>1</m:cn></m:lowlimit>
+		    <m:uplimit><m:cn>6</m:cn></m:uplimit>
+		    <m:apply>
+		      <m:times/>
+		      <m:apply>
+			<m:ci><m:msub><m:mi>p</m:mi><m:mi>X</m:mi></m:msub></m:ci>
+			<m:ci><m:msub><m:mi>x</m:mi><m:mi>i</m:mi></m:msub></m:ci>
+		      </m:apply>
+		      <m:apply>
+			<m:log/>
+			<m:apply>
+			  <m:ci><m:msub><m:mi>p</m:mi><m:mi>X</m:mi></m:msub></m:ci>
+			  <m:ci><m:msub><m:mi>x</m:mi><m:mi>i</m:mi></m:msub></m:ci>
+			</m:apply>
+		      </m:apply>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+		<m:apply>
+		  <m:log/>
+		  <m:cn>6</m:cn>
+		</m:apply>
+	      </m:apply>
+	    <m:ci>bits/symbol</m:ci>
+	  </m:math>
+	  </para>
+	</example>
+	  
+    <example id="exa2">
+      <para id="exa2p1">
+	If a soure produces binary information 
+	<m:math display="inline">
+	  <m:set>
+	    <m:cn>0</m:cn>
+	    <m:cn>1</m:cn>
+	  </m:set>
+	</m:math>
+	with probabilities
+	<m:math display="inline"><m:ci>p</m:ci></m:math>
+	and
+	<m:math display="inline">
+	  <m:apply>
+	    <m:minus/>
+            <m:cn>1</m:cn>
+            <m:ci>p</m:ci>
+	  </m:apply>
+	</m:math>.
+	The entropy of the source is
+	<equation id="eq04">
+	  <m:math display="block">
+	    <m:apply>
+	      <m:eq/>
+              <m:apply>
+                <m:ci type="fn">H</m:ci>
+                <m:ci>X</m:ci>
+              </m:apply>
+              <m:apply>
+                <m:minus/>
+		<m:apply>
+		  <m:minus/>
+		  <m:apply>
+		    <m:times/>
+		    <m:ci>p</m:ci>
+		    <m:apply>
+		      <m:log/>
+		      <m:logbase>
+			<m:cn>2</m:cn>
+		      </m:logbase>
+		      <m:ci>p</m:ci>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+		<m:apply>
+		  <m:times/>
+		  <m:apply>
+		    <m:minus/>
+		    <m:cn>1</m:cn>
+		    <m:ci>p</m:ci>
+		  </m:apply>
+		  <m:apply>
+		    <m:log/>
+		    <m:logbase>
+		      <m:cn>2</m:cn>
+		    </m:logbase>
+		    <m:apply>
+		      <m:minus/>
+		      <m:cn>1</m:cn>
+		      <m:ci>p</m:ci>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+              </m:apply>
+	    </m:apply>
+	  </m:math>
+	</equation>
+
+	If
+	<m:math display="inline">
+	  <m:apply>
+	    <m:eq/>
+            <m:ci>p</m:ci>
+            <m:cn>0</m:cn>
+	  </m:apply>
+	</m:math>
+	then
+	<m:math display="inline">
+	  <m:apply>
+	    <m:eq/>
+            <m:apply>
+              <m:ci type="fn">H</m:ci>
+              <m:ci>X</m:ci>
+            </m:apply>
+	    <m:cn>0</m:cn>
+	  </m:apply>
+	</m:math>,
+	if
+	<m:math display="inline">
+	  <m:apply>
+	    <m:eq/>
+            <m:ci>p</m:ci>
+            <m:cn>1</m:cn>
+	  </m:apply>
+	</m:math>
+	then
+	<m:math display="inline">
+	  <m:apply>
+	    <m:eq/>
+            <m:apply>
+              <m:ci type="fn">H</m:ci>
+              <m:ci>X</m:ci>
+            </m:apply>
+            <m:cn>0</m:cn>
+	  </m:apply>
+	</m:math>,
+	if
+	<m:math display="inline">
+	  <m:apply>
+	    <m:eq/>
+            <m:ci>p</m:ci>
+	    <m:cn type="rational">1<m:sep/>2</m:cn>
+	  </m:apply>
+	</m:math>
+	then
+	<m:math display="inline">
+	  <m:apply>
+	    <m:eq/>
+            <m:apply>
+              <m:ci type="fn">H</m:ci>
+              <m:ci>X</m:ci>
+            </m:apply>
+            <m:cn>1</m:cn>
+	  </m:apply>
+	</m:math>.
+	The source has its largest entropy if
+	<m:math display="inline">
+	  <m:apply>
+	    <m:eq/>
+            <m:ci>p</m:ci>
+	    <m:cn type="rational">1<m:sep/>2</m:cn>
+	  </m:apply>
+	</m:math>
+	and the source provides no new information if
+	<m:math display="inline">
+	  <m:apply>
+	    <m:eq/>
+            <m:ci>p</m:ci>
+            <m:cn>0</m:cn>
+	  </m:apply>
+	</m:math>
+	or
+	<m:math display="inline">
+	  <m:apply>
+	    <m:eq/>
+            <m:ci>p</m:ci>
+            <m:cn>1</m:cn>
+	  </m:apply>
+	</m:math>.
+      </para>
+
+      <figure id="f1">
+	<media id="idm6585376" alt=""><image src="../../media/entropy_plot.png" mime-type="image/png"/></media>
+      </figure>
+
+    </example>
+
+    <example id="example5">
+      <para id="para10">
+	An analog source is modeled as a continuous-time random
+	process with power spectral density bandlimited to the band
+	between 0 and 4000 Hz.  The signal is sampled at the Nyquist
+	rate.  The sequence of random variables, as a result of
+	sampling, are assumed to be independent.  The samples are
+	quantized to 5 levels
+	<m:math display="inline">
+	  <m:set>
+	    <m:cn>-2</m:cn>
+	    <m:cn>-1</m:cn>
+	    <m:cn>0</m:cn>
+	    <m:cn>1</m:cn>
+	    <m:cn>2</m:cn>
+	  </m:set>
+	</m:math>.
+	The probability of the samples taking the quantized values are
+	<m:math display="inline">
+	  <m:set>
+	    <m:apply>
+	      <m:divide/>
+              <m:cn>1</m:cn>
+              <m:cn>2</m:cn>
+	    </m:apply>
+	    <m:apply>
+	      <m:divide/>
+              <m:cn>1</m:cn>
+              <m:cn>4</m:cn>
+	    </m:apply>
+	    <m:apply>
+	      <m:divide/>
+              <m:cn>1</m:cn>
+              <m:cn>8</m:cn>
+	    </m:apply>
+	    <m:apply>
+	      <m:divide/>
+              <m:cn>1</m:cn>
+              <m:cn>16</m:cn>
+	    </m:apply>
+	    <m:apply>
+	      <m:divide/>
+              <m:cn>1</m:cn>
+              <m:cn>16</m:cn>
+	    </m:apply>
+	  </m:set>
+	</m:math>,
+	respectively.  The entropy of the random variables are
+	<equation id="eq05">
+	  <m:math>
+	    <m:apply>
+	      <m:eq/>
+              <m:apply>
+                <m:ci>H</m:ci>
+                <m:ci>X</m:ci>
+              </m:apply>
+
+              <m:apply>
+                <m:minus/>
+		<m:apply>
+		  <m:sum/>
+		  <m:bvar><m:ci>i</m:ci></m:bvar>
+		  <m:lowlimit><m:cn>1</m:cn></m:lowlimit>
+		  <m:uplimit><m:cn>5</m:cn></m:uplimit>
+		  <m:apply>
+		    <m:times/>
+		    <m:apply>
+		      <m:ci><m:msub><m:mi>p</m:mi><m:mi>X</m:mi></m:msub></m:ci>
+		      <m:ci><m:msub><m:mi>x</m:mi><m:mi>i</m:mi></m:msub></m:ci>
+		    </m:apply>
+		    <m:apply>
+		      <m:log/>
+		      <m:apply>
+			<m:ci><m:msub><m:mi>p</m:mi><m:mi>X</m:mi></m:msub></m:ci>
+			<m:ci><m:msub><m:mi>x</m:mi><m:mi>i</m:mi></m:msub></m:ci>
+		      </m:apply>
+		    </m:apply>
+		</m:apply>
+              </m:apply>
+	    </m:apply>
+            <m:apply>
+                <m:plus/>
+		<m:apply>
+		  <m:divide/>
+		  <m:cn>1</m:cn>
+		  <m:cn>2</m:cn>
+		</m:apply>
+		<m:apply>
+		  <m:divide/>
+		  <m:cn>1</m:cn>
+		  <m:cn>2</m:cn>
+		</m:apply>
+		<m:apply>
+		  <m:divide/>
+		  <m:cn>3</m:cn>
+		  <m:cn>8</m:cn>
+		</m:apply>
+		<m:apply>
+		  <m:divide/>
+		  <m:cn>1</m:cn>
+		  <m:cn>4</m:cn>
+		</m:apply>
+		<m:apply>
+		  <m:divide/>
+		  <m:cn>1</m:cn>
+		  <m:cn>4</m:cn>
+		</m:apply>
+              </m:apply>
+
+              <m:apply> <!-- Equals 15/8 -->
+                <m:times/>
+		<m:apply>
+		  <m:divide/>
+		  <m:cn>15</m:cn>
+		  <m:cn>8</m:cn>
+		</m:apply>
+		<m:ci>bits/sample</m:ci>
+              </m:apply>
+	    </m:apply> <!-- End equality-->
+	  </m:math>
+	</equation>
+
+	There are 8000 samples per second.  Therefore, the source
+	produces
+	<m:math display="inline">
+	  <m:apply>
+	    <m:eq/>
+            <m:apply>
+              <m:times/>
+	      <m:cn>8000</m:cn>
+	      <m:apply>
+		<m:divide/>
+		<m:cn>15</m:cn>
+		<m:cn>8</m:cn>
+	      </m:apply>
+            </m:apply>
+            <m:cn>15000</m:cn>
+	  </m:apply>
+	</m:math>
+	bits/sec of information.
+      </para>
+    </example>
+	</section>
+    
+    <para id="para13">
+      Entropy is closely tied to source coding.  The extent to which a
+      source can be compressed is related to its entropy.
+      There are many interpretations possible for the entropy of
+      a random variable, including
+      <list id="l2">
+	<item>(Average)Self information in a random variable</item>
+	<item>Minimum number of bits per <emphasis>source symbol</emphasis> 
+	  required to describe the random variable without loss</item>
+	<item>Description complexity</item>
+	<item>Measure of uncertainty in a random variable</item>
+      </list>
+    </para>
+    </section>
+
+      <section id="s3">
+      <title>References</title>
+      <list id="l1">
+	<item>Øien, G.E. and Lundheim,L. (2003) 
+	  <emphasis>Information Theory, Coding and Compression</emphasis>,
+	  Trondheim: Tapir Akademisk forlag.
+	</item>
+      </list>
+
+      </section>
+  </content>
+
+</document>

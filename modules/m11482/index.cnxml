@@ -1,0 +1,370 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml">
+  <title>Exercises</title>
+  <metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>0b6e439c-c6e9-438e-bad2-2c79f7581014</md:uuid>
+</metadata>
+<content>
+    <para id="s0p1">Problems related to the <link document="m11479">Signals chapter.</link></para>
+	<exercise id="exe1">
+	    <problem id="idp797808">
+		<para id="exe1p1">Find the digital frequency of
+		    <m:math>
+		        <m:apply>
+			    <m:eq/>
+			    <m:apply>
+			        <m:ci>x</m:ci>
+				<m:ci>n</m:ci>
+			    </m:apply>
+			    <m:apply>
+			        <m:cos/>
+				<m:apply>
+				    <m:times/>
+				    <m:cn>2</m:cn>
+				    <m:pi/>
+				    <m:apply>
+				        <m:root/>
+					<m:cn>3</m:cn>
+				    </m:apply>
+				    <m:ci>n</m:ci>
+				</m:apply>
+			    </m:apply>
+			</m:apply>
+		    </m:math>. Is the signal periodic?
+		    If so, find the shortest possible period.
+		</para>
+	    </problem>
+	    <solution id="idm6042496">
+		<para id="exe1s1">
+		    Write
+		    <m:math>
+			 <m:apply>
+			     <m:cos/>
+			     <m:apply>
+				    <m:times/>
+				    <m:cn>2</m:cn>
+				    <m:pi/>
+				    <m:apply>
+				        <m:root/>
+					<m:cn>3</m:cn>
+				    </m:apply>
+				    <m:ci>n</m:ci>
+				</m:apply>
+			    </m:apply>
+		    </m:math> as
+		    <m:math>
+			    <m:apply>
+			        <m:cos/>
+				<m:apply>
+				    <m:times/>
+				    <m:cn>2</m:cn>
+				    <m:pi/>
+				    <m:ci>f</m:ci>
+				    <m:ci>n</m:ci>
+				</m:apply>
+			    </m:apply>
+		    </m:math>, where <m:math><m:ci>f</m:ci></m:math> is the digital frequency.
+		    We see that the digital frequency is
+		    <m:math>
+			<m:apply>
+			    <m:root/>
+			    <m:cn>3</m:cn>
+			</m:apply>
+		    </m:math>. For a trigonometric signal to be periodic the
+		    digital frequency has to be a rational number, i.e
+		    <m:math>
+			<m:apply>
+			    <m:eq/>
+			    <m:ci>f</m:ci>
+			    <m:apply>
+				<m:divide/>
+				<m:ci>m</m:ci>
+				<m:ci>N</m:ci>
+			    </m:apply>
+			</m:apply>
+		     </m:math>, where both m,N are integers. N is the signal period.
+		Here the digital frequency is not a rational number,
+		hence the signal is not periodic.
+		</para>
+	    </solution>
+	</exercise> <!--End exercise 1-->
+	
+	<exercise id="exe2">
+	    <problem id="idp2537328">
+		<para id="exe2p1">
+		    Find the digital frequency of
+		    <m:math>
+		        <m:apply>
+			    <m:eq/>
+			    <m:apply>
+			        <m:ci>x</m:ci>
+				<m:ci>n</m:ci>
+			    </m:apply>
+			    <m:apply>
+			        <m:cos/>
+				<m:apply>
+				    <m:times/>
+				    <m:cn>2</m:cn>
+				    <m:pi/>
+				    <m:apply>
+				        <m:root/>
+					<m:cn>4</m:cn>
+				    </m:apply>
+				    <m:ci>n</m:ci>
+				</m:apply>
+			    </m:apply>
+			</m:apply>
+		    </m:math>. Is the signal periodic?
+		    If so, find the shortest possible period.
+		</para>
+	    </problem>
+	    <solution id="idp2745520">
+		<para id="exe2s1">
+		    Write
+		    <m:math>
+			 <m:apply>
+			     <m:cos/>
+			     <m:apply>
+				    <m:times/>
+				    <m:cn>2</m:cn>
+				    <m:pi/>
+				    <m:apply>
+				        <m:root/>
+					<m:cn>4</m:cn>
+				    </m:apply>
+				    <m:ci>n</m:ci>
+				</m:apply>
+			    </m:apply>
+		    </m:math> as
+		    <m:math>
+			    <m:apply>
+			        <m:cos/>
+				<m:apply>
+				    <m:times/>
+				    <m:cn>2</m:cn>
+				    <m:pi/>
+				    <m:ci>f</m:ci>
+				    <m:ci>n</m:ci>
+				</m:apply>
+			    </m:apply>
+		    </m:math>, where <m:math><m:ci>f</m:ci></m:math> is the digital frequency.
+		    We see that the digital frequency is
+		    <m:math>
+			<m:apply>
+			    <m:eq/>
+			    <m:apply>
+			        <m:root/>
+			        <m:cn>4</m:cn>
+			    </m:apply>
+			    <m:cn>2</m:cn>
+			</m:apply>
+		    </m:math>. 
+		    For a trigonometric signal to be periodic the
+		    digital frequency has to be a rational number, i.e
+		    <m:math>
+			<m:apply>
+			    <m:eq/>
+			    <m:ci>f</m:ci>
+			    <m:apply>
+				<m:divide/>
+				<m:ci>m</m:ci>
+				<m:ci>N</m:ci>
+			    </m:apply>
+			</m:apply>
+		     </m:math>, where both m,N are integers. N is the signal period.
+		    In this case the digital frequency is a rational number,
+		    <m:math>
+			<m:apply>
+			    <m:eq/>
+			    <m:ci>f</m:ci>
+			    <m:apply>
+			        <m:divide/>
+				<m:cn>2</m:cn>
+				<m:cn>1</m:cn>
+			    </m:apply>
+			</m:apply>
+		    </m:math>,
+		    hence the signal is periodic. The period, N, is
+		    given by
+		    <m:math>
+			<m:apply>
+			    <m:eq/>
+			    <m:ci>N</m:ci>
+			    <m:apply>
+				<m:eq/>
+				<m:apply>
+			            <m:divide/>
+				    <m:ci>m</m:ci>
+				    <m:ci>f</m:ci>
+				</m:apply>
+				<m:apply>
+			            <m:divide/>
+				    <m:ci>m</m:ci>
+				    <m:cn>2</m:cn>
+				</m:apply>
+			    </m:apply>
+			</m:apply>
+		    </m:math>. Since N has to be an integer, we obtain
+		    the shortest possible period letting
+		     <m:math>
+			<m:apply>
+			    <m:eq/>
+			    <m:ci>m</m:ci>
+			    <m:cn>2</m:cn>
+			</m:apply>
+		     </m:math>, which yields
+		      <m:math>
+			<m:apply>
+			    <m:eq/>
+			    <m:ci>N</m:ci>
+			    <m:cn>1</m:cn>
+			</m:apply>
+		     </m:math>.
+		</para>
+	    </solution>
+	</exercise> <!--End exercise 2-->
+
+	<exercise id="exe3">
+	    <problem id="idm5715200">
+		<para id="exe3p1">
+		    Find the digital frequency of
+		    <m:math>
+		        <m:apply>
+			    <m:eq/>
+			    <m:apply>
+			        <m:ci>x</m:ci>
+				<m:ci>n</m:ci>
+			    </m:apply>
+			    <m:apply>
+			        <m:sin/>
+				<m:apply>
+				    <m:times/>
+				    <m:cn>2</m:cn>
+				    <m:pi/>
+				    <m:cn>1.5</m:cn>
+				    <m:ci>n</m:ci>
+				</m:apply>
+			    </m:apply>
+			</m:apply>
+		    </m:math>. Is the signal periodic?
+		    If so, find the shortest possible period.
+		</para>
+	    </problem>
+
+	    <solution id="idp1874528">
+		<para id="exe3s1">
+		    Write
+		    <m:math>
+			 <m:apply>
+			     <m:sin/>
+			     <m:apply>
+				    <m:times/>
+				    <m:cn>2</m:cn>
+				    <m:pi/>
+				    <m:cn>1.5</m:cn>
+				    <m:ci>n</m:ci>
+				</m:apply>
+			    </m:apply>
+		    </m:math> as
+		    <m:math>
+			    <m:apply>
+			        <m:sin/>
+				<m:apply>
+				    <m:times/>
+				    <m:cn>2</m:cn>
+				    <m:pi/>
+				    <m:ci>f</m:ci>
+				    <m:ci>n</m:ci>
+				</m:apply>
+			    </m:apply>
+		    </m:math>, where <m:math><m:ci>f</m:ci></m:math> is the digital frequency.
+		    We see that the digital frequency is 1.5.
+		    The digital frequency is a rational number(3/2),
+		    hence the signal is periodic.
+
+		    The period, N, is given by
+		    <m:math>
+			<m:apply>
+			    <m:eq/>
+			    <m:ci>N</m:ci>
+			    <m:apply>
+				<m:eq/>
+				<m:apply>
+			            <m:divide/>
+				    <m:ci>m</m:ci>
+				    <m:ci>f</m:ci>
+				</m:apply>
+				<m:apply>
+			            <m:divide/>
+				    <m:apply>
+					<m:times/>
+					<m:cn>2</m:cn>
+				    	<m:ci>m</m:ci>
+				    </m:apply>
+				    <m:cn>3</m:cn>
+				</m:apply>
+			    </m:apply>
+			</m:apply>
+		    </m:math>. Since N has to be an integer, we obtain
+		    the shortest possible period letting
+		     <m:math>
+			<m:apply>
+			    <m:eq/>
+			    <m:ci>m</m:ci>
+			    <m:cn>3</m:cn>
+			</m:apply>
+		     </m:math>, which yields
+		      <m:math>
+			<m:apply>
+			    <m:eq/>
+			    <m:ci>N</m:ci>
+			    <m:cn>2</m:cn>
+			</m:apply>
+		     </m:math>.		
+
+		</para>
+	    </solution>
+	</exercise> <!--End exercise 3-->
+
+	<exercise id="exe4">
+	    <problem id="idp2360800">
+		<para id="exe4p1">
+		    Referring to <link document="m11526" target-id="exa2">example 2</link> find the analog
+		    and digital frequency of
+		    <m:math>
+			<m:apply>
+			    <m:ci><m:msub><m:mi>x</m:mi><m:mn>1</m:mn></m:msub></m:ci>
+			    <m:ci>t</m:ci>
+			</m:apply>
+		    </m:math> and
+		    <m:math>
+			<m:apply>
+			    <m:ci><m:msub><m:mi>x</m:mi><m:mn>2</m:mn></m:msub></m:ci>
+			    <m:ci>n</m:ci>
+			</m:apply>
+		    </m:math> respectively.
+
+		</para>
+	    </problem>
+	    <solution id="idm6656832">
+		<para id="exe4s1">
+		    Using the same reasoning as above we easily see
+                    that the analog sine has frequency 1, while the discrete
+                    time sine has digital frequency 1/20.
+		</para>
+	    </solution>
+	</exercise><!--End exercise 4-->
+
+  <!-- <section id="s2">
+            <list id="l1" type="inline">
+		  <item><cnxn document='m11479'>Introduction</cnxn></item>
+		  <item><cnxn document='m11476'>Discrete time signals</cnxn></item>
+		  <item><cnxn document='m11478'>Analog signals</cnxn></item>
+                  <item><cnxn document='m11527'>Discrete vs Analog signals</cnxn></item>
+                  <item><cnxn document='m11526'>Energy &amp; Power</cnxn></item>
+                  <item><cnxn document='m11477'>Frequency definitions &amp; periodicity</cnxn></item>
+	   </list>
+    </section>-->
+    	
+  </content>
+
+  
+</document>

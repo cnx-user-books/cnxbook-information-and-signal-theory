@@ -1,0 +1,1035 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml">
+  <title>Frequency response from a circuit diagram</title>
+  <metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>13ad84ca-978d-4f25-9792-4ef2c5546b46</md:uuid>
+</metadata>
+<content>
+<para id="para1">In this module we calculate the <term>frequency response</term> from a circuit diagram of a simple analog filter, as shown in
+<link target-id="rc"/>. We know that the frequency response, denoted by 
+      <m:math>
+	<m:fn>
+	  <m:apply>
+	    <m:ci type="fn">H</m:ci>
+	    <m:apply>
+	      <m:imaginaryi/>
+	      <m:ci>Ω</m:ci>
+	    </m:apply>
+	  </m:apply>
+	</m:fn>
+      </m:math>, is calculated as ratio of the output and input voltages (in the frequency domain). That is,
+   <equation id="eqRatio">
+	<m:math>
+	  <m:apply>
+	    <m:eq/>
+	    <m:apply>
+	      <m:divide/>
+	      <m:ci>
+		<m:msub>
+		  <m:mi>V</m:mi>
+		  <m:mi>out</m:mi>
+		</m:msub>
+	      </m:ci>
+	      <m:ci>
+		<m:msub>
+		  <m:mi>V</m:mi>
+		  <m:mi>in</m:mi>
+		</m:msub>
+	      </m:ci>
+	    </m:apply>
+	    <m:apply>
+	      <m:ci type="fn">H</m:ci>
+	      <m:apply>
+		<m:times/>
+		<m:imaginaryi/>
+		<m:ci>Ω</m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+      </equation>
+      Notice that we use capital letters in these relations. This is to indicate that they are frequency domain descriptions.
+    </para>
+    <para id="paraCalc">
+      Now, to calculate the frequency response we find expressions for 
+      <m:math>
+	<m:ci>
+	  <m:msub>
+	    <m:mi>V</m:mi>
+	    <m:mi>in</m:mi>
+	  </m:msub>	
+	</m:ci>
+      </m:math>, and
+      <m:math>
+	<m:ci>
+	  <m:msub>
+	    <m:mi>V</m:mi>
+	    <m:mi>out</m:mi>
+	  </m:msub>	
+	</m:ci>
+      </m:math>, as follows
+      <equation id="eqVin">
+	<m:math>
+	  <m:apply>
+	    <m:eq/>
+	    <m:ci>
+	      <m:msub>
+		<m:mi>V</m:mi>
+		<m:mi>in</m:mi>
+	      </m:msub>
+	    </m:ci>
+	    <m:apply>
+	      <m:plus/>
+	      <m:apply>
+		<m:times/>
+		  <m:mi>I</m:mi>
+		<m:ci>R</m:ci>
+	      </m:apply>
+	      <m:ci>
+		<m:msub>
+		  <m:mi>V</m:mi>
+		  <m:mi>out</m:mi>
+		</m:msub>
+	      </m:ci>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+      </equation>
+      Further, the current in the circuit can be expressed as
+      <equation id="eqCurrent">
+	<m:math>
+	  <m:apply>
+	    <m:eq/>
+	      <m:ci>I</m:ci>
+	    <m:apply>
+	      <m:times/>
+	      <m:imaginaryi/>
+	      <m:ci>C</m:ci>
+	      <m:ci>Ω</m:ci>
+	      <m:ci>
+		<m:msub>
+		  <m:mi>V</m:mi>
+		  <m:mi>out</m:mi>
+		</m:msub>
+	      </m:ci>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+      </equation>
+      Then, the frequency response is given as:
+
+
+
+      <equation id="eqX">
+	<m:math>
+	  <m:apply>
+	    <m:eq/>
+	    <m:apply>
+	      <m:divide/>
+	      <m:ci>
+		<m:msub>
+		  <m:mi>V</m:mi>
+		  <m:mi>out</m:mi>
+		</m:msub>
+	      </m:ci>
+	      <m:ci>
+		<m:msub>
+		  <m:mi>V</m:mi>
+		  <m:mi>in</m:mi>
+		</m:msub>
+	      </m:ci>
+	    </m:apply>
+	    <m:apply>
+	      <m:ci type="fn">H</m:ci>
+	      <m:apply>
+		<m:times/>
+		<m:imaginaryi/>
+		<m:ci>Ω</m:ci>
+	      </m:apply>
+	    </m:apply>
+	    <m:apply>
+	      <m:divide/>
+	      <m:cn>1</m:cn>
+	      <m:apply>
+		<m:plus/>
+		<m:apply>
+		  <m:times/>
+		  <m:imaginaryi/>
+		  <m:ci>Ω</m:ci>
+		  <m:ci>R</m:ci>
+		  <m:ci>C</m:ci>
+		</m:apply>
+		<m:cn>1</m:cn>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+      </equation>
+    Note that above we have used <term>impedance</term> considerations. Have a look at <link document="m0024">The Impedance concept</link> and <link document="m0025">Impedance</link> for a quick summary of impedance considerations.
+    </para>
+
+
+
+    <para id="paraImplicit">
+      
+      Implicit in using the transfer function is that the input is a complex exponential, and the output is also a complex
+      exponential having the same frequency. The transfer function reveals how the circuit modifies the input amplitude in creating
+      the output amplitude. Thus, the transfer function <emphasis>completely</emphasis> describes how the circuit
+      processes the input complex exponential to produce the output complex exponential. The circuit's function is thus summarized
+      by the transfer function. In fact, circuits are often designed to meet transfer function specifications. Because transfer
+      functions are complex-valued, frequency-dependent quantities, we can better appreciate a circuit's function by examining the
+      magnitude and phase of its transfer function (<link target-id="magphase" strength="2"/>). Note that in <link target-id="magphase"/> we plot the magnitude
+      phase as a function of the frequency <m:math><m:ci>F</m:ci></m:math>, instead of the angular frequency <m:math><m:ci>Ω</m:ci></m:math>. Since
+      <m:math>
+	<m:apply>
+	  <m:eq/>
+	  <m:ci>Ω</m:ci>
+	  <m:apply>
+	    <m:times/>
+	    <m:cn>2</m:cn>
+	    <m:pi/>
+	    <m:ci>F</m:ci>
+	  </m:apply>
+	</m:apply>
+      </m:math>,
+this is just a matter of taste, see <link document="m11477">Frequency definitions and peridocity</link> for details.
+    </para>
+
+    <figure id="rc">
+      <title>Simple Circuit</title>
+      <media id="idp1178752" alt=""><image src="../../media/circuit5.png" mime-type="image/png"/></media>
+      <caption>
+	A simple   
+	<m:math>
+	  <m:ci>R</m:ci>
+	  <m:ci>C</m:ci>
+	</m:math>
+	circuit.
+      </caption>
+    </figure>
+
+    <figure id="magphase" orient="vertical">
+      <title>Magnitude and phase of the transfer function</title>
+      <subfigure id="idm7496128">
+	<media id="idp6042016" alt=""><image src="../../media/Hmagrc.png" mime-type="image/png"/></media>
+	<caption>
+	  <m:math>
+	    <m:apply>
+	      <m:eq/>
+	      <m:apply>
+		<m:abs/>
+		<m:apply>
+		  <m:ci type="fn">H</m:ci>
+		  <m:apply>
+		    <m:times/>
+		    <m:imaginaryi/>
+		    <m:ci>F</m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	      <m:apply>
+		<m:divide/>
+		<m:cn>1</m:cn>
+		<m:apply>
+		  <m:root/>
+		  <m:apply>
+		    <m:plus/>
+		    <m:apply>
+		      <m:power/>
+		      <m:apply>
+			<m:times/>
+			<m:cn>2</m:cn>
+			<m:pi/>
+			<m:ci>F</m:ci>
+			<m:ci>R</m:ci>
+			<m:ci>C</m:ci>
+		      </m:apply>
+		      <m:cn>2</m:cn>
+		    </m:apply>
+		    <m:cn>1</m:cn>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>
+	</caption>
+      </subfigure>
+      <subfigure id="idp947712">
+	<media id="idp947968" alt=""><image src="../../media/Hangrc.png" mime-type="image/png"/></media>
+	<caption>
+	  <m:math>
+	    <m:apply>
+	      <m:eq/>
+	      <m:apply>
+		<m:arg/>
+		<m:apply>
+		  <m:ci type="fn">H</m:ci>
+		  <m:apply>
+		    <m:times/>
+		    <m:imaginaryi/>
+		  <m:ci>F</m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	      <m:apply>
+		<m:minus/>
+		<m:apply>
+		  <m:arctan/>
+		  <m:apply>
+		    <m:times/>
+		    <m:cn>2</m:cn>
+		    <m:pi/>
+		    <m:ci>F</m:ci>
+		    <m:ci>R</m:ci>
+		    <m:ci>C</m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>
+	</caption>
+      </subfigure>
+      <caption>
+	Magnitude and phase of the transfer function of the RC circuit
+	shown in <link target-id="rc" strength="2"/> when
+	<m:math>
+	  <m:apply>
+	    <m:eq/>
+	    <m:apply>
+	      <m:times/>
+	      <m:ci>R</m:ci>
+	      <m:ci>C</m:ci>
+	    </m:apply>
+	    <m:cn>1</m:cn>
+	  </m:apply>
+	</m:math>.
+      </caption>
+    </figure>
+
+    <para id="para2">
+      Several things to note about this transfer function.
+    </para>
+
+    <para id="para3">
+      We can compute the frequency response for both positive and
+      negative frequencies.  Recall that sinusoids consist of the sum
+      of two complex exponentials, one having the negative frequency
+      of the other. We will consider how the circuit acts on a
+      sinusoid soon.  Do note that the magnitude has <emphasis>even
+	symmetry</emphasis>: The negative frequency portion is a mirror
+      image of the positive frequency portion:
+      <m:math>
+	<m:apply>
+	  <m:eq/>
+	  <m:apply>
+	    <m:abs/>
+	    <m:apply>
+	      <m:ci type="fn">H</m:ci>
+	      <m:apply>
+		<m:minus/>
+		<m:apply>
+		  <m:times/>
+		  <m:imaginaryi/>
+		  <m:ci>F</m:ci>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	  <m:apply>
+	    <m:abs/>
+	    <m:apply>
+	      <m:ci type="fn">H</m:ci>
+	      <m:apply>
+		<m:times/>
+		<m:imaginaryi/>
+		<m:ci>F</m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:apply>
+      </m:math>.  
+      The phase has <emphasis>odd symmetry</emphasis>: 
+      <m:math>
+	<m:apply>
+	  <m:eq/>
+	  <m:apply>
+	    <m:arg/>
+	    <m:apply>
+	      <m:ci type="fn">H</m:ci>
+	      <m:apply>
+		<m:minus/>
+		<m:apply>
+		  <m:times/>
+		  <m:imaginaryi/>
+		  <m:ci>F</m:ci>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	  <m:apply>
+	    <m:minus/>
+	    <m:apply>
+	      <m:arg/>
+	      <m:apply>
+		<m:ci type="fn">H</m:ci>		
+		<m:apply>
+		  <m:times/>
+		  <m:imaginaryi/>
+		  <m:ci>F</m:ci>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:apply>
+      </m:math>.  These properties of this specific example apply for
+      <emphasis>all</emphasis> transfer functions associated with
+      circuits.  Consequently, we don't need to plot the negative
+      frequency component; we know what it is from the positive
+      frequency part.
+    </para>
+
+    <para id="para4"> 
+      The magnitude equals   
+      <m:math>
+	<m:apply>
+	  <m:divide/>
+	  <m:cn>1</m:cn>
+	  <m:apply>
+	    <m:root/>
+	    <m:cn>2</m:cn>
+	  </m:apply>
+	</m:apply>
+      </m:math> 
+      of its maximum gain (1 at 
+      <m:math>
+	<m:apply>
+	  <m:eq/>
+	  <m:ci>F</m:ci>
+	  <m:cn>0</m:cn>
+	</m:apply>
+      </m:math>)
+      when
+      <m:math>
+	<m:apply>
+	  <m:eq/>
+	  <m:apply>
+	    <m:times/>
+	    <m:cn>2</m:cn>
+	    <m:pi/>
+	    <m:ci>F</m:ci>
+	    <m:ci>R</m:ci>
+	    <m:ci>C</m:ci>
+	  </m:apply>
+	  <m:cn>1</m:cn>
+	</m:apply>
+      </m:math>
+      (the two terms in the denominator of the magnitude are
+      equal). The frequency  
+      <m:math>
+	<m:apply>
+	  <m:eq/>
+	  <m:ci>
+	    <m:msub>
+	      <m:mi>F</m:mi>
+	      <m:mi>c</m:mi>
+	    </m:msub>
+	  </m:ci>
+	  <m:apply>
+	    <m:divide/>
+	    <m:cn>1</m:cn>
+	    <m:apply>
+	      <m:times/>
+	      <m:cn>2</m:cn>
+	      <m:pi/>
+	      <m:ci>R</m:ci>
+	      <m:ci>C</m:ci>
+	    </m:apply>
+	  </m:apply>
+	</m:apply>
+      </m:math>
+      defines the boundary between two operating ranges.
+    
+      <list id="list1">
+	<item> For frequencies below this frequency, the circuit does
+	  not much alter the amplitude of the complex exponential
+	  source.
+	</item>      
+	<item> For frequencies greater than 
+	  <m:math>
+	    <m:ci>
+	      <m:msub>
+		<m:mi>F</m:mi>
+		<m:mi>c</m:mi>
+	      </m:msub>
+	    </m:ci>
+	  </m:math>, the circuit strongly attenuates the amplitude.
+	  Thus, when the source frequency is in this range, the
+	  circuit's output has a much smaller amplitude than that of
+	  the source.
+	</item>
+      </list>
+    
+      For these reasons, this frequency is known as the <term>cutoff
+      frequency</term>.  In this circuit the cutoff frequency depends
+      <emphasis>only</emphasis> on the product of the resistance and
+      the capacitance. Thus, a cutoff frequency of 1 kHz occurs when
+      <m:math>
+	<m:apply>
+	  <m:eq/>
+	  <m:apply>
+	    <m:divide/>
+	    <m:cn>1</m:cn>
+	    <m:apply>
+	      <m:times/>
+	      <m:cn>2</m:cn>
+	      <m:pi/>
+	      <m:ci>R</m:ci>
+	      <m:ci>C</m:ci>
+	    </m:apply>
+	  </m:apply>
+	  <m:apply>
+	    <m:power/>
+	    <m:cn>10</m:cn>
+	    <m:cn>3</m:cn>
+	  </m:apply>
+	</m:apply>
+      </m:math> 
+      or
+      <m:math>
+	<m:apply>
+	  <m:eq/>
+	  <m:apply>
+	    <m:times/>
+	    <m:ci>R</m:ci>
+	    <m:ci>C</m:ci>
+	  </m:apply>
+	  <m:apply>
+	    <m:divide/>
+	    <m:apply>
+	      <m:power/>
+	      <m:cn>10</m:cn>
+	      <m:apply>
+		<m:minus/>
+		<m:cn>3</m:cn>
+	      </m:apply>
+	    </m:apply>
+	    <m:apply>
+	      <m:times/>
+	      <m:cn>2</m:cn>
+	      <m:pi/>
+	    </m:apply>
+	  </m:apply>
+	  <m:cn type="e-notation">1.59<m:sep/>-4</m:cn>
+	</m:apply>
+      </m:math>.  Thus resistance-capacitance combinations of 1.59
+      kΩ and 100 nF or 10 Ω and 1.59 μF result in the
+      <emphasis>same</emphasis> cutoff frequency.
+    </para>
+
+    <para id="para7"> 
+      The phase shift caused by the circuit at the cutoff frequency
+      precisely equals
+      <m:math>
+	<m:apply>
+	  <m:minus/>
+	  <m:apply>
+	    <m:divide/>
+	    <m:pi/>
+	    <m:cn>4</m:cn>
+	  </m:apply>
+	</m:apply>
+      </m:math>.
+      Thus, below the cutoff frequency, phase is little affected, but at
+      higher frequencies, the phase shift caused by the circuit becomes
+      <m:math>
+	<m:apply>
+	  <m:minus/>
+	  <m:apply>
+	    <m:divide/>
+	    <m:pi/>
+	    <m:cn>2</m:cn>
+	  </m:apply>
+	</m:apply>
+      </m:math>.  This phase shift corresponds to the difference
+      between a cosine and a sine.
+    </para>
+    
+    <!-- para 8 used to be here, it has been moved to the end -->
+
+    <para id="para1lit1"> 
+      We can use the transfer function to find the output when the
+      input voltage is a sinusoid for two reasons.  First of all, a
+      sinusoid is the sum of two complex exponentials, each having a
+      frequency equal to the negative of the other. Secondly, because
+      the circuit is linear, superposition applies.  If the source is
+      a sine wave, we know that
+
+      <equation id="eq1lit1"> 
+	<m:math>
+	  <m:apply>
+	    <m:eq/>
+	    <m:apply>
+	      <m:ci type="fn">
+		<m:msub>
+		  <m:mi>v</m:mi>
+		  <m:mi>in</m:mi>
+		</m:msub>
+	      </m:ci>
+	      <m:ci>t</m:ci>
+	    </m:apply>
+	    <m:apply>
+	      <m:times/>
+	      <m:ci>A</m:ci>
+	      <m:apply>
+		<m:sin/>
+		<m:apply>
+		  <m:times/>
+<!--		  <m:cn>2</m:cn>
+		  <m:pi/>-->
+		  <m:ci>Ω</m:ci>
+		  <m:ci>t</m:ci>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	    <m:apply>
+	      <m:times/>
+	      <m:apply>
+		<m:divide/>
+		<m:ci>A</m:ci>
+		<m:apply>
+		  <m:times/>
+		  <m:cn>2</m:cn>
+		  <m:imaginaryi/>
+		</m:apply>
+	      </m:apply>
+	      <m:apply>
+		<m:minus/>
+		<m:apply>
+		  <m:exp/>
+		  <m:apply>
+		    <m:times/>
+		    <m:imaginaryi/>
+<!--		    <m:cn>2</m:cn>
+		    <m:pi/>-->
+		    <m:ci>Ω</m:ci>
+		    <m:ci>t</m:ci>
+		  </m:apply>
+		</m:apply>
+		<m:apply>
+		  <m:exp/>
+		  <m:apply>
+		    <m:minus/>
+		    <m:apply>
+		      <m:times/>
+		      <m:imaginaryi/>
+<!--		      <m:cn>2</m:cn>
+		      <m:pi/>-->
+		      <m:ci>Ω</m:ci>
+		      <m:ci>t</m:ci>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:math>
+      </equation>
+
+      Since the input is the sum of two complex exponentials, we know
+      that the output is also a sum of two similar complex
+      exponentials, the only difference being that the complex
+      amplitude of each is multiplied by the transfer function
+      evaluated at each exponential's frequency.
+
+      <equation id="eq2"> 
+	<m:math>
+	  <m:apply>
+	    <m:eq/>
+	    <m:apply>
+	      <m:ci type="fn">
+		<m:msub>
+		  <m:mi>v</m:mi>
+		  <m:mi>out</m:mi>
+		</m:msub>
+	      </m:ci>
+	      <m:ci>t</m:ci>
+	    </m:apply>
+	    <m:apply>
+	      <m:minus/>
+	      <m:apply>
+		<m:times/>
+		<m:apply>
+		  <m:divide/>
+		  <m:ci>A</m:ci>
+		  <m:apply>
+		    <m:times/>
+		    <m:cn>2</m:cn>
+		    <m:imaginaryi/>
+		  </m:apply>
+		</m:apply>
+		<m:apply>
+		  <m:ci type="fn">H</m:ci>
+		  <m:apply>
+		    <m:times/>
+		    <m:imaginaryi/>
+		    <m:ci>Ω</m:ci>
+		  </m:apply>
+		</m:apply>
+		<m:apply>
+		  <m:exp/>
+		  <m:apply>
+		    <m:times/>
+		    <m:imaginaryi/>
+<!--		    <m:cn>2</m:cn>
+		    <m:pi/>-->
+		    <m:ci>Ω</m:ci>
+		    <m:ci>t</m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	      <m:apply>
+		<m:times/>
+		<m:apply>
+		  <m:divide/>
+		  <m:ci>A</m:ci>
+		  <m:apply>
+		    <m:times/>
+		    <m:cn>2</m:cn>
+		    <m:imaginaryi/>
+		  </m:apply>
+		</m:apply>
+		<m:apply>
+		  <m:ci type="fn">H</m:ci>
+		  <m:apply>
+		    <m:minus/>
+		    <m:apply>
+		      <m:times/>
+		      <m:imaginaryi/>
+		      <m:ci>Ω</m:ci>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+		<m:apply>
+		  <m:exp/>
+		  <m:apply>
+		    <m:minus/>
+		    <m:apply>
+		      <m:times/>
+		      <m:imaginaryi/>
+<!--		      <m:cn>2</m:cn>
+		      <m:pi/>-->
+		      <m:ci>Ω</m:ci>
+		      <m:ci>t</m:ci>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>			
+	  </m:apply>
+	</m:math>
+      </equation>
+
+      As noted earlier, the transfer function is most conveniently
+      expressed in polar form:
+      <m:math>
+	<m:apply>
+	  <m:eq/>
+	  <m:apply>
+	    <m:ci type="fn">H</m:ci>
+	    <m:apply>
+	      <m:times/>
+	      <m:imaginaryi/>
+	      <m:ci>Ω</m:ci>
+	    </m:apply>
+	  </m:apply>
+	  <m:apply>
+	    <m:times/>
+	    <m:apply>
+	      <m:abs/>
+	      <m:apply>
+		<m:ci type="fn">H</m:ci>
+		<m:apply>
+		  <m:times/>
+		  <m:imaginaryi/>
+		  <m:ci>Ω</m:ci>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	    <m:apply>
+	      <m:exp/>
+	      <m:apply>
+		<m:times/>
+		<m:imaginaryi/>
+		<m:apply>
+		  <m:arg/>
+		  <m:apply>
+		    <m:ci type="fn">H</m:ci>
+		    <m:apply>
+		      <m:times/>
+		      <m:imaginaryi/>
+		      <m:ci>Ω</m:ci>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:apply>
+      </m:math>. 
+      Furthermore, 
+      <m:math>
+	<m:apply>
+	  <m:eq/>
+	  <m:apply>
+	    <m:abs/>
+	    <m:apply>
+	      <m:ci type="fn">H</m:ci>
+	      <m:apply>
+		<m:minus/>
+		<m:apply>
+		  <m:times/>
+		  <m:imaginaryi/>
+		  <m:ci>Ω</m:ci>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>	  
+	  <m:apply>
+	    <m:abs/>
+	    <m:apply>
+	      <m:ci type="fn">H</m:ci>
+	      <m:apply>
+		<m:times/>
+		<m:imaginaryi/>
+		<m:ci>Ω</m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:apply>
+      </m:math> 
+      (even symmetry of the magnitude) and 
+      <m:math>
+	<m:apply>
+	  <m:eq/>
+	  <m:apply>
+	    <m:arg/>
+	    <m:apply>
+	      <m:ci type="fn">H</m:ci>
+	      <m:apply>
+		<m:minus/>
+		<m:apply>
+		  <m:times/>
+		  <m:imaginaryi/>
+		  <m:ci>Ω</m:ci>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	  <m:apply>
+	    <m:minus/>
+	    <m:apply>
+	      <m:arg/>
+	      <m:apply>
+		<m:ci type="fn">H</m:ci>
+		<m:apply>
+		  <m:times/>
+		  <m:imaginaryi/>
+		  <m:ci>Ω</m:ci>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:apply>
+      </m:math>       
+      (odd symmetry of the phase). The output voltage expression
+      simplifies to
+
+      <equation id="eq3">
+	<m:math>
+	  <m:apply>
+	    <m:eq/>
+	    <m:apply>
+	      <m:ci type="fn">
+		<m:msub>
+		  <m:mi>v</m:mi>
+		  <m:mi>out</m:mi>
+		</m:msub>
+	      </m:ci>
+	      <m:ci>t</m:ci>
+	    </m:apply>
+	    <m:apply>
+	      <m:times/>
+	      <m:ci>A</m:ci>
+	      <m:apply>
+		<m:abs/>
+		<m:apply>
+		  <m:ci type="fn">H</m:ci>
+		  <m:apply>
+		    <m:times/>
+		    <m:imaginaryi/>
+		    <m:ci>Ω</m:ci>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	      <m:apply>
+		<m:sin/>
+		<m:apply>
+		  <m:plus/>
+		  <m:apply>
+		    <m:times/>
+		  <!--  <m:cn>2</m:cn>
+		    <m:pi/>-->
+		    <m:ci>Ω</m:ci>
+		    <m:ci>t</m:ci>
+		  </m:apply>
+		  <m:apply>
+		    <m:arg/>
+		    <m:apply>
+		      <m:ci type="fn">H</m:ci>
+		      <m:apply>
+			<m:times/>
+			<m:imaginaryi/>
+			<m:ci>Ω</m:ci>
+		      </m:apply>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>
+	    <m:apply>
+	      <m:minus/>
+	      <m:apply>
+		<m:times/>
+		<m:apply>
+		  <m:divide/>
+		  <m:ci>A</m:ci>
+		  <m:apply>
+		    <m:times/>
+		    <m:cn>2</m:cn>
+		    <m:imaginaryi/>
+		  </m:apply>
+		</m:apply>
+		<m:apply>
+		  <m:abs/>
+		  <m:apply>
+		    <m:ci type="fn">H</m:ci>
+		    <m:apply>
+		      <m:imaginaryi/>
+		      <m:ci>Ω</m:ci>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+		<m:apply>
+		  <m:exp/>
+		  <m:apply>
+		    <m:plus/>
+		    <m:apply>
+		      <m:times/>
+		      <m:imaginaryi/>
+<!--		      <m:cn>2</m:cn>
+		      <m:pi/>-->
+		      <m:ci>Ω</m:ci>
+		      <m:ci>t</m:ci>
+		    </m:apply>
+		    <m:apply>
+		      <m:arg/>
+		      <m:apply>
+			<m:ci type="fn">H</m:ci>
+			<m:apply>
+			  <m:times/>
+			  <m:imaginaryi/>
+			<m:ci>Ω</m:ci>
+			</m:apply>
+		      </m:apply>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>	      
+	      <m:apply>
+		<m:times/>
+		<m:apply>
+		  <m:divide/>
+		  <m:ci>A</m:ci>
+		  <m:apply>
+		    <m:times/>
+		    <m:cn>2</m:cn>
+		    <m:imaginaryi/>
+		  </m:apply>
+		</m:apply>
+		<m:apply>
+		  <m:abs/>
+		  <m:apply>
+		    <m:ci type="fn">H</m:ci>
+		    <m:apply>
+		      <m:times/>
+		      <m:imaginaryi/>
+		    <m:ci>Ω</m:ci>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+		<m:apply>
+		  <m:exp/>
+		  <m:apply>
+		    <m:minus/>
+		    <m:apply>
+		      <m:minus/>
+		      <m:apply>
+			<m:times/>
+			<m:imaginaryi/>
+<!--			<m:cn>2</m:cn>
+			<m:pi/>-->
+			<m:ci>Ω</m:ci>
+			<m:ci>t</m:ci>
+		      </m:apply>	
+		    </m:apply>
+		    <m:apply>
+	      <m:arg/>
+		      <m:apply>
+			<m:ci type="fn">H</m:ci>
+			<m:apply>
+			  <m:times/>
+			  <m:imaginaryi/>
+			<m:ci>Ω</m:ci>
+			</m:apply>
+		      </m:apply>
+		    </m:apply>
+		  </m:apply>
+		</m:apply>
+	      </m:apply>
+	    </m:apply>	    
+	  </m:apply>
+	</m:math>
+      </equation>
+
+      <emphasis>The circuit's output to a sinusoidal input is also a
+	sinusoid, having a gain equal to the magnitude of the
+	circuit's transfer function evaluated at the source frequency
+	and a phase equal to the phase of the transfer function at the
+	source frequency</emphasis>. It will turn out that this
+	input-output relation description applies to any linear
+	circuit having a sinusoidal source.
+    </para>
+
+
+    <para id="p01"> 
+      The notion of impedance arises when we assume the sources are
+      complex exponentials. This assumption may seem restrictive; 
+      what would we do if the source were a unit step? When we use
+      impedances to find the transfer function between the source
+      and the output variable, we can derive from it the differential
+      equation that relates input and output. The differential equation 
+      applies no matter what the source may be. As we have argued, it is
+      far simpler to use impedances to find the differential equation
+      (because we can use series and parallel combination rules) than 
+      any other method. In this sense, we have not lost anything by
+      temporarily pretending the source is a complex exponential.
+    </para>   
+
+    <para id="p02"> 
+      In fact we can also solve the differential equation using
+      impedances! Thus, despite the apparent restrictiveness of
+      impedances, assuming complex exponential sources is actually
+      quite general.
+    </para>
+    
+  </content>
+  
+</document>

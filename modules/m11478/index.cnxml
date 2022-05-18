@@ -1,0 +1,433 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml">
+  <title>Analog signals</title>
+  <metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>205ee840-8861-492c-b12c-1fcf5728059f</md:uuid>
+</metadata>
+
+  <content>
+
+  <para id="s0p1">
+      The signals signals and relations presented in this module are quite similar to
+      those in the <link document="m11476">Discrete time signals</link> module.
+      So do compare and find similarities and differences!
+  </para>
+  <section id="s1">
+          <title>Manipulating signals</title>
+	  <para id="s1p1">
+	      Mathematical operations on analog signals are unambiguous. 
+	      We require that the signals are defined over the same time
+	      interval when using operations such as addition, multiplication, division and so on.
+	  </para>
+      </section>
+      <section id="s2">
+          <title>Elementary signals &amp; relations</title>
+	  <section id="s2s1">
+	      <title>The (Dirac) delta function</title>
+	      <para id="s2s1p1">
+	          The <emphasis>delta function</emphasis> is a peculiar function
+		  that has zero duration, infinite height, but still unit area!
+		  Mathematically we have the following two properties
+		  
+		  <note type="Delta function property I" id="idp648096"><label>Delta function property I</label>
+		       <m:math>
+			    <m:apply>
+				<m:eq/>
+				<m:apply>
+				    <m:ci>δ</m:ci>
+				    <m:ci>t</m:ci>
+				</m:apply>
+				<m:cn>0</m:cn>
+			    </m:apply>
+			</m:math>
+			for <m:math><m:apply><m:neq/><m:ci>t</m:ci><m:cn>0</m:cn></m:apply></m:math>
+		  </note>
+		  <note type="Delta function property II" id="idm8889952"><label>Delta function property II</label>
+		      <m:math>
+			    <m:apply>
+				<m:eq/>
+				<m:apply>
+				    <m:int/>
+				    <m:bvar><m:ci>t</m:ci></m:bvar>
+				    <m:lowlimit><m:apply><m:minus/><m:infinity/></m:apply></m:lowlimit>
+				    <m:uplimit><m:infinity/></m:uplimit>
+				    <m:apply>
+				    	<m:ci>δ</m:ci>
+					<m:ci>t</m:ci>
+				    </m:apply>
+			  	</m:apply>
+				<m:cn>1</m:cn>
+			    </m:apply>
+			</m:math>
+		  </note>
+		  
+		  The delta function has a useful property, namely the <emphasis>sampling property</emphasis>.
+		  
+		  <equation id="eqn2">
+		      <m:math>
+			    <m:apply>
+				<m:eq/>
+				<m:apply>
+				    <m:ci>x</m:ci>
+				    <m:ci>t</m:ci>
+				</m:apply>
+				<m:apply>
+				    <m:int/>
+				    <m:bvar><m:ci>τ</m:ci></m:bvar>
+				    <m:lowlimit><m:apply><m:minus/><m:infinity/></m:apply></m:lowlimit>
+				    <m:uplimit><m:infinity/></m:uplimit>
+				    <m:apply>
+					<m:times/>
+					<m:apply>
+					    <m:ci>x</m:ci>
+					    <m:ci>τ</m:ci> 
+					</m:apply>
+					<m:apply>
+					    <m:ci>δ</m:ci>
+					    <m:apply>
+						<m:minus/>
+						<m:ci>t</m:ci>
+						<m:ci>τ</m:ci> 
+					    </m:apply>
+					</m:apply>
+				    </m:apply>
+				</m:apply>
+			    </m:apply>
+			</m:math>
+		  </equation>
+		  At this stage this may seem not particulary useful, so for now just
+		  convince yourself that the above relation holds.
+		</para>
+		<para id="s2s1p2">
+		    (We assume that <m:math><m:apply><m:ci>x</m:ci><m:ci>t</m:ci></m:apply></m:math>
+		    is "well behaved" at  <m:math><m:apply><m:eq/><m:ci>t</m:ci><m:ci>τ</m:ci></m:apply></m:math>,
+		    that is continuous and finite.)
+ 
+		</para>
+	  </section>
+	  <section id="s2s2">
+	      <title>The unit step function</title>
+	      <para id="s2s2p1">
+		  The <emphasis>unit step</emphasis> function is equal to zero when its argument is
+		  negative and equal to one for non-negative arguments, see
+                  <link target-id="f1"/> for plots.
+		  <note type="unit step" id="idm9631216"><label>Unit step</label>
+		      <m:math>
+			    <m:apply>
+				<m:eq/>
+				<m:apply>
+				    <m:ci>u</m:ci>
+				    <m:ci>t</m:ci>
+				</m:apply>
+				<m:piecewise>
+				    <m:piece>
+				        <m:cn>1</m:cn>
+					<m:apply><m:geq/><m:ci>t</m:ci><m:cn>0</m:cn></m:apply>
+				    </m:piece>
+				    <m:otherwise>
+				        <m:cn>0</m:cn>
+				    </m:otherwise>
+				</m:piecewise>
+			    </m:apply>
+			</m:math>		  
+		  </note>
+                  <figure orient="vertical" id="f1">
+
+                      <subfigure id="idm7934048">
+                          <media id="idm7933696" alt=""><image src="../../media/unit_step_no_delay_analog.png" mime-type="image/png"/></media>
+                          <caption>Unit step function, no delay.</caption>
+                      </subfigure>
+
+                      <subfigure id="idm8853680">
+                          <media id="idm8853296" alt=""><image src="../../media/unit_step_delay_5_analog.png" mime-type="image/png"/></media>
+                          <caption>Unit step function, delayed by 5.</caption>
+                      </subfigure>
+                      <caption>Two unit step functions.</caption>
+                  </figure>
+              </para>
+	  </section>
+
+	  <section id="s2s3">
+	      <title>Trigonometric functions</title>
+	      <para id="s2s3p1">
+		  The <emphasis>trigonometric</emphasis> functions are central
+		  to signal processing and telecommunications. They are defined as follows, where
+		  <m:math><m:cn>Ω</m:cn></m:math> is the angular frequency.
+		  <m:math>
+		      <m:apply>
+		          <m:eq/>
+			  <m:cn>Ω</m:cn>
+			  <m:apply>
+			      <m:times/>
+			      <m:cn>2</m:cn>
+			      <m:pi/>
+			      <m:ci><m:msub><m:mi>F</m:mi><m:mn>0</m:mn></m:msub></m:ci>
+			  </m:apply>
+		      </m:apply>
+		  </m:math>, where <m:math><m:ci><m:msub><m:mi>F</m:mi><m:mn>0</m:mn></m:msub></m:ci></m:math>
+		  is the <emphasis>frequency</emphasis> of the signal.
+		  <note type="Sine" id="idm2598688"><label>Sine</label>
+		      <m:math>
+			    <m:apply>
+				<m:eq/>
+				<m:apply>
+				    <m:ci>x</m:ci>
+				    <m:ci>t</m:ci>
+				</m:apply>
+				<m:apply>
+				    <m:sin/>
+				    <m:apply>
+				        <m:times/>
+					<m:ci>Ω</m:ci>
+				        <m:ci>t</m:ci>
+				    </m:apply>
+				</m:apply>
+			    </m:apply>
+			</m:math>		  
+		  </note>
+
+		  <note type="Cosine" id="idm8528432"><label>Cosine</label>
+		      <m:math>
+			    <m:apply>
+				<m:eq/>
+				<m:apply>
+				    <m:ci>x</m:ci>
+				    <m:ci>t</m:ci>
+				</m:apply>
+				<m:apply>
+				    <m:cos/>
+				    <m:apply>
+				        <m:times/>
+					<m:ci>Ω</m:ci>
+				        <m:ci>t</m:ci>
+				    </m:apply>
+				</m:apply>
+			    </m:apply>
+			</m:math>		  
+		  </note>
+		  See also <link document="m11477">Frequency definitions &amp; periodicity</link>.
+	      </para>
+	  </section>
+
+
+	  <section id="s2s4">
+	      <title>The complex exponential function</title>
+	      <para id="s2s4p1">
+		  The <emphasis>complex exponential</emphasis> function is central
+		  to signal processing and some call it <emphasis>the</emphasis> most important signal. 
+		  <m:math>
+		      <m:apply>
+		          <m:eq/>
+			  <m:imaginaryi/>
+			  <m:apply>
+			      <m:root/>
+			      <m:apply>
+				  <m:minus/>
+			          <m:cn>1</m:cn>
+			      </m:apply>
+			  </m:apply>
+		      </m:apply>
+		  </m:math> is the imaginary unit.
+		   
+		  <note type="complex exponential" id="idm415216"><label>Complex exponential</label>
+		      <m:math>
+			    <m:apply>
+				<m:eq/>
+				<m:apply>
+				    <m:ci>x</m:ci>
+				    <m:ci>t</m:ci>
+				</m:apply>
+				<m:apply>
+				    <m:exp/>
+				    <m:apply>
+				        <m:times/>
+					<m:imaginaryi/>
+				        <m:ci>Ω</m:ci>
+				        <m:ci>t</m:ci>
+				    </m:apply>
+				</m:apply>
+			    </m:apply>
+			</m:math>
+		  </note>
+		  
+	      </para>
+	  </section>
+
+	  
+      </section><!--End section s2-->
+      <section id="s3">
+	      <title>Euler's relations</title>
+	      <para id="s3p1">
+		  The <emphasis>complex exponential</emphasis> function can be written
+		  as a sum of its real and imaginary part.
+		  <equation id="eqn3">
+		    <m:math>
+		        <m:apply>
+			    <m:eq/>
+			    <m:apply><!--Start lhs 1eq sign-->
+			        <m:eq/>
+				<m:apply>
+				    <m:ci>x</m:ci>
+				    <m:ci>t</m:ci>
+				</m:apply>
+			        <m:apply>
+				    <m:exp/>
+				    <m:apply>
+				        <m:times/>
+					<m:imaginaryi/>
+					<m:ci>Ω</m:ci>
+					<m:ci>t</m:ci>
+				    </m:apply>
+				</m:apply>
+			    </m:apply><!--End rhs 1eq sign-->
+			    <m:apply>
+			        <m:plus/>
+				<m:apply>
+				    <m:cos/>
+					<m:apply>
+					    <m:times/>
+					    <m:ci>Ω</m:ci>
+					    <m:ci>t</m:ci>
+					</m:apply>
+			        </m:apply>
+				
+				    <m:apply>
+					<m:times/>
+					<m:imaginaryi/>
+					<m:apply>
+					    <m:sin/>
+					    <m:apply>
+						<m:times/>
+						<m:ci>Ω</m:ci>
+						<m:ci>t</m:ci>
+					    </m:apply>
+					</m:apply>
+				    </m:apply>
+				
+			     </m:apply>			
+			   </m:apply>
+		     </m:math>
+		  </equation>
+
+		  By complex conjugating <link target-id="eqn3"/> and add / subtract the result with <link target-id="eqn3"/>
+		  we obtain Euler's relations.
+		  <note type="Euler relation 1" id="idm13100544"><label>Euler relation 1</label>
+		      <m:math>
+			    <m:apply>
+				<m:eq/>
+				<m:apply>
+				    <m:cos/>
+				    <m:apply>
+				        <m:times/>
+					<m:ci>Ω</m:ci>
+				        <m:ci>t</m:ci>
+				    </m:apply>
+				</m:apply>
+				<m:apply>
+				    <m:divide/>
+				    <m:apply>
+				        <m:plus/>
+					<m:apply>
+					    <m:exp/>
+					        <m:apply>
+						    <m:times/>
+						    <m:imaginaryi/>
+						    <m:ci>Ω</m:ci>
+						    <m:ci>t</m:ci>
+						</m:apply>
+					</m:apply>
+					<m:apply>
+					    <m:exp/>
+					        <m:apply>
+						    <m:minus/>
+						    <m:apply>
+							<m:times/>
+							<m:imaginaryi/>
+							<m:ci>Ω</m:ci>
+							<m:ci>t</m:ci>
+						    </m:apply>
+						</m:apply>
+					</m:apply>
+					
+				    </m:apply>
+				    <m:cn>2</m:cn>
+				</m:apply>
+			    </m:apply>
+			</m:math>
+		  </note>
+		  <note type="Euler relation 2" id="idm9790848"><label>Euler relation 2</label>
+		      <m:math>
+			    <m:apply>
+				<m:eq/>
+				<m:apply>
+				    <m:sin/>
+				    <m:apply>
+				        <m:times/>
+					<m:ci>Ω</m:ci>
+				        <m:ci>t</m:ci>
+				    </m:apply>
+				</m:apply>
+				<m:apply>
+				    <m:divide/>
+				    <m:apply>
+				        <m:minus/>
+					<m:apply>
+					    <m:exp/>
+					        <m:apply>
+						    <m:times/>
+						    <m:imaginaryi/>
+						    <m:ci>Ω</m:ci>
+						    <m:ci>t</m:ci>
+						</m:apply>
+					</m:apply>
+					<m:apply>
+					    <m:exp/>
+					        <m:apply>
+						    <m:minus/>
+						    <m:apply>
+							<m:times/>
+							<m:imaginaryi/>
+							<m:ci>Ω</m:ci>
+							<m:ci>t</m:ci>
+						    </m:apply>
+						</m:apply>
+					</m:apply>
+				    </m:apply>
+				    <m:apply>
+					<m:times/>
+					<m:cn>2</m:cn>
+					<m:imaginaryi/>
+				    </m:apply>
+				</m:apply>
+			    </m:apply>
+			</m:math>
+		  </note>
+		  The importance of Euler's relations can hardly be stressed enough.
+	      </para>
+	  </section>
+	  <section id="s4">
+	      <title>Matlab file</title>
+	      <para id="s4p1">
+	          <link document="m11478" resource="unit_step_analog.m">unit_step_analog.m</link>
+	      </para>
+	  </section>
+
+
+    <section id="s5">
+	      <para id="s5p1">
+	       Take a look at
+	       <list id="l1" list-type="labeled-item" display="inline">
+		   <item><link document="m11479">Introduction</link></item>
+	           <item><link document="m11476">Discrete time signals</link></item>
+	           <item><link document="m11527">Discrete vs Analog signals</link></item>
+		   <item><link document="m11477">Frequency definitions and periodicity</link></item>
+	           <item><link document="m11526">Energy &amp; Power</link></item>
+	           <item><link document="m11428">Exercises</link></item>
+	   </list> ?
+      </para>
+      </section>
+
+
+
+
+  </content>
+  
+</document>

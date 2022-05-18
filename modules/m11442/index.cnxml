@@ -1,0 +1,471 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml">
+  <title>Exercises</title>
+  <metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>fbcd434a-b0b3-4f2f-b35e-35a6e9dd58e2</md:uuid>
+</metadata>
+
+  <content>
+    <para id="s0p1">Problems related to the <link document="m11419">Sampling Theorem module.</link></para>
+
+
+	<exercise id="ex1">
+	    <problem id="idp806240">
+		<para id="ex1p1">Express the sampling theorem in words.</para>
+	    </problem>
+
+	    <solution id="idp7776">
+		<para id="ex1s1">
+		    Fill in the solution here...
+		</para>
+	    </solution>
+	</exercise> <!--End exercise 1-->
+	
+	<exercise id="ex2">
+	    <problem id="idm1209952">
+		<para id="ex2p1">Theoretically, why is the sinc-function so important for reconstruction?
+				 Sketch a sinc(t). What are the values for integer values of t?
+		</para>
+	    </problem>
+
+	    <solution id="idm1808016">
+		<para id="ex2s1">
+		    Fill in the solution here...
+		</para>
+	    </solution>
+	</exercise> <!--End exercise 2-->
+
+	<exercise id="ex3">
+	    <problem id="idm9072976">
+		<para id="ex3p1"> Argue that the sampling rate for CD should be over 40KHz. </para>
+	    </problem>
+
+	    <solution id="idm1396016">
+		<para id="ex3s1">
+		    The human ear can hear frequencies up to 20 KHz, so according to the sampling theorem
+		    we should sample at a rate equal to or exceeding 40KHz. In practice we always have to sample
+		    at more than the double rate, partly due to finite precision.
+		</para>
+	    </solution>
+	</exercise> <!--End exercise 3-->
+
+	<exercise id="ex4"><!--Taken from module m0050 by Don Johnson-->
+	    <problem id="idm1499808"> <title>(By Don Johnson)</title>
+		<para id="ex4p1">
+		    What is the simplest bandlimited signal?  Using this
+		    signal, convince yourself that less than two
+		    samples/period will not suffice to specify it. If the
+		    sampling rate
+		    <m:math><m:apply><m:divide/><m:cn>1</m:cn><m:ci><m:msub><m:mi>T</m:mi><m:mi>s</m:mi></m:msub></m:ci></m:apply></m:math>
+		    is not high enough, what signal would your resulting undersampled signal become?
+		    Hint: Try the <link document="m11448">aliasing applet</link>.
+		</para>
+	    </problem>
+	    <solution id="idm8206496">
+		<para id="exs1">
+		    The simplest bandlimited signal is the sine wave. At the
+		    Nyquist frequency, exactly two samples/period would
+		    occur. Reducing the sampling rate would result in fewer
+		    samples/period, and these samples would appear to have
+		    arisen from a lower frequency sinusoid.
+		</para>
+	    </solution>
+	</exercise><!--End exercise 4-->
+
+	<exercise id="ex5">
+	    <problem id="idm2506752">
+		<para id="ex5p1"> 
+		    Are the filter h(t) described by the sinc function the only filter
+		    we can use as a perfect reconstruction filter? If not what are the condition that
+		    would allow us to use another filter?
+		</para>
+	    </problem>
+	    <solution id="idm9368048">
+		<para id="ex5s1">
+		      Fill in a solution here
+		</para>
+	    </solution>
+	</exercise> <!--End exercise 5-->
+
+	<exercise id="ex6">
+	    <problem id="idp809936">
+		<para id="ex6p1"> 
+		    If you found that it is possible to use another filter in <link target-id="ex5"/>
+		    specify such a filter. Hint: Try using the domain which usually simplifies things...
+		</para>
+	    </problem>
+	    <solution id="idm1095248">
+		<para id="ex6s1">
+		      Fill in a solution here
+		</para>
+	    </solution>
+	</exercise> <!--End exercise 6-->
+
+	<exercise id="ex7">
+	    <problem id="idm8760656">
+		<para id="ex7p1"> 
+		    What are the difficulties introduced when we want to apply the results of this
+		    chapter in practice?
+		</para>
+	    </problem>
+	    <solution id="idm9216176">
+		<para id="ex7sol1">
+		      Fill in a solution here
+		</para>
+	    </solution>
+	</exercise> <!--End exercise 7-->
+
+	<exercise id="ex8">
+	    <problem id="idm9245904">
+		<para id="ex8p1"> 
+		    If a real signal has frequency content up to
+		    <m:math><m:ci><m:msub><m:mi>F</m:mi><m:mn>1</m:mn></m:msub></m:ci></m:math>.
+		    What is then the bandwith of the signal?
+		</para>
+	    </problem>
+	    <solution id="idp583200">
+		<para id="ex8sol1">
+		      Fill in a solution here
+		</para>
+	    </solution>
+	</exercise> <!--End exercise 8-->
+
+	<exercise id="ex9">
+	    <problem id="idm9175056">
+		<para id="ex9p1"> 
+		    If a real signal has frequency content confined in the interval
+		    <m:math>
+			<m:interval>
+			    <m:apply><m:minus/>
+			    	<m:ci><m:msub><m:mi>F</m:mi><m:mn>1</m:mn></m:msub></m:ci>
+			    </m:apply>
+			    <m:ci><m:msub><m:mi>F</m:mi><m:mn>1</m:mn></m:msub></m:ci>
+			</m:interval>
+		    </m:math>.
+		    What is then the bandwith of the signal?
+		</para>
+	    </problem>
+	    <solution id="idm8490912">
+		<para id="ex9sol1">
+		      Fill in a solution here
+		</para>
+	    </solution>
+	</exercise> <!--End exercise 9-->
+	
+	<exercise id="ex10">
+	    <problem id="idm7707568">
+		<para id="ex10p1"> 
+		    What can be said in general for the spectrum of a discrete signal which
+		    is the result of sampling an analog signal that is NOT bandlimited?
+		</para>
+	    </problem>
+	    <solution id="idm2329712">
+		<para id="ex10p2">
+		    The spectrum will ALWAYS overlap,there will always be aliasing.
+		</para>
+	    </solution>
+	</exercise> <!--End exercise 10-->
+
+    <section id="s2">
+      <title>Exercises related to the Aliasing applet </title>
+      <para id="s2p1">Link to the <link document="m11448">aliasing applet</link>
+	(Right click if you want to open it in a new window).
+      </para>
+      <para id="s2p2">
+	In the following problems, as in the aliasing applet, we are studying a
+	sinusoidal signal,
+	<m:math>
+	  <m:apply>
+	    <m:eq/>
+	    <m:apply>
+	      <m:ci>x</m:ci>
+	      <m:ci>t</m:ci>
+	    </m:apply>
+	    <m:apply>
+	      <m:sin/>
+	      <m:apply>
+		<m:times/>
+		<m:cn>2</m:cn>
+		<m:pi/>
+		<m:ci>f</m:ci>
+		<m:ci>t</m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:apply>
+	</m:math>, which is sampled at
+
+	<m:math>
+	  <m:apply>
+	    <m:eq/>
+	    <m:ci><m:msub><m:mi>F</m:mi><m:mi>s</m:mi></m:msub></m:ci>
+	    <m:cn>8000</m:cn>
+	  </m:apply>
+	</m:math>.
+      </para>
+
+      <para id="s2p3">
+	<exercise id="ex11">
+	  <problem id="idp474080">
+	    <para id="ex11p1"> 
+	      What is the frequency limitation of an analog sinusoidal
+	      signal if we want to avoid aliasing, given
+	      <m:math>
+		<m:apply>
+		  <m:eq/>
+		  <m:ci><m:msub><m:mi>F</m:mi><m:mi>s</m:mi></m:msub></m:ci>
+		  <m:cn>8000</m:cn>
+		</m:apply>
+	      </m:math>?
+	    </para>
+	  </problem>
+	  <solution id="idm2404864">
+	    <para id="ex11p2">
+	      With a sampling frequency of 8000 Hz, the maximum frequency
+	      of the analog signal is 4000 Hz, as given by 
+	      <link document="m11419" target-id="s4">the sampling theorem</link>.
+	    </para>
+	  </solution>
+	</exercise> <!--End exercise 11-->
+	
+	<exercise id="ex12">
+	  <problem id="idp1535440">
+	    <para id="ex12p1"> 
+	      Describe with words the type of signal we "reconstruct" from the samples
+	      when the input frequency (of the sinusoidal signal) is higher than the sample rate can deal with?
+	    </para>
+	  </problem>
+	  <solution id="idm7589424">
+	    <para id="ex12p2">
+	      The signal we "reconstruct" is a sinusoidal signal with a frequency
+	      that is lower than the original because of aliasing.
+	    </para>
+	  </solution>
+		</exercise> <!--End exercise 12-->
+		
+	<exercise id="ex13">
+	  <problem id="idm1079600">
+	    <para id="ex13p1"> 
+	      Find an expression the signal we "reconstruct" from the samples
+	      when the input frequency is 6000 Hz.
+	    </para>
+	  </problem>
+	  <solution id="idm1078160">
+	    <para id="ex13p2">
+	      When the input frequency is 6000 Hz, a sampling frequency of
+	      8000 Hz is to low, i.e aliasing will occur. The sampled signal will
+	      have frequency components at +6000 Hz and -6000 Hz plus some new frequency components
+	      as a result of aliasing. 
+	    </para>
+	    <para id="ex13p3">
+	      We know from the 
+	      <link document="m11423" target-id="s1">proof of the sampling theorem</link>
+	      that the sampled signal is periodic with
+	      <m:math>
+		<m:apply>
+		  <m:eq/>
+		  <m:ci><m:msub><m:mi>F</m:mi><m:mi>s</m:mi></m:msub></m:ci>
+		  <m:cn>8000</m:cn>
+		</m:apply>
+	      </m:math>. Thus a frequency component at 6000 Hz 
+	      implies frequencies at -2000 Hz, -10000 Hz, 14000 Hz and so on.
+	      Similarly a frequency component at -6000 Hz give rise to(among others) a 2000 Hz component.
+	      Looking only at the positive frequencies the "reconstructed" signal will only have a 2000
+	      Hz frequency component. The removal of the 6000 Hz and above frequencies are due to the reconstruction
+	      filter. The filter is designed based on a maximum input signal frequency of 4000 Hz.
+	      Thus the "reconstructed" signal can be written as:
+	      <m:math>
+<!--		<m:apply>
+		  <m:plus/>-->
+		  <m:apply>
+		    <m:sin/>
+		    <m:apply>
+		      <m:times/>
+		      <m:cn>2</m:cn>
+		      <m:pi/>
+		      <m:cn>2000</m:cn>
+		      <m:ci>t</m:ci>
+		    </m:apply>
+		  </m:apply>
+	<!--	  <m:apply>
+		    <m:sin/>
+		    <m:apply>
+		      <m:times/>
+		      <m:cn>2</m:cn>
+		      <m:pi/>
+		      <m:cn>6000</m:cn>
+		      <m:ci>t</m:ci>
+		    </m:apply>
+		  </m:apply>
+		</m:apply> -->
+	      </m:math>.
+	    </para>
+	  </solution>
+	</exercise> <!--End exercise 13-->
+
+	<exercise id="ex14">
+	  <problem id="idm12864">
+	    <para id="ex14p1"> 
+	      Explain the "strange" sample points when the input input frequency is 4000 Hz.
+	    </para>
+	  </problem>
+	  <solution id="idm7517600">
+	    <para id="ex14p2">
+	      The sampled signal can be written as
+	      <m:math>
+		<m:apply>
+		  <m:eq/>
+		  <m:apply>
+		    <m:ci><m:msub><m:mi>x</m:mi><m:mi>s</m:mi></m:msub></m:ci>
+		    <m:ci>n</m:ci>
+		  </m:apply>
+		  <m:apply>
+		    <m:sin/>
+		    <m:apply>
+		      <m:times/>
+		      <m:cn>2</m:cn>
+		      <m:pi/>
+		      <m:cn>4000</m:cn>
+		      <m:apply>
+			<m:divide/>
+			<m:ci>n</m:ci>
+			<m:cn>8000</m:cn>
+		      </m:apply>
+		    </m:apply>
+		  </m:apply>
+		  <m:apply>
+		    <m:sin/>
+		    <m:apply>
+		      <m:times/>
+		      <m:pi/>
+		      <m:ci>n</m:ci>
+		    </m:apply>
+		  </m:apply>
+		  <m:cn>0</m:cn>
+		</m:apply>
+	      </m:math>.
+	      Thus all the samples are zero-valued.
+	     </para>
+	  </solution>
+	</exercise> <!--End exercise 14-->
+	
+	<exercise id="ex15">
+	  <problem id="idm1019296">
+	    <para id="ex15p1"> 
+	      Explain the "strange" sample points when the input input frequency is 8000 Hz.
+	    </para>
+	  </problem>
+	  <solution id="idp681136">
+	    <para id="ex15p2">
+	      The sampled signal can be written as
+	      <m:math>
+		<m:apply>
+		  <m:eq/>
+		  <m:apply>
+		    <m:ci><m:msub><m:mi>x</m:mi><m:mi>s</m:mi></m:msub></m:ci>
+		    <m:ci>n</m:ci>
+		  </m:apply>
+		  <m:apply>
+		    <m:sin/>
+		    <m:apply>
+		      <m:times/>
+		      <m:cn>2</m:cn>
+		      <m:pi/>
+		      <m:cn>8000</m:cn>
+		      <m:apply>
+			<m:divide/>
+			<m:ci>n</m:ci>
+			<m:cn>8000</m:cn>
+		      </m:apply>
+		    </m:apply>
+		  </m:apply>
+		  <m:apply>
+		    <m:sin/>
+		    <m:apply>
+		      <m:times/>
+		      <m:cn>2</m:cn>
+		      <m:pi/>
+		      <m:ci>n</m:ci>
+		    </m:apply>
+		  </m:apply>
+		  <m:cn>0</m:cn>
+		</m:apply>
+	      </m:math>.
+	      Thus all the samples are zero-valued.
+	     </para>
+	  </solution>
+	</exercise> <!--End exercise 15-->
+	
+	<exercise id="ex16">
+	  <problem id="idp318576">
+	    <para id="ex16p1"> 
+	      Find an expression for the signal we can reconstruct from the samples
+	      when the input frequency is 4000 Hz.
+	    </para>
+	  </problem>
+	  <solution id="idm899920">
+	    <para id="ex16p2">
+	      As shown in problem 14, the samples are zero valued.
+	      A reconstructing filter cannot distinguish this from the all zero
+	      signal so the reconstructed signal will be the all zero signal.
+	    </para>
+	    <para id="ex16p3">
+	      Note that a small change in the sinusoidal signals phase would produce
+	      samples that are not only zero-valued. The "reconstructed" signal will
+	      then be a equal to the original signal. This problem illustrates that
+	      sampling twice the signals highest frequency component does
+	      not always guarantee perfect recontstruction. If we could increase
+	      the sampling frequency to, say,
+	      <m:math>
+		<m:apply>
+		  <m:eq/>
+		  <m:ci><m:msub><m:mi>F</m:mi><m:mi>s</m:mi></m:msub></m:ci>
+		  <m:cn>8000.00001</m:cn>
+		</m:apply>
+	      </m:math>, we could reconstruct the original signal.
+	      I.e sampling at a rate <emphasis>greater</emphasis> than
+	      twice the highest frequency component yields the desired
+	      reconstruction.
+	      
+	    </para>
+	  </solution>
+	</exercise> <!--End exercise 16-->
+
+	<exercise id="ex17">
+	  <problem id="idm2156352">
+	    <para id="ex17p1"> 
+	      Find an expression for the "reconstructed" signal from the samples
+	      when the input frequency is 8000 Hz.
+	    </para>
+	  </problem>
+	  <solution id="idm853360">
+	    <para id="ex17p2">
+	      As shown in problem 15, the samples are zero valued.
+	      A reconstructing filter cannot distinguish this from the all zero
+	      signal so the reconstructed signal will be the all zero signal.
+	    </para>
+	    <para id="ex17p3">
+	      Note that a small change in the sinusoidal signals phase would produce
+	      samples that are not only zero-valued. The "reconstructed" signal will
+	      then be a signal with aliased components.
+	    </para>
+	  </solution>
+    </exercise> <!--End exercise 17-->
+
+
+	    </para>
+
+	</section>
+<!--
+       <section id="s4">
+       <list id="l1" type="inline">
+       <item><cnxn document="m11419">Introduction</cnxn></item>
+       <item><cnxn document="m11423">Proof</cnxn></item>
+       <item><cnxn document="m11443">Illustrations</cnxn></item>
+       <item><cnxn document="m11549">Matlab Example</cnxn></item>
+       <item><cnxn document="m11458">Hold operation</cnxn></item>
+       <item><cnxn document="m11448">Aliasing applet</cnxn></item>
+       <item><cnxn document="m11465">System view</cnxn></item>
+       </list>
+       </section>-->
+
+  </content>
+  
+</document>

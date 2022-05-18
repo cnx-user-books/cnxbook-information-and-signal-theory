@@ -1,0 +1,297 @@
+<document xmlns="http://cnx.rice.edu/cnxml" xmlns:m="http://www.w3.org/1998/Math/MathML" xmlns:md="http://cnx.rice.edu/mdml">
+
+  <title>Huffman Coding</title>
+
+  <metadata><md:content-id>undefined</md:content-id><md:title/><md:uuid>ffdafe2a-90a2-44d3-b5e8-d259505ac71f</md:uuid>
+</metadata>
+
+  <content>
+
+    <para id="para0">
+      One particular <link document="m10175" strength="2">source coding</link>
+      algorithm is the Huffman encoding algorithm.  It is a source coding
+      algorithm which approaches, and sometimes achieves, Shannon's bound for
+      source compression.  A brief discussion of the algorithm is also given in
+      <link document="m0092" strength="2">another module</link>.
+    </para>
+
+    <section id="s1">
+      <title>Huffman encoding algorithm</title>
+
+      <list id="list1" list-type="enumerated">
+	<item>Sort source outputs in decreasing order of their probabilities
+	</item>
+	<item>Merge the two least-probable outputs into a single output whose
+	  probability is the sum of the corresponding probabilities.
+	</item>
+	<item>If the number of remaining outputs is more than 2, then go to 
+	  step 1.
+	</item>
+	<item>Arbitrarily assign 0 and 1 as codewords for the two remaining 
+	  outputs.
+	</item>
+	<item>If an output is the result of the merger of two outputs in a 
+	  preceding step, append the current codeword with a 0 and a 1 to
+	  obtain the codeword the the preceding outputs and repeat step 5. If
+	  no output is preceded by another output in a preceding step, then
+	  stop.
+	</item>
+      </list>
+
+      <example id="example1">
+
+	<para id="para1">
+	  <m:math>
+	    <m:apply>
+	      <m:in/>
+              <m:ci>X</m:ci>
+              <m:set>
+                <m:ci>A</m:ci>
+                <m:ci>B</m:ci>
+                <m:ci>C</m:ci>
+		<m:ci>D</m:ci>
+              </m:set>
+	    </m:apply>
+	  </m:math> 
+	  with probabilities {
+	  <m:math>
+	    <m:apply>
+	      <m:divide/>
+              <m:cn>1</m:cn>
+              <m:cn>2</m:cn>
+	    </m:apply>
+	  </m:math>,<m:math>
+	    <m:apply>
+	      <m:divide/>
+              <m:cn>1</m:cn>
+              <m:cn>4</m:cn>
+	    </m:apply>
+	  </m:math>,<m:math>
+	    <m:apply>
+	      <m:divide/>
+              <m:cn>1</m:cn>
+              <m:cn>8</m:cn>
+	    </m:apply>
+	  </m:math>,<m:math>
+	    <m:apply>
+	      <m:divide/>
+              <m:cn>1</m:cn>
+              <m:cn>8</m:cn>
+	    </m:apply>
+	  </m:math>}
+	</para>
+
+	<figure id="fig1">
+	  <media id="idm215552" alt=""><image src="../../media/Figure7-24.png" mime-type="image/png"/></media>
+	</figure>
+
+	<para id="para2">
+	  <m:math>
+	    <m:apply>
+	      <m:eq/>
+              <m:ci>Average length</m:ci>
+              <m:apply>
+                <m:plus/>
+		<m:apply>
+		  <m:times/>
+		  <m:apply>
+		    <m:divide/>
+		    <m:cn>1</m:cn>
+		    <m:cn>2</m:cn>
+		  </m:apply>
+		  <m:cn>1</m:cn>
+		</m:apply>
+		<m:apply>
+		  <m:times/>
+		  <m:apply>
+		    <m:divide/>
+		    <m:cn>1</m:cn>
+		    <m:cn>4</m:cn>
+		  </m:apply>
+		  <m:cn>2</m:cn>
+		</m:apply>
+		<m:apply>
+		  <m:times/>
+		  <m:apply>
+		    <m:divide/>
+		    <m:cn>1</m:cn>
+		    <m:cn>8</m:cn>
+		  </m:apply>
+		  <m:cn>3</m:cn>
+		</m:apply>
+		<m:apply>
+		  <m:times/>
+		  <m:apply>
+		    <m:divide/>
+		    <m:cn>1</m:cn>
+		    <m:cn>8</m:cn>
+		  </m:apply>
+		  <m:cn>3</m:cn>
+		</m:apply>
+              </m:apply>
+	      <m:apply>
+		<m:divide/>
+		<m:cn>14</m:cn>
+		<m:cn>8</m:cn>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>.  As you may recall, the entropy of the source was
+	  also
+	  <m:math>
+	    <m:apply>
+	      <m:eq/>
+              <m:apply>
+                <m:ci type="function">H</m:ci>
+                <m:ci>X</m:ci>
+              </m:apply>
+              <m:apply>
+                <m:divide/>
+		<m:cn>14</m:cn>
+		<m:cn>8</m:cn>
+              </m:apply>
+	    </m:apply>
+	  </m:math>.
+	  In this case, the Huffman code achieves the lower bound of
+	  <m:math>
+	    <m:apply>
+	      <m:times/>
+	      <m:apply>
+		<m:divide/>
+		<m:cn>14</m:cn>
+		<m:cn>8</m:cn>
+	      </m:apply>
+	      <m:apply>
+		<m:divide/>
+		<m:ci>bits</m:ci>
+		<m:ci>output</m:ci>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>.
+	</para>
+      </example>
+
+      <para id="para3">
+	In general, we can define average code length as
+	<equation id="eq01">
+	  <m:math>
+	    <m:apply>
+	      <m:eq/>
+	      <m:apply>
+		<m:mean/>
+		<m:ci>ℓ</m:ci>
+	      </m:apply>
+              <m:apply>
+                <m:sum/>
+		<m:bvar>
+		  <m:ci>x</m:ci>
+		</m:bvar>
+		<m:condition>
+		  <m:apply>
+		    <m:in/>
+		    <m:ci>x</m:ci>
+		    <m:ci>
+		      <m:mover>
+			<m:mi>X</m:mi>
+			<m:mo>¯</m:mo>
+		      </m:mover>
+		    </m:ci>
+		  </m:apply>
+		</m:condition>
+		<m:apply>
+		  <m:times/>
+		  <m:apply>  
+		    <m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#pdf">p</m:csymbol>
+		    <m:bvar>
+		      <m:ci>X</m:ci>
+		    </m:bvar>
+		    <m:ci>x</m:ci>
+		  </m:apply>
+		  <m:apply>
+		    <m:ci type="function">ℓ</m:ci>
+		    <m:ci>x</m:ci>
+		  </m:apply>
+		</m:apply>
+              </m:apply>
+	    </m:apply>
+	  </m:math>
+	</equation>
+	where
+	<m:math display="inline">
+	  <m:ci>
+	    <m:mover>
+	      <m:mi>X</m:mi>
+	      <m:mo>¯</m:mo>
+	    </m:mover>
+	  </m:ci>
+	</m:math>
+	is the set of possible values of <m:math><m:ci>x</m:ci></m:math>.
+      </para>
+
+      <para id="para4">
+	It is not very hard to show that
+	<equation id="eq02">
+	  <m:math>
+	    <m:apply>
+	      <m:geq/>
+	      <m:apply>
+		<m:ci type="function">H</m:ci>
+		<m:ci>X</m:ci>
+	      </m:apply>
+	      <m:apply>
+		<m:gt/>
+		<m:apply>
+		  <m:mean/>
+		  <m:ci>ℓ</m:ci>
+		</m:apply>
+                <m:apply>
+                  <m:plus/>
+		  <m:apply>
+		    <m:ci type="function">H</m:ci>
+		    <m:ci>X</m:ci>
+		  </m:apply>
+		  <m:cn>1</m:cn>
+                </m:apply>
+	      </m:apply>
+	    </m:apply>
+	  </m:math>
+	</equation>
+	For compressing single source output at a time, Huffman codes
+	provide nearly optimum code lengths.
+      </para>
+
+      <para id="para5">
+	The drawbacks of Huffman coding
+	<list id="list2" list-type="enumerated">
+	  <item>Codes are variable length.</item>
+	  <item>The algorithm requires the knowledge of the probabilities,
+	    <m:math>
+	      <m:apply>       
+		<m:csymbol definitionURL="http://cnx.rice.edu/cd/cnxmath.ocd#pdf">p</m:csymbol>
+		<m:bvar>
+		  <m:ci>X</m:ci>
+		</m:bvar>
+		<m:ci>x</m:ci>
+	      </m:apply>
+	    </m:math>
+	    for all
+	    <m:math>
+	      <m:apply>
+		<m:in/>
+		<m:ci>x</m:ci>
+		<m:ci>
+		  <m:mover>
+		    <m:mi>X</m:mi>
+		    <m:mo>¯</m:mo>
+		  </m:mover>
+		</m:ci>
+	      </m:apply>
+	    </m:math>.
+	  </item>
+	</list>
+	Another powerful source coder that does not have the above
+	shortcomings is Lempel and Ziv.
+      </para>
+    </section>
+
+  </content>
+</document>
